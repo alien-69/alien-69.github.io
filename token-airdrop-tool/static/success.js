@@ -1,11 +1,1 @@
-import { copyToCliBoard } from "./misc.js";
-var showNewTokenAddress = document.querySelector(".newTokenAddress");
-var btnCopyTokenAddress = document.querySelector(".copyTokenAddress");
-
-showNewTokenAddress.innerHTML =
-  window.localStorage.getItem("new_token_address");
-
-$("#view_token").attr("href", window.localStorage.getItem("bsc_scan_link"));
-btnCopyTokenAddress.addEventListener("click", () => {
-  copyToCliBoard(showNewTokenAddress.innerHTML);
-});
+function a8_0xaaf6(_0x39fdf3,_0xc39f60){var _0x3ab5cc=a8_0x3ab5();return a8_0xaaf6=function(_0xaaf616,_0x44e8ca){_0xaaf616=_0xaaf616-0x1cc;var _0x21126f=_0x3ab5cc[_0xaaf616];return _0x21126f;},a8_0xaaf6(_0x39fdf3,_0xc39f60);}var a8_0x27644f=a8_0xaaf6;(function(_0x1c52b7,_0x47470e){var _0xffb092=a8_0xaaf6,_0x31991b=_0x1c52b7();while(!![]){try{var _0x7d5342=parseInt(_0xffb092(0x1d7))/0x1*(-parseInt(_0xffb092(0x1dd))/0x2)+parseInt(_0xffb092(0x1e0))/0x3*(parseInt(_0xffb092(0x1d1))/0x4)+-parseInt(_0xffb092(0x1d2))/0x5+-parseInt(_0xffb092(0x1db))/0x6+parseInt(_0xffb092(0x1df))/0x7*(parseInt(_0xffb092(0x1cd))/0x8)+parseInt(_0xffb092(0x1d0))/0x9+parseInt(_0xffb092(0x1d8))/0xa*(parseInt(_0xffb092(0x1ce))/0xb);if(_0x7d5342===_0x47470e)break;else _0x31991b['push'](_0x31991b['shift']());}catch(_0x550e62){_0x31991b['push'](_0x31991b['shift']());}}}(a8_0x3ab5,0xcd2be));function a8_0x3ab5(){var _0x491ec1=['6308994hpLjVM','innerHTML','2445226wgGlVB','.newTokenAddress','4708438zlhxfk','982782GuQuok','attr','.copyTokenAddress','16XGbagX','11429nQqZDV','localStorage','8470485izYjxK','20cDwEPI','4080715nAKQRO','querySelector','getItem','href','new_token_address','1PeTaql','60YJmtkW','bsc_scan_link','#view_token'];a8_0x3ab5=function(){return _0x491ec1;};return a8_0x3ab5();}import{copyToCliBoard}from'./misc.js';var showNewTokenAddress=document['querySelector'](a8_0x27644f(0x1de)),btnCopyTokenAddress=document[a8_0x27644f(0x1d3)](a8_0x27644f(0x1cc));showNewTokenAddress['innerHTML']=window[a8_0x27644f(0x1cf)]['getItem'](a8_0x27644f(0x1d6)),$(a8_0x27644f(0x1da))[a8_0x27644f(0x1e1)](a8_0x27644f(0x1d5),window[a8_0x27644f(0x1cf)][a8_0x27644f(0x1d4)](a8_0x27644f(0x1d9))),btnCopyTokenAddress['addEventListener']('click',()=>{var _0x1038a9=a8_0x27644f;copyToCliBoard(showNewTokenAddress[_0x1038a9(0x1dc)]);});
