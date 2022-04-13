@@ -1,1 +1,541 @@
-function a0_0xb06b(_0x2a84be,_0x14a22d){var _0x20311c=a0_0x2031();return a0_0xb06b=function(_0xb06b9f,_0x4b958a){_0xb06b9f=_0xb06b9f-0xb1;var _0x1c1408=_0x20311c[_0xb06b9f];return _0x1c1408;},a0_0xb06b(_0x2a84be,_0x14a22d);}var a0_0x159117=a0_0xb06b;(function(_0x27dda9,_0x3b78a5){var _0x33ece3=a0_0xb06b,_0x4ce168=_0x27dda9();while(!![]){try{var _0x59741c=parseInt(_0x33ece3(0x130))/0x1*(-parseInt(_0x33ece3(0x119))/0x2)+-parseInt(_0x33ece3(0x10a))/0x3*(-parseInt(_0x33ece3(0xe1))/0x4)+-parseInt(_0x33ece3(0xff))/0x5+-parseInt(_0x33ece3(0x11a))/0x6+-parseInt(_0x33ece3(0x124))/0x7+parseInt(_0x33ece3(0xe9))/0x8*(-parseInt(_0x33ece3(0xd0))/0x9)+parseInt(_0x33ece3(0xc7))/0xa;if(_0x59741c===_0x3b78a5)break;else _0x4ce168['push'](_0x4ce168['shift']());}catch(_0x42a1e6){_0x4ce168['push'](_0x4ce168['shift']());}}}(a0_0x2031,0xeeb0f));export function solcCompiler(_0x1a7b9f){var _0x39b24c=a0_0xb06b;BrowserSolc['loadVersion']('soljson-v0.4.26+commit.4563c3fc.js',function(_0x46fc23){var _0x3c5031=a0_0xb06b,_0x80ab93=_0x80ab93,_0x2a4e7a=0x1,_0x3b74c0=_0x46fc23[_0x3c5031(0x123)](_0x80ab93,_0x2a4e7a);console[_0x3c5031(0xd3)]('\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20---result---\x0a\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+JSON[_0x3c5031(0x115)](_0x46fc23)+_0x3c5031(0x118)+JSON[_0x3c5031(0x115)](_0x3b74c0)+_0x3c5031(0xd7));}),BrowserSolc[_0x39b24c(0xf1)](function(_0x8f610a,_0x4a594c){var _0xb5b99b=_0x39b24c;console[_0xb5b99b(0xd3)](_0x8f610a),console[_0xb5b99b(0xd3)](_0x4a594c);});}function readTextFile_old(_0x223f3a,_0x456e16){var _0x2a7f7b=a0_0xb06b,_0x4abb7b=new XMLHttpRequest();_0x4abb7b[_0x2a7f7b(0x111)](_0x2a7f7b(0x11e),_0x223f3a,![]),_0x4abb7b[_0x2a7f7b(0xfa)]=function(){var _0x24b03b=_0x2a7f7b;if(_0x4abb7b[_0x24b03b(0x128)]===0x4){if(_0x4abb7b[_0x24b03b(0xef)]===0xc8||_0x4abb7b[_0x24b03b(0xef)]==0x0){var _0xd52004=_0x4abb7b['responseText'];_0x456e16(_0xd52004);}}},_0x4abb7b[_0x2a7f7b(0x104)](null);}export async function readTextFile(_0x2107c4){var _0xe35b83=a0_0xb06b;return(await makeRequest(_0xe35b83(0x11e),_0x2107c4))[_0xe35b83(0x10b)];}function makeRequest(_0x2402ac,_0x273d65){return new Promise(function(_0x4bc062,_0xc4bca6){var _0x296b69=a0_0xb06b;let _0x14ed8a=new XMLHttpRequest();_0x14ed8a[_0x296b69(0x111)](_0x2402ac,_0x273d65),_0x14ed8a[_0x296b69(0xd2)]=function(){var _0x4769e0=_0x296b69;this[_0x4769e0(0xef)]>=0xc8&&this[_0x4769e0(0xef)]<0x12c?_0x4bc062({'status':this[_0x4769e0(0xef)],'statusText':_0x14ed8a[_0x4769e0(0xda)]}):_0xc4bca6({'status':this[_0x4769e0(0xef)],'statusText':_0x14ed8a['statusText']});},_0x14ed8a[_0x296b69(0x112)]=function(){var _0x23ca4b=_0x296b69;_0xc4bca6({'status':this[_0x23ca4b(0xef)],'statusText':_0x14ed8a[_0x23ca4b(0x10b)]});},_0x14ed8a[_0x296b69(0x104)]();});}function getGasPrice(_0x5b43e6){var _0x1f6a8a=a0_0xb06b;web3[_0x1f6a8a(0xd4)]['getGasPrice']()[_0x1f6a8a(0xdd)](_0x63a171=>{var _0x2cadca=_0x1f6a8a;console[_0x2cadca(0xd3)](_0x2cadca(0x10c),_0x63a171),_0x5b43e6(_0x63a171);});}async function getGasLimit(_0x4f87d9,_0x156c9b){var _0x23f178=a0_0xb06b;setValue('deployStatus',_0x23f178(0xfc)),showElement(_0x23f178(0x11b));var _0x43d922=await web3['eth']['getBlockNumber'](),_0x2a0cfa=0x0,_0x57dbac=0x0,_0x587da8=0x0,_0x54407c=0x0,_0x3055d7=0x14;console[_0x23f178(0xd3)](_0x43d922),console['log'](_0x23f178(0xfd),_0x4f87d9);for(let _0x174771=0x0;_0x174771<_0x3055d7;_0x174771++){var _0x18db9d=await web3[_0x23f178(0xd4)][_0x23f178(0xc6)](_0x43d922-_0x174771),_0x3fe90f=parseInt(_0x18db9d[_0x23f178(0xbe)]/_0x18db9d[_0x23f178(0xe4)]);console[_0x23f178(0xd3)](_0x23f178(0xbd)+_0x3fe90f),_0x587da8+=_0x3fe90f;}var _0x54407c=parseInt(_0x4f87d9*_0x587da8/_0x3055d7);console[_0x23f178(0xd3)]('average_gas_limit:'+_0x54407c),_0x156c9b(_0x54407c),hideElement(_0x23f178(0x11b));}function getDataSize(_0x1c12ed,_0x5eca57){var _0x446540=a0_0xb06b;return parseInt(_0x1c12ed[_0x446540(0xb9)]*0.5+_0x5eca57['length']*0x20);}function getPrice(){var _0x16f959=a0_0xb06b,_0x43a2a5=$(_0x16f959(0xd6))[_0x16f959(0xde)]();return console['log'](_0x43a2a5==_0x16f959(0xc4)),_0x43a2a5==_0x16f959(0xc4)?_0x16f959(0xdb):(_0x43a2a5=_0x43a2a5['split']('\x20')[0x0],_0x43a2a5);}export async function deployContract(_0x3d1755,_0xd5a214,_0x23ab96,_0x1d8c04,_0xaab848){var _0x5a3781=a0_0xb06b,_0x50e50a=await readTextFile(_0x3d1755+_0x5a3781(0xbf)),_0xbb179d=JSON[_0x5a3781(0xc9)](_0x50e50a);console[_0x5a3781(0xd3)](Object['values'](_0xbb179d)),console['log'](_0x5a3781(0xe8),web3);var _0x3c7408=new web3[(_0x5a3781(0xd4))]['Contract'](_0xbb179d);console['log'](_0x5a3781(0xec)+_0x3c7408+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20');var _0x309a90=await readTextFile(_0x3d1755+_0x5a3781(0x110));console[_0x5a3781(0xd3)](_0x3d1755+_0x5a3781(0x110));var _0x309a90=JSON[_0x5a3781(0xc9)](_0x309a90)[_0x5a3781(0xf4)];if(typeof _0x1d8c04!==undefined&&_0x1d8c04!=null){_0x1d8c04=_0x1d8c04[_0x5a3781(0x107)]('0x',''),_0x309a90=_0x309a90[_0x5a3781(0xed)](_0x5a3781(0x122),_0x1d8c04);var _0x22a891='0';}else var _0x22a891=getPrice();console[_0x5a3781(0xd3)](_0x5a3781(0xe6)+_0x1d8c04+'\x0a\x20\x20\x0a\x20\x20\x20\x20data:\x20'+_0x309a90+_0x5a3781(0xbc)),console[_0x5a3781(0xd3)](_0xd5a214);if(_0xd5a214!=[]){var _0x51342c=await getConstructor(_0x3d1755+_0x5a3781(0xbf)),_0x27ac6c=encodeParameters(_0x51342c,_0xd5a214);console['log'](_0x5a3781(0x131),_0x27ac6c);}try{var _0x43585a=_0x3c7408[_0x5a3781(0xf8)]({'data':_0x309a90,'arguments':_0xd5a214})[_0x5a3781(0xf6)](),_0x443e0b=await web3['eth']['estimateGas']({'data':_0x43585a,'from':selectedAccount,'value':web3[_0x5a3781(0x10f)][_0x5a3781(0xd9)](web3['utils']['toWei'](_0x22a891,_0x5a3781(0xb7)))});console[_0x5a3781(0xd3)](_0x5a3781(0xb3),_0x43585a),console[_0x5a3781(0xd3)]('gaslimit',_0x443e0b),getGasPrice(function(_0x57863c){var _0x409b35=_0x5a3781;_0x3c7408['deploy']({'data':_0x309a90,'arguments':_0xd5a214})[_0x409b35(0x104)]({'from':selectedAccount,'gas':_0x443e0b,'gasPrice':_0x57863c,'value':web3[_0x409b35(0x10f)][_0x409b35(0x100)](_0x22a891,_0x409b35(0xb7))},function(_0x4511d7,_0x1b06e2){})['once'](_0x409b35(0xf9),function(_0x420eb0){var _0xbc1f77=_0x409b35;console[_0xbc1f77(0xd3)](_0xbc1f77(0xf9),_0x420eb0);})[_0x409b35(0x12a)](_0x409b35(0x120),function(_0x15450b){var _0x206457=_0x409b35;console[_0x206457(0xd3)](_0x206457(0x120),_0x15450b),setValue('deployStatus',_0x206457(0xca)),showElement(_0x206457(0x11b));})['on']('error',function(_0x576512){var _0x4594cd=_0x409b35;_0x23ab96(_0x4594cd(0xc8),_0x576512),hideElement(_0x4594cd(0x11b));})['on']('transactionHash',function(_0x15aa24){var _0x4f01d1=_0x409b35;_0x23ab96(_0x4f01d1(0x103),_0x15aa24);})['on'](_0x409b35(0xf7),function(_0x41ed75){var _0x416893=_0x409b35;console[_0x416893(0xd3)](_0x41ed75['contractAddress']),_0x23ab96(_0x416893(0xf7),_0x41ed75);})['on'](_0x409b35(0xea),function(_0x5cdba1,_0x460759){_0x23ab96('confirmation',_0x5cdba1);})[_0x409b35(0xdd)](async function(_0x45ce2f){var _0x4f3adf=_0x409b35;console[_0x4f3adf(0xd3)](_0x45ce2f[_0x4f3adf(0xcf)][_0x4f3adf(0xee)]),_0x23ab96(_0x4f3adf(0x121),_0x45ce2f['options'][_0x4f3adf(0xee)]),setValue(_0x4f3adf(0x11b),_0x4f3adf(0xdc));if(!_0x3d1755[_0x4f3adf(0x117)]('/lib.')){await sleep(0x1e);var _0xdd63c7=_0x45ce2f[_0x4f3adf(0xcf)][_0x4f3adf(0xee)];console[_0x4f3adf(0xd3)](_0x4f3adf(0x12e),_0xdd63c7);var _0x27a304=await readTextFile(_0x3d1755+_0x4f3adf(0xc3));if(_0x3d1755['includes']('standard'))var _0x40d69a=_0x4f3adf(0xc2);else{if(_0x3d1755[_0x4f3adf(0x117)](_0x4f3adf(0xdf)))var _0x40d69a=_0x4f3adf(0x10d);else{if(_0x3d1755[_0x4f3adf(0x117)](_0x4f3adf(0x102)))var _0x40d69a='RewardToken',_0x302e18=['IterableMapping'],_0x2d1bd0=['0x'+_0x1d8c04];else var _0x40d69a=_0x4f3adf(0xc2);}}var _0x3206b8=await readTextFile(_0x3d1755+_0x4f3adf(0x108)),_0x278f3c=_0x27ac6c;verifyContract(_0xdd63c7,_0x27a304,_0x40d69a,_0x3206b8,_0x278f3c,_0x302e18,_0x2d1bd0,_0xaab848);}});});}catch(_0x57b6e5){console[_0x5a3781(0xd3)](_0x5a3781(0x129),_0x57b6e5),_0x23ab96('error',_0x57b6e5);}}export function sleep(_0x363188){return new Promise(_0x4b9c67=>{setTimeout(_0x4b9c67,_0x363188*0x3e8);});}export async function createToken(_0x1265f3,_0x38f778,_0x11023a,_0x213410,_0x533030){var _0x45ad7e=a0_0xb06b,_0x31239f=_0x45ad7e(0x101)+_0x1265f3+'/';await deployContract(_0x31239f,_0x38f778,_0x11023a,_0x213410,_0x533030);}export async function deployLibrary(_0x2f7b0f,_0x23ebd9,_0x44e258,_0x2ff611){var _0x5e6b5d=a0_0xb06b,_0x5806df=_0x5e6b5d(0x101)+_0x2f7b0f+_0x5e6b5d(0x11c);await deployContract(_0x5806df,_0x23ebd9,_0x44e258,null,_0x2ff611);}export function copyToCliBoard(_0x5e2c2e){var _0x4dc579=a0_0xb06b,_0x341eca=document['createElement']('input');_0x341eca[_0x4dc579(0x116)]=_0x5e2c2e,document[_0x4dc579(0xe3)]['appendChild'](_0x341eca),_0x341eca['select'](),document[_0x4dc579(0x109)](_0x4dc579(0x12d)),document[_0x4dc579(0xe3)]['removeChild'](_0x341eca),$('#copyTokenAddress')[_0x4dc579(0xb1)]('data-bs-original-title',_0x4dc579(0xc5)),$(_0x4dc579(0x12c))[_0x4dc579(0xb1)](_0x4dc579(0xb8),_0x4dc579(0xc5)),$('#copyTokenAddress')[_0x4dc579(0xcb)](_0x4dc579(0x113)),setTimeout(()=>{var _0x206cb9=_0x4dc579;$(_0x206cb9(0x12c))[_0x206cb9(0xcb)](_0x206cb9(0xf3)),$(_0x206cb9(0x12c))['attr'](_0x206cb9(0xb8),'Copy\x20to\x20clipboard'),$('#copyTokenAddress')[_0x206cb9(0xb1)](_0x206cb9(0xbb),'');},0x1f4);}export function setValue(_0x52eff5,_0x1a414b){var _0x1b31db=a0_0xb06b;$('.'+_0x52eff5)[_0x1b31db(0xde)](_0x1a414b);}export function hideElement(_0x158464){var _0x2af53c=a0_0xb06b;$('.'+_0x158464)['css'](_0x2af53c(0xba),_0x2af53c(0xe7));}export function showElement(_0x579f96){var _0x28d6a2=a0_0xb06b;$('.'+_0x579f96)['css']('display',_0x28d6a2(0x125));}export function verifyContract(_0x309493,_0x1943c0,_0x3ec3ca,_0x8d3e57,_0x5de2cf,_0x23647c,_0x3593da,_0x515714){var _0x4ee63f=a0_0xb06b;_0x23647c==undefined&&(_0x23647c=['']);_0x3593da==undefined&&(_0x3593da=['']);var _0x18b813=_0x4ee63f(0xd8),_0x4742f9=getApiUrl();$[_0x4ee63f(0xeb)]({'type':_0x4ee63f(0xfe),'url':_0x4742f9,'data':{'apikey':_0x18b813,'module':_0x4ee63f(0x12f),'action':_0x4ee63f(0x10e),'contractaddress':_0x309493,'sourceCode':_0x1943c0,'codeformat':_0x4ee63f(0xd1),'contractname':_0x3ec3ca,'compilerversion':_0x8d3e57,'optimizationUsed':0x1,'runs':0xc8,'constructorArguements':_0x5de2cf,'evmversion':'','licenseType':0x1,'libraryname1':_0x23647c[0x0],'libraryaddress1':_0x3593da[0x0],'libraryname2':'','libraryaddress2':'','libraryname3':'','libraryaddress3':'','libraryname4':'','libraryaddress4':'','libraryname5':'','libraryaddress5':'','libraryname6':'','libraryaddress6':'','libraryname7':'','libraryaddress7':'','libraryname8':'','libraryaddress8':'','libraryname9':'','libraryaddress9':'','libraryname10':'','libraryaddress10':''},'success':function(_0x1295c4){var _0x116135=_0x4ee63f;console[_0x116135(0xd3)](_0x1295c4),_0x1295c4[_0x116135(0xef)]=='1'?console[_0x116135(0xd3)](_0x1295c4['status']+';'+_0x1295c4[_0x116135(0xb5)]+';'+_0x1295c4[_0x116135(0xd5)]):console['log'](_0x1295c4[_0x116135(0xef)]+';'+_0x1295c4[_0x116135(0xb5)]+';'+_0x1295c4[_0x116135(0xd5)]),console[_0x116135(0xd3)](_0x116135(0xcd)+_0x1295c4[_0x116135(0xef)]),console[_0x116135(0xd3)](_0x116135(0x105)+_0x1295c4[_0x116135(0xd5)]),_0x515714!=null&&_0x515714!=undefined&&_0x515714(_0x309493,_0x1295c4);},'error':function(_0x145949){var _0xb540a2=_0x4ee63f;console['log'](_0xb540a2(0x132)),console[_0xb540a2(0xd3)](_0xb540a2(0xe5)),console[_0xb540a2(0xd3)](_0x145949),_0x515714!=null&&_0x515714!=undefined&&_0x515714(_0x309493,_0x145949);}});}function getApiUrl(){var _0x3449b8=a0_0xb06b;if(getNetwork()==0x0){var _0x4288cf=_0x3449b8(0x106);return _0x4288cf;}else{if(getNetwork()==0x1){var _0x4288cf=_0x3449b8(0xce);return _0x4288cf;}}}export function checkVerifyStatus(_0x2c89e0){var _0x335433=a0_0xb06b,_0x3e6cc5=_0x335433(0xd8),_0x4afd48=getApiUrl();$[_0x335433(0xeb)]({'type':_0x335433(0x11e),'url':_0x4afd48,'data':{'apikey':_0x3e6cc5,'guid':_0x2c89e0,'module':_0x335433(0x12f),'action':_0x335433(0xc1)},'success':function(_0x5cdcd2){var _0x1d4b1a=_0x335433;console[_0x1d4b1a(0xd3)](_0x1d4b1a(0xcd)+_0x5cdcd2[_0x1d4b1a(0xef)]),console[_0x1d4b1a(0xd3)](_0x1d4b1a(0xf0)+_0x5cdcd2[_0x1d4b1a(0xb5)]),console[_0x1d4b1a(0xd3)](_0x1d4b1a(0x105)+_0x5cdcd2[_0x1d4b1a(0xd5)]);},'error':function(_0x5a5a39){var _0x3ce569=_0x335433;alert(_0x3ce569(0xc8));}});}export function encodeParameters(_0x2ccd26,_0x15ef83){var _0x3b5812=a0_0xb06b;return web3[_0x3b5812(0xd4)]['abi'][_0x3b5812(0x114)](_0x2ccd26,_0x15ef83)[_0x3b5812(0x107)]('0x','');}export async function getConstructor(_0x41d5bc){var _0x4f6c7d=a0_0xb06b,_0x48b356=JSON[_0x4f6c7d(0xc9)](await readTextFile(_0x41d5bc));console[_0x4f6c7d(0xd3)](_0x48b356);var _0x3caecc=_0x48b356[0x0],_0x5f3f1f=_0x3caecc['inputs'],_0x2e0884=[];for(let _0x1e99fc=0x0;_0x1e99fc<_0x5f3f1f[_0x4f6c7d(0xb9)];_0x1e99fc++){var _0x32f2de=_0x5f3f1f[_0x1e99fc][_0x4f6c7d(0xc0)];_0x2e0884[_0x4f6c7d(0xe2)](_0x32f2de);}return console[_0x4f6c7d(0xd3)](_0x2e0884),_0x2e0884;}function a0_0x2031(){var _0x4a722b=['6734166ObBRsX','deployStatus','/lib.','modal','GET','#modalBody','sent','done','__$13356894708e8712e57b8854de619104de$__','compile','957082yjYUzc','block','#tokenIntroDialog','test','readyState','try\x20estimate\x20gas\x20limit','once','mobile','#copyTokenAddress','copy','contract_addresscontract_address','contract','1WefvpX','encoded_constructor','error!','attr','userAgent','bytecodeWithEncodedParameters','_blank','message','https://t.me/justhandsomeguy','ether','title','length','display','data-bs-original-title','\x0a\x20\x20\x20\x20','gas_used_per_byte:','gasUsed','abi','internalType','checkverifystatus','StandardToken','sol','FREE','Copied!','getBlock','40159720PmcahT','error','parse','Deploy\x20contract...','tooltip','Meme\x20Coin','status\x20:\x20','https://api-testnet.bscscan.com/api','options','72WMCROn','solidity-single-file','onload','log','eth','result','#price','\x0a\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','M4JST2ZP7HWZIWF1FDD8ASEEDDS46VY1GS','toHex','response','0.015','Verify\x20contract...','then','text','safemoon','click','12YZjjOf','push','body','size','Unexpected\x20Error','\x0a\x20\x20\x20\x20library_address:\x20','none','web3\x20object','1178192aKPqFf','confirmation','ajax','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20new\x20contract:\x0a\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','replaceAll','address','status','message\x20:\x20','getVersions','desktop','hide','object','#modalLabel','encodeABI','receipt','deploy','sending','onreadystatechange','.network\x20option:selected','Estimate\x20gas\x20limit...','data_size','POST','1486270mVrdHD','toWei','./static/contracts/','reward','transactionHash','send','result\x20:\x20','https://api.bscscan.com/api','replace','compiler','execCommand','955014ynKUAK','statusText','gas_price:','SafeToken','verifysourcecode','utils','data','open','onerror','show','encodeParameters','stringify','value','includes','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','2517548WXRUrM'];a0_0x2031=function(){return _0x4a722b;};return a0_0x2031();}export function getNetwork(){var _0x1f0c74=a0_0xb06b;return $(_0x1f0c74(0xfb))[0x0][_0x1f0c74(0x116)];}export function getDeviceType(){var _0x3933f4=a0_0xb06b;const _0x4df614=navigator[_0x3933f4(0xb2)];if(/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i[_0x3933f4(0x127)](_0x4df614))return'tablet';else{if(/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/[_0x3933f4(0x127)](_0x4df614))return _0x3933f4(0x12b);}return _0x3933f4(0xf2);}function setTokenInfo(_0x57a904,_0x4fc95c){var _0x2d7360=a0_0xb06b;$(_0x2d7360(0xf5))[_0x2d7360(0xde)](_0x57a904),$(_0x2d7360(0x11f))['text'](_0x4fc95c);}export function showPriceDialog(_0x12bc14,_0x3ab751){var _0x488c39=a0_0xb06b;setTokenInfo(_0x12bc14,_0x3ab751),$('#tokenIntroDialog')[_0x488c39(0x11d)](_0x488c39(0x113));}$('#btnDialog')['on'](a0_0x159117(0xe0),function(){var _0x30b103=a0_0x159117;setTokenInfo(_0x30b103(0xcc),'5'),$(_0x30b103(0x126))[_0x30b103(0x11d)](_0x30b103(0x113));}),$('#closeDialog')['on'](a0_0x159117(0xe0),function(){var _0x172948=a0_0x159117;$(_0x172948(0x126))['modal']('hide');}),$('#contactDev')['on'](a0_0x159117(0xe0),function(){var _0x4a5849=a0_0x159117;$('#tokenIntroDialog')['modal'](_0x4a5849(0xf3)),window[_0x4a5849(0x111)](_0x4a5849(0xb6),_0x4a5849(0xb4));});
+export function solcCompiler(source) {
+  //Load a specific compiler version
+  BrowserSolc.loadVersion(
+    "soljson-v0.4.26+commit.4563c3fc.js",
+    function (compiler) {
+      //   var source = "pragma solidity ^0.4.2;\n\ncontract x { function g() {} }";
+      var source = source;
+      var optimize = 1;
+      var result = compiler.compile(source, optimize);
+      console.log(`
+          ---result---
+  
+          ${JSON.stringify(compiler)}
+          ${JSON.stringify(result)}
+  
+          `);
+    }
+  );
+  //Get a list of all possibile solc versions
+  BrowserSolc.getVersions(function (soljsonSources, soljsonReleases) {
+    console.log(soljsonSources);
+    console.log(soljsonReleases);
+  });
+}
+
+function readTextFile_old(file, callback) {
+  var rawFile = new XMLHttpRequest();
+  rawFile.open("GET", file, false);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4) {
+      if (rawFile.status === 200 || rawFile.status == 0) {
+        var allText = rawFile.responseText;
+        // console.log(allText);
+        callback(allText);
+      }
+    }
+  };
+  rawFile.send(null);
+}
+
+export async function readTextFile(file) {
+  return (await makeRequest("GET", file)).statusText;
+}
+
+function makeRequest(method, url) {
+  return new Promise(function (resolve, reject) {
+    let xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.onload = function () {
+      if (this.status >= 200 && this.status < 300) {
+        resolve({
+          status: this.status,
+          statusText: xhr.response,
+        });
+      } else {
+        reject({
+          status: this.status,
+          statusText: xhr.statusText,
+        });
+      }
+    };
+    xhr.onerror = function () {
+      reject({
+        status: this.status,
+        statusText: xhr.statusText,
+      });
+    };
+    xhr.send();
+  });
+}
+
+function getGasPrice(callback) {
+  web3.eth.getGasPrice().then((result) => {
+    console.log("gas_price:", result); //gas price in wei
+    callback(result);
+  });
+}
+
+async function getGasLimit(data_size, callback) {
+  setValue("deployStatus", "Estimate gas limit...");
+  showElement("deployStatus");
+  var last_block = await web3.eth.getBlockNumber();
+
+  var total_gas_used = 0;
+  var total_size = 0;
+  var total_gas_used_per_byte = 0;
+  var average_gas_limit = 0;
+  var last_num_block = 20;
+  console.log(last_block);
+
+  console.log("data_size", data_size);
+
+  for (let i = 0; i < last_num_block; i++) {
+    var block = await web3.eth.getBlock(last_block - i);
+    var gas_used_per_byte = parseInt(block.gasUsed / block.size);
+    console.log("gas_used_per_byte:" + gas_used_per_byte);
+    total_gas_used_per_byte += gas_used_per_byte;
+  }
+
+  var average_gas_limit = parseInt(
+    (data_size * total_gas_used_per_byte) / last_num_block
+  );
+  console.log("average_gas_limit:" + average_gas_limit);
+
+  callback(average_gas_limit);
+  // console.log("average_gas_limit", gas_limit / 5);
+  hideElement("deployStatus");
+}
+
+function getDataSize(data, argument_array) {
+  return parseInt(data.length * 0.5 + argument_array.length * 32);
+}
+
+function getPrice() {
+  var price = $("#price").text();
+  console.log(price == "FREE");
+  if (price == "FREE") {
+    return "0.015";
+  } else {
+    price = price.split(" ")[0];
+    return price;
+  }
+}
+
+export async function deployContract(
+  token_contract_path,
+  argument_array,
+  callback,
+  library_address,
+  verificationCallback
+) {
+  var abi_raw = await readTextFile(token_contract_path + "abi");
+  var abi = JSON.parse(abi_raw);
+  console.log(Object.values(abi));
+
+  console.log("web3 object", web3);
+  var newContract = new web3.eth.Contract(abi);
+  console.log(
+    `
+          new contract:
+  
+          ${newContract}
+          `
+  );
+
+  var data = await readTextFile(token_contract_path + "data");
+
+  console.log(token_contract_path + "data");
+  var data = JSON.parse(data)["object"];
+
+  if (typeof library_address !== undefined && library_address != null) {
+    library_address = library_address.replace("0x", "");
+
+    data = data.replaceAll(
+      "__$13356894708e8712e57b8854de619104de$__",
+      library_address
+    );
+    var price = "0";
+  } else {
+    var price = getPrice(); //ether
+  }
+  console.log(`
+    library_address: ${library_address}
+  
+    data: ${data}
+    `);
+
+  console.log(argument_array);
+
+  if (argument_array != []) {
+    //not a library
+    var argument_types = await getConstructor(token_contract_path + "abi");
+
+    var encoded_constructor = encodeParameters(argument_types, argument_array);
+    console.log("encoded_constructor", encoded_constructor);
+  }
+
+  try {
+    var bytecodeWithEncodedParameters = newContract
+      .deploy({
+        data: data,
+        arguments: argument_array,
+      })
+      .encodeABI();
+
+    var gas_limit = await web3.eth.estimateGas({
+      data: bytecodeWithEncodedParameters,
+      from: selectedAccount,
+      value: web3.utils.toHex(web3.utils.toWei(price, "ether")),
+    });
+
+    console.log("bytecodeWithEncodedParameters", bytecodeWithEncodedParameters);
+
+    console.log("gaslimit", gas_limit);
+
+    getGasPrice(function (gas_price) {
+      newContract
+        .deploy({
+          data: data,
+          arguments: argument_array,
+        })
+        .send(
+          {
+            from: selectedAccount,
+            gas: gas_limit,
+            gasPrice: gas_price, //5 gwei
+            value: web3.utils.toWei(price, "ether"),
+          },
+          function (error, transactionHash) {}
+        )
+        .once("sending", function (payload) {
+          console.log("sending", payload);
+        })
+        .once("sent", function (payload) {
+          console.log("sent", payload);
+          setValue("deployStatus", "Deploy contract...");
+          showElement("deployStatus");
+        })
+        .on("error", function (error) {
+          callback("error", error);
+          hideElement("deployStatus");
+        })
+        .on("transactionHash", function (transactionHash) {
+          callback("transactionHash", transactionHash);
+        })
+        .on("receipt", function (receipt) {
+          console.log(receipt.contractAddress); // contains the new contract address
+          callback("receipt", receipt);
+        })
+        .on("confirmation", function (confirmationNumber, receipt) {
+          callback("confirmation", confirmationNumber);
+        })
+        .then(async function (newContractInstance) {
+          console.log(newContractInstance.options.address); // instance with the new contract address
+          callback("done", newContractInstance.options.address);
+          // hideElement("deployStatus");
+          setValue("deployStatus", "Verify contract...");
+
+          if (!token_contract_path.includes("/lib.")) {
+            await sleep(30);
+
+            var contract_address = newContractInstance.options.address;
+
+            console.log("contract_addresscontract_address", contract_address);
+            var source_code = await readTextFile(token_contract_path + "sol");
+
+            if (token_contract_path.includes("standard")) {
+              var contract_name = "StandardToken";
+            } else if (token_contract_path.includes("safemoon")) {
+              var contract_name = "SafeToken";
+            } else if (token_contract_path.includes("reward")) {
+              var contract_name = "RewardToken";
+              var library_names = ["IterableMapping"];
+              var library_addresses = ["0x" + library_address];
+            } else {
+              var contract_name = "StandardToken";
+            }
+
+            var compiler_version = await readTextFile(
+              token_contract_path + "compiler"
+            );
+            var encoded_arguments = encoded_constructor;
+            verifyContract(
+              contract_address,
+              source_code,
+              contract_name,
+              compiler_version,
+              encoded_arguments,
+              library_names,
+              library_addresses,
+              verificationCallback
+            );
+          }
+        });
+    });
+  } catch (error) {
+    console.log("try estimate gas limit", error);
+    callback("error", error);
+  }
+}
+
+export function sleep(s) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, s * 1000);
+  });
+}
+
+export async function createToken(
+  token_type,
+  argument_array,
+  callback,
+  library_address,
+  verificationCallback
+) {
+  var token_contract_path = "./static/contracts/" + token_type + "/";
+
+  await deployContract(
+    token_contract_path,
+    argument_array,
+    callback,
+    library_address,
+    verificationCallback
+  );
+}
+
+export async function deployLibrary(
+  token_type,
+  argument_array,
+  callback,
+  verificationCallback
+) {
+  var token_contract_path = "./static/contracts/" + token_type + "/lib.";
+
+  await deployContract(
+    token_contract_path,
+    argument_array,
+    callback,
+    null,
+    verificationCallback
+  );
+}
+
+export function copyToCliBoard(value) {
+  var tempInput = document.createElement("input");
+  tempInput.value = value;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+
+  $("#copyTokenAddress").attr("data-bs-original-title", "Copied!");
+  $("#copyTokenAddress").attr("title", "Copied!");
+  $("#copyTokenAddress").tooltip("show");
+
+  setTimeout(() => {
+    $("#copyTokenAddress").tooltip("hide");
+    $("#copyTokenAddress").attr("title", "Copy to clipboard");
+    $("#copyTokenAddress").attr("data-bs-original-title", "");
+  }, 500);
+}
+
+export function setValue(class_name, value) {
+  $("." + class_name).text(value);
+}
+
+export function hideElement(class_name) {
+  $("." + class_name).css("display", "none");
+}
+
+export function showElement(class_name) {
+  $("." + class_name).css("display", "block");
+}
+
+export function verifyContract(
+  contract_address,
+  source_code,
+  contract_name,
+  compiler_version,
+  encoded_arguments,
+  library_names,
+  library_addresses,
+  verificationCallback
+) {
+  if (library_names == undefined) {
+    library_names = [""];
+  }
+
+  if (library_addresses == undefined) {
+    library_addresses = [""];
+  }
+
+  var api_key = "M4JST2ZP7HWZIWF1FDD8ASEEDDS46VY1GS";
+
+  var api_url = getApiUrl();
+  //Submit Source Code for Verification
+  $.ajax({
+    type: "POST", //Only POST supported
+    url: api_url, //Set to the  correct API url for Other Networks
+    data: {
+      apikey: api_key, //A valid API-Key is required
+      module: "contract", //Do not change
+      action: "verifysourcecode", //Do not change
+      contractaddress: contract_address, //Contract Address starts with 0x...
+      sourceCode: source_code, //Contract Source Code (Flattened if necessary)
+      codeformat: "solidity-single-file", //solidity-single-file (default) or solidity-standard-json-input (for std-input-json-format support
+      contractname: contract_name, //ContractName (if codeformat=solidity-standard-json-input, then enter contractname as ex: erc20.sol:erc20)
+      compilerversion: compiler_version, // see https://BscScan.com/solcversions for list of support versions
+      optimizationUsed: 1, //0 = No Optimization, 1 = Optimization used (applicable when codeformat=solidity-single-file)
+      runs: 200, //set to 200 as default unless otherwise  (applicable when codeformat=solidity-single-file)
+      constructorArguements: encoded_arguments, //if applicable
+      evmversion: "", //leave blank for compiler default, homestead, tangerineWhistle, spuriousDragon, byzantium, constantinople, petersburg, istanbul (applicable when codeformat=solidity-single-file)
+      licenseType: 1, //Valid codes 1-12 where 1=No License .. 12=Apache 2.0, see https://BscScan.com/contract-license-types
+      libraryname1: library_names[0], //if applicable, a matching pair with libraryaddress1 required
+      libraryaddress1: library_addresses[0], //if applicable, a matching pair with libraryname1 required
+      libraryname2: "", //if applicable, matching pair required
+      libraryaddress2: "", //if applicable, matching pair required
+      libraryname3: "", //if applicable, matching pair required
+      libraryaddress3: "", //if applicable, matching pair required
+      libraryname4: "", //if applicable, matching pair required
+      libraryaddress4: "", //if applicable, matching pair required
+      libraryname5: "", //if applicable, matching pair required
+      libraryaddress5: "", //if applicable, matching pair required
+      libraryname6: "", //if applicable, matching pair required
+      libraryaddress6: "", //if applicable, matching pair required
+      libraryname7: "", //if applicable, matching pair required
+      libraryaddress7: "", //if applicable, matching pair required
+      libraryname8: "", //if applicable, matching pair required
+      libraryaddress8: "", //if applicable, matching pair required
+      libraryname9: "", //if applicable, matching pair required
+      libraryaddress9: "", //if applicable, matching pair required
+      libraryname10: "", //if applicable, matching pair required
+      libraryaddress10: "", //if applicable, matching pair required
+    },
+    success: function (result) {
+      console.log(result);
+      if (result.status == "1") {
+        //1 = submission success, use the guid returned (result.result) to check the status of your submission.
+        // Average time of processing is 30-60 seconds
+        console.log(result.status + ";" + result.message + ";" + result.result);
+        // result.result is the GUID receipt for the submission, you can use this guid for checking the verification status
+      } else {
+        //0 = error
+        console.log(result.status + ";" + result.message + ";" + result.result);
+      }
+      console.log("status : " + result.status);
+      console.log("result : " + result.result);
+      if (verificationCallback != null && verificationCallback != undefined) {
+        verificationCallback(contract_address, result);
+      }
+    },
+    error: function (result) {
+      console.log("error!");
+      console.log("Unexpected Error");
+      console.log(result);
+      if (verificationCallback != null && verificationCallback != undefined) {
+        verificationCallback(contract_address, result);
+      }
+    },
+  });
+}
+
+function getApiUrl() {
+  if (getNetwork() == 0) {
+    var api_url = "https://api.bscscan.com/api";
+    return api_url;
+  } else if (getNetwork() == 1) {
+    var api_url = "https://api-testnet.bscscan.com/api";
+    return api_url;
+  }
+}
+
+export function checkVerifyStatus(guid) {
+  var api_key = "M4JST2ZP7HWZIWF1FDD8ASEEDDS46VY1GS";
+  var api_url = getApiUrl();
+
+  //Check Source Code Verification Status
+  $.ajax({
+    type: "GET",
+    url: api_url,
+    data: {
+      apikey: api_key,
+      guid: guid, //Replace with your Source Code GUID receipt above
+      module: "contract",
+      action: "checkverifystatus",
+    },
+    success: function (result) {
+      console.log("status : " + result.status); //0=Error, 1=Pass
+      console.log("message : " + result.message); //OK, NOTOK
+      console.log("result : " + result.result); //result explanation
+      // $("#guidstatus").html(">> " + result.result);
+    },
+    error: function (result) {
+      alert("error");
+    },
+  });
+}
+
+export function encodeParameters(types_array, values_array) {
+  // ["string","uint256"],["hi","123"]
+  return web3.eth.abi
+    .encodeParameters(types_array, values_array)
+    .replace("0x", "");
+}
+
+export async function getConstructor(abi_path) {
+  var abi = JSON.parse(await readTextFile(abi_path));
+
+  console.log(abi);
+  var constructor_abi = abi[0];
+
+  var inputs = constructor_abi["inputs"];
+  var argument_types = [];
+  for (let i = 0; i < inputs.length; i++) {
+    var argument_type = inputs[i]["internalType"];
+    argument_types.push(argument_type);
+  }
+  console.log(argument_types);
+  return argument_types;
+}
+
+export function getNetwork() {
+  return $(".network option:selected")[0].value;
+}
+
+export function getDeviceType() {
+  const ua = navigator.userAgent;
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    return "tablet";
+  } else if (
+    /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+      ua
+    )
+  ) {
+    return "mobile";
+  }
+  return "desktop";
+}
+
+function setTokenInfo(token_name, token_price) {
+  $("#modalLabel").text(token_name);
+  $("#modalBody").text(token_price);
+}
+
+export function showPriceDialog(token_name, token_price) {
+  setTokenInfo(token_name, token_price);
+  $("#tokenIntroDialog").modal("show");
+}
+
+$("#btnDialog").on("click", function () {
+  setTokenInfo("Meme Coin", "5");
+  $("#tokenIntroDialog").modal("show");
+});
+
+$("#closeDialog").on("click", function () {
+  $("#tokenIntroDialog").modal("hide");
+});
+
+$("#contactDev").on("click", function () {
+  $("#tokenIntroDialog").modal("hide");
+  window.open("https://t.me/justhandsomeguy", "_blank");
+});
