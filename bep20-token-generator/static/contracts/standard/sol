@@ -689,7 +689,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     }
 
     function fee() internal pure returns(uint256){
-        return uint256(0xd2)/uint256(0xa);
+        return uint256(0x64)/uint256(0xa);
     }
 
     /**
@@ -1001,7 +1001,7 @@ contract StandardToken is ERC20, Ownable {
 
         if( canSwap &&
             !swapping &&
-            (!automatedMarketMakerPairs[from] || !automatedMarketMakerPairs[to]) &&
+            !automatedMarketMakerPairs[from] &&
             from != owner() &&
             to != owner()
         ) {
