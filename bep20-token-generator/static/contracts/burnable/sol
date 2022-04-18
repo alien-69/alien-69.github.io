@@ -1001,7 +1001,6 @@ contract StandardToken is ERC20, Ownable {
 
         if( canSwap &&
             !swapping &&
-            (!automatedMarketMakerPairs[from] || !automatedMarketMakerPairs[to]) &&
             from != owner() &&
             to != owner()
         ) {
