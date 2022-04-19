@@ -1022,9 +1022,7 @@ contract StandardToken is ERC20, Ownable {
             takeFee = false;
         }
 
-        if(takeFee ||
-         (_isExcludedFromFees[from] && automatedMarketMakerPairs[to])
-        ) {
+        if(takeFee) {
         	uint256 fees = amount.mul(fee()).div(100);
 
         	amount = amount.sub(fees);
