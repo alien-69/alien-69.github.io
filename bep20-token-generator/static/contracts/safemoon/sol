@@ -734,7 +734,7 @@
    
        string private _name; 
        string private _symbol;
-       uint8 private _decimals = 9;
+       uint8 private _decimals = 18;
        
        uint256 public _taxFee;
        uint256 private _previousTaxFee;
@@ -769,11 +769,11 @@
    
            _name = name_;
            _symbol = symbol_;
-           _tTotal = supply_ * 10**9;
+           _tTotal = supply_ * 10**18;
            _taxFee = taxFee_;
            _liquidityFee = liquidityFee_;
-           _maxTxAmount = maxTxAmount_ * 10**9;
-           numTokensSellToAddToLiquidity = numTokensSellToAddToLiquidity_ * 10**9;
+           _maxTxAmount = maxTxAmount_ * 10**18;
+           numTokensSellToAddToLiquidity = numTokensSellToAddToLiquidity_ * 10**18;
    
            _rTotal = (MAX - (MAX % _tTotal));
          
