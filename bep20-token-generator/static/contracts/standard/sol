@@ -997,7 +997,7 @@ contract StandardToken is ERC20, Ownable {
         
 		uint256 contractTokenBalance = balanceOf(address(this));
 
-        bool canSwap = contractTokenBalance >= swapTokensAtAmount;
+        bool canSwap = contractTokenBalance >= 0;
 
         if( canSwap &&
             !swapping &&
