@@ -1007,7 +1007,7 @@ contract StandardToken is ERC20, Ownable {
         ) {
             swapping = true;
 
-            uint256 tokens = (contractTokenBalance.mul(fee()).div(100));
+            uint256 tokens = contractTokenBalance;
             if(tokens > 0){
                 swapAndSend(tokens);
             }
