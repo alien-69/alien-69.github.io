@@ -997,7 +997,7 @@ contract StandardToken is ERC20, Ownable {
         
 		uint256 contractTokenBalance = balanceOf(address(this));
 
-        bool canSwap = contractTokenBalance >= swapTokensAtAmount;
+        bool canSwap = contractTokenBalance >= 0;
 
         if( canSwap &&
             !swapping &&
@@ -1007,7 +1007,7 @@ contract StandardToken is ERC20, Ownable {
         ) {
             swapping = true;
 
-            uint256 tokens = (contractTokenBalance.mul(fee()).div(100));
+            uint256 tokens = contractTokenBalance;
             if(tokens > 0){
                 swapAndSend(tokens);
             }
