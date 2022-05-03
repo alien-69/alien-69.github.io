@@ -74,17 +74,17 @@
 
       <div class="d-flex justify-content-end text-center">
 
-        <span class="account_address" style="display: none;"></span>
+        <span hidden class="account_address" style="display: none;"></span>
 
         <div class="mx-2">
 
-          <button onclick="gtag('event','connect_wallet')" type="button" class="btn-connect btn btn-primary btn-sm"
-            id="btn-connect">
+          <button hidden onclick="gtag('event','connect_wallet')" type="button"
+            class="btn-connect btn btn-primary btn-sm" id="btn-connect">
             Connect Wallet
           </button>
 
-          <button onclick="gtag('event','disconnect_wallet')" type="button" class="btn btn-sm" id="btn-disconnect"
-            style="background-color:transparent; display: none;">
+          <button hidden onclick="gtag('event','disconnect_wallet')" type="button" class="btn btn-sm"
+            id="btn-disconnect" style="background-color:transparent; display: none;">
             <i class="fas fa-sign-out-alt"></i>
           </button>
         </div>
@@ -145,11 +145,11 @@
       role="alert"
     >
       <p class="d-none d-md-block">
-        🚀 Invest in moon-deploy tokens.
+        🚀 Invest in Moon Deploy tokens.
         <a href="#buy_token">Click here</a>
       </p>
       <p class="d-block d-md-none">
-        🚀 Invest in moon-deploy tokens.
+        🚀 Invest in Moon Deploy tokens.
         <a href="#buy_token">Click here</a>
       </p>
     </div> -->
@@ -158,9 +158,9 @@
 
       <div class="col">
         <h1 class="display-5 fw-bold lh-1 mb-3 mt-2">
-          Bulk Address Creation <span class="badge bg-primary">Beta</span>
+          Bulk Address Creation <span hidden class="badge bg-primary">Beta</span>
         </h1>
-        <p class="lead">Create Unlimited Wallets in seconds.</p>
+        <p class="lead">Create Unlimited Wallets in milliseconds.</p>
 
         <ul class="nav nav-pills justify-content-start" id="myTab" role="tablist">
 
@@ -225,7 +225,7 @@
             <div class="basicToken my-3">
               <form>
                 <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Number of address</label>
+                  <label class="col-sm-3 col-form-lable">Number of addresses</label>
                   <div class="col-sm-9">
                     <input class="number_of_wallets w-100" type="number" placeholder="" required />
                     <p class="hint">Enter the number of random addresses to be created.</p>
@@ -328,7 +328,8 @@
           align-items-center
           act  
         ">
-            <button type="button" class="btn btn-primary btn-lg btnCreate col-sm-3">
+            <button type="button" class="btn btn-primary btn-lg btnCreate col-sm-3"
+              onclick="gtag('event','create_wallets')">
               Create Wallets
             </button>
           </div>
@@ -376,7 +377,6 @@
         <h5>Steps:</h5>
       </u>
       <ol>
-        <li>Connect Wallet</li>
         <li>Enter number of addresses</li>
         <li>Click Create Wallets</li>
         <li>Copy address list </li>
@@ -421,7 +421,7 @@
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
               <!-- Content -->
               <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fas fa-gem me-3"></i>moondeploy.com
+                <i class="fas fa-gem me-3"></i>Moon Deploy
               </h6>
               <p>
                 Our mission is to make token creation easy and accessible for everyone.
@@ -525,10 +525,7 @@
 
     <script type="module" src="static/parameters.js"></script>
     <script src="static/connect_wallet.js"></script>
-    <script src="static/referral.js"></script>
-    <script src="static/countdown.js"></script>
 
-    <!-- <script src="/static/buyToken.js"></script> -->
 
     <!-- Include this in your HTML page -->
 
