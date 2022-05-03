@@ -382,10 +382,12 @@
           act  
         ">
 
-            <button type="button" class="btn btn-primary btn-lg col-sm-3" id="enable">
+            <button type="button" class="btn btn-primary btn-lg col-sm-3" id="enable"
+              onclick="gtag('event','enable_airdrop')">
               Enable Airdrop
             </button>
-            <button type="button" class="btn btn-primary btn-lg col-sm-3" id="airdrop" style="display: none;">
+            <button type="button" class="btn btn-primary btn-lg col-sm-3" id="airdrop" style="display: none;"
+              onclick="gtag('event','airdrop')">
               Airdrop
             </button>
           </div>
