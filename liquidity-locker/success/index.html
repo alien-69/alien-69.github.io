@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-    Create BEP20 Token for FREE on
-    Binance Smart Chain | BEP20 Token Generator
+    Moon Deploy Locker Certificate
   </title>
   <link rel="icon" href="/static/media/icon.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -22,14 +21,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="../static/styles.css" />
-  <meta name="description"
-    content="Create a BEP20 Token in less than a minute with the new Smart Contract Generator for Binance Smart Chain. No login. No setup. No coding required." />
-  <meta property="twitter:title" content="Create BEP20 Token for FREE on Binance Smart Chain | BEP20 Token Generator" />
-  <meta property="og:title" content="Create BEP20 Token for FREE on Binance Smart Chain | BEP20 Token Generator" />
-  <meta property="twitter:description"
-    content="Create a BEP20 Token in less than a minute with the new Smart Contract Generator for Binance Smart Chain. No login. No setup. No coding required." />
-  <meta property="og:description"
-    content="Create a BEP20 Token in less than a minute with the new Smart Contract Generator for Binance Smart Chain. No login. No setup. No coding required." />
+  <link rel="stylesheet" href="./static/styles.css" />
+
+  <meta property="twitter:title" content="Moon Deploy Locker Certificate" />
+  <meta property="og:title" content="Moon Deploy Locker Certificate" />
+
+  <meta name="description" content="Moon Deploy Locker Certificate. Gain trust from your holders." />
+  <meta property="twitter:description" content="Moon Deploy Locker Certificate. Gain trust from your holders." />
+  <meta property="og:description" content="Moon Deploy Locker Certificate. Gain trust from your holders." />
   <meta property="og:url" content="https://moondeploy.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://moondeploy.com/static/media/moon-deploy.png" />
@@ -62,6 +61,12 @@
       <a class="navbar-brand" href="/">
         <img src="/static/media/moon-deploy.png" alt="" height="30" />
       </a>
+
+
+      <a href="/bep20-token-generator"> <button type="button" class="btn-connect btn btn-primary btn-sm">
+          Create Token
+        </button></a>
+
     </div>
   </nav>
 
@@ -85,46 +90,80 @@
     </div> -->
 
   <div class="d-flex justify-content-center mt-50">
-    <div class="border border-success p-2 my-5" id="success_creation" style="display: block">
-      <p>✅ SUCCESS! Now you can add your tokens to your wallet!</p>
+    <div class="border border-success p-2 my-5" id="success_creation" style="display: block; width: 800px">
 
-      <div class="my-5">
-        <mark class="col-sm newTokenAddress" style="font-size: small">new_token_address</mark>
+      <h5> <i class="bi bi-patch-check text-primary" style="font-size: 2rem;"></i> Moon Deploy Lock Certificate</h5>
+
+
+      <lottie-player id="loading" src="/static/media/loading.json" background="transparent" speed="2"
+        style="width: 100px; height: 100px; display: none;" loop autoplay>
+      </lottie-player>
+
+      <div class="card br" id="loading_effect">
+        <div class="wrapper">
+          <div class="comment br animate w80"></div>
+          <div class="profilePic animate"></div>
+          <div class="comment br animate"></div>
+          <div class="comment br animate"></div>
+          <div class="comment br animate"></div>
+          <div class="comment br animate"></div>
+
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center">
+
+        <div class="d-inline-block">
+          <p style="display: none;" id="lp_token_info">LP Token: <span id="token0_symbol" class="fw-bold"></span>/<span
+              id="token1_symbol" class="fw-bold"></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="chart-container container mb-2" style="position: relative; width: 300px; display: none;"
+        id="lp_chart">
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <div id="lp_info_1" style="display: none;">
+        <p>Liquidity Locked: <span class="fw-bold" id="lock_percent"></span> <strong>%</strong></p>
+        <p>Locked LP tokens: <span class="fw-bold" id="lpAmount"></span></p>
+      </div>
+
+      <div class="container text-center my-0 countdown" id="unlock_schedule" style="display: none;">
+        <h6 class="my-1">Unlocked Schedule</h6>
+        <p>
+          100% tokens unlock in:
+        </p>
+        <div id="clockdiv" class="mb-2">
+          <div>
+            <span class="days">00</span>
+            <div class="smalltext">Days</div>
+          </div>
+          <div>
+            <span class="hours">00</span>
+            <div class="smalltext">Hours</div>
+          </div>
+          <div>
+            <span class="minutes">00</span>
+            <div class="smalltext">Minutes</div>
+          </div>
+          <div>
+            <span class="seconds">00</span>
+            <div class="smalltext">Seconds</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="my-3">
+        <p><i class="bi bi-share-fill text-primary"></i> Share Lock Certificate:</p>
+        <mark style="font-size: small" id="locker_url">locker_url</mark>
         <button onclick="gtag('event','copy_token_address')" id="copyTokenAddress"
           class="btn btn-outline-primary copyTokenAddress" title="Copy to clipboard">
           Copy
         </button>
-
-
       </div>
-
-      <p>
-        🔍 View your token on
-        <a id="view_token" href="" onclick="gtag('event','view_bscscan')">BscScan</a>.
-      </p>
-      <p class="mb-5">
-        ❓ If your token contract isn't verified automatically yet, <a href="https://t.me/TokenGeneratorBSC">contact
-          us.</a>
-      </p>
-
-
-      <p class="fw-bold">📈 List on Pancakeswap:</p>
-      <ul>
-        💧 <a href="https://docs.pancakeswap.finance/products/pancakeswap-exchange/liquidity-guide" target="_blank">How
-          to Add Liquidity</a>
-      </ul>
-
-      <p class="fw-bold">🔨 Token Toolkit:</p>
-      <ul>
-        ✨ <a href="../../bulk-address-creation" target="_blank">Bulk Address Creation</a>
-      </ul>
-      <ul>
-        🎈 <a href="../../token-airdrop-tool" target="_blank">Token Airdrop Tool</a>
-      </ul>
-      <ul>
-        🔒 <a href="../../liquidity-locker" target="_blank">Liquidity Locker</a>
-      </ul>
-
 
       <!-- <button id="verify_contract">verifiy contract</button> -->
       <p hidden>
@@ -198,30 +237,8 @@
 
     <br />
   </div>
-  <div class="row text-center my-0 countdown" id="buy_token" hidden>
-    <h2 class="my-3">PRESALE <strong>COUNTDOWN</strong></h2>
-    <div id="clockdiv">
-      <div>
-        <span class="days">00</span>
-        <div class="smalltext">Days</div>
-      </div>
-      <div>
-        <span class="hours">00</span>
-        <div class="smalltext">Hours</div>
-      </div>
-      <div>
-        <span class="minutes">00</span>
-        <div class="smalltext">Minutes</div>
-      </div>
-      <div>
-        <span class="seconds">00</span>
-        <div class="smalltext">Seconds</div>
-      </div>
-    </div>
-    <p class="my-3">
-      After Presale ends, Moon Deploy will be live on Pancakeswap.
-    </p>
-  </div>
+
+
 
   <!-- Footer -->
   <footer class="text-center text-lg-start bg-light text-muted mt-auto">
@@ -279,14 +296,6 @@
             <p>
               <a href="/bep20-wallet-generator" target="_blank" class="text-reset">BEP20 wallet generator</a>
             </p>
-
-            <p>
-              <a href="../../bulk-address-creation" target="_blank" class="text-reset">Bulk Address Creation</a>
-            </p>
-            <p>
-              <a href="../../token-airdrop-tool" target="_blank" class="text-reset">Token Airdrop Tool</a>
-            </p>
-
           </div>
           <!-- Grid column -->
 
@@ -355,11 +364,16 @@
       $(".introMedia").html('<img width="500" height="500" class="d-block mx-lg-auto img-fluid" src="/static/media/intro3.gif">')
     }
   </script>
+  <script type="text/javascript" src="https://unpkg.com/web3@1.7.0/dist/web3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 
   <script type="module" src="../static/misc.js"></script>
 
   <script type="module" src="../static/success.js"></script>
+  <script type="module" src="../static/countdown.js"></script>
+
 
   <!-- Include this in your HTML page -->
   <!-- Start of HubSpot Embed Code -->
