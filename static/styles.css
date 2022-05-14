@@ -102,9 +102,9 @@ body {
   margin-top: 0px;
 }
 .btn.btn-outline-primary:hover,
-.bg-primary {
+/* .bg-primary {
   background-color: #0cb4ce !important;
-}
+} */
 .section-medium {
   padding: 55px 0px;
 }
