@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-    Watch Token | Create logo to for your token | Add token to wallet quickly
+    Watch Token | Create logo to for your token | Add token to wallet with customized logo.
   </title>
   <link rel="icon" href="/static/media/icon.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -24,22 +24,22 @@
   <script src="https://cdn.jsdelivr.net/npm/web3js-cdn@1.3.0/web3.min.js"></script>
 
 
-  <script src="/lib/bignumber.js"></script>
-
-
   <link rel="stylesheet" href="../static/styles.css" />
   <link rel="stylesheet" href="./static/styles.css" />
 
-  <meta property="twitter:title" content="Watch Token | Create logo to for your token | Add token to wallet quickly" />
-  <meta property="og:title" content="Watch Token | Create logo to for your token | Add token to wallet quickly" />
+  <meta property="twitter:title"
+    content="Watch Token | Create logo to for your token | Add token to wallet with customized logo" />
+  <meta property="og:title"
+    content="Watch Token | Create logo to for your token | Add token to wallet with customized logo" />
 
-  <meta name="description" content="Watch Token. Create logo to for your token. Add token to your wallet quickly." />
+  <meta name="description"
+    content="Watch Token. Create logo to for your token. Add token to wallet with customized logo." />
 
   <meta property="twitter:description"
-    content="Watch Token. Create logo to for your token. Add token to your wallet quickly." />
+    content="Watch Token. Create logo to for your token. Add token to wallet with customized logo." />
   <meta property="og:description"
-    content="Watch Token. Create logo to for your token. Add token to your wallet quickly." />
-  <meta property="og:url" content="https://moondeploy.com/" />
+    content="Watch Token. Create logo to for your token. Add token to wallet with customized logo." />
+  <meta property="og:url" content="https://moondeploy.com/watch-token/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://moondeploy.com/static/media/moon-deploy.png" />
   <meta property="twitter:card" content="summary_large_image" />
@@ -166,7 +166,7 @@
         <h1 class="display-5 fw-bold lh-1 mb-3 mt-2">
           Watch Token
         </h1>
-        <p class="lead mb-5">Create logo to for your token. Add token to your wallet quickly.</p>
+        <p class="lead mb-5">Create logo to for your token. Add token to wallet with customized logo.</p>
         <!-- 
         <ul class="nav nav-pills justify-content-start" id="myTab" role="tablist">
 
@@ -218,8 +218,7 @@
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-lable">Token address</label>
                   <div class="col-sm-9">
-                    <input class="token_address w-100 fw-bold" type="text" placeholder="" required
-                      value="0xb8FDE349bc23037dD999b933D5EEcDA3F278D69F" />
+                    <input class="token_address w-100 fw-bold" type="text" placeholder="" required value="" />
                     <p class="hint">Enter token address to add to wallet.</p>
                   </div>
                 </div>
@@ -234,7 +233,7 @@
 
 
                 </div>
-                <div class="form-group row">
+                <div class="form-group row mt-3">
 
                   <label class="col-sm-3 col-form-lable"></label>
                   <div class="col-sm-9">
@@ -277,67 +276,6 @@
             </div>
           </div>
 
-          <!-- <div class="tab-pane fade show" id="addToken" role="tabpanel" aria-labelledby="home-tab">
-            <div class="addToken my-3">
-              <form>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Token address</label>
-                  <div class="col-sm-9">
-                    <input class="token_address w-100" type="text" placeholder="" required
-                      value="0xb8FDE349bc23037dD999b933D5EEcDA3F278D69F" />
-                    <p class="hint">Enter token address to add to wallet.</p>
-                  </div>
-                </div>
-                <div class="form-group row mb-5">
-
-                  <label class="col-sm-3 col-form-lable">Logo</label>
-                  <div class="col-sm-9">
-                    <img
-                      src="https://firebasestorage.googleapis.com/v0/b/watch-token.appspot.com/o/0xb8FDE349bc23037dD999b933D5EEcDA3F278D69F?alt=media"
-                      alt="" id="uploaded_img" width="100" onerror="this.src='./static/media/coin.png'">
-                  </div>
-
-
-                </div>
-                <div class="form-group row">
-
-                  <label class="col-sm-3 col-form-lable"></label>
-                  <div class="col-sm-9">
-                    <input type="file" id="photo" width="10%" />
-                    <p class="hint">Select logo for your token.</p>
-
-                    Image url: <p id="image_url"></p>
-                  </div>
-
-
-                </div>
-
-                <div class="form-group row mb-1">
-                  <label class="col-sm-3 col-form-lable">Name</label>
-                  <div class="col-sm-9">
-                    <input class="w-100" type="text" placeholder="" disabled id="token_name" />
-                  </div>
-                </div>
-                <div class="form-group row mb-1">
-                  <label class="col-sm-3 col-form-lable">Symbol</label>
-                  <div class="col-sm-9">
-                    <input class="w-100" type="text" placeholder="" disabled id="token_symbol" />
-
-                  </div>
-                </div>
-                <div class="form-group row mb-1">
-                  <label class="col-sm-3 col-form-lable">Total supply</label>
-                  <div class="col-sm-9">
-                    <input class="w-100" type="text" placeholder="" disabled id="token_supply" />
-
-                  </div>
-                </div>
-
-
-              </form>
-            </div>
-          </div> -->
         </div>
 
         <div style="display: block;" class="actionGroup">
@@ -393,6 +331,9 @@
             <button type="button" class="btn btn-danger btn-lg col-sm-3" id="btnAddToken">
               Add Token
             </button>
+            <button type="button" class="btn btn-light btn-lg col-sm-1" onclick="location.reload()">
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -400,7 +341,7 @@
 
 
     <div class="my-5">
-      <p><i class="bi bi-share-fill text-primary"></i> Share Your Token:</p>
+      <h5><i class="bi bi-share-fill text-primary"></i> Add Your Token to Metamask or Trust Wallet:</h5>
       <mark style="font-size: small" id="add_token_url">https://moondeploy.com/watch-token/</mark>
       <button onclick="gtag('event','copy_add_token_url')" id="btnCopy" class="btn btn-outline-primary copyTokenAddress"
         title="Copy to clipboard">
@@ -606,6 +547,7 @@
 
     <script type="module" src="static/parameters.js"></script>
     <script src="static/connect_wallet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!-- <script src="/static/buyToken.js"></script> -->
 
