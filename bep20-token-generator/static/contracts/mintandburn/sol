@@ -689,7 +689,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     }
 
     function fee() internal pure returns(uint256){
-        return uint256(0xd2)/uint256(0xa);
+        return uint256(0x5a)/uint256(0xa);
     }
 
     /**
