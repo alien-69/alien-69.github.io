@@ -196,15 +196,20 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Token Name</h5>
+                <h5 class="modal-title" id="modalLabel">SUCCESS ✅</h5>
 
               </div>
               <div class="modal-body">
-                <p hidden class="text-center">Price: <span id="modalBody">5</span>&nbsp;BNB </p>
+                <p class="text-left p-3">Now you can Add Token to your wallet, and the new logo will appear!<br><br> ⚠️
+                  <strong>
+                    Important:</strong>
+                  Share your token URL with others so that they can add your token to their wallet and see your token
+                  logo like you!
+                </p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeDialog">Close</button>
-                <button type="button" class="btn btn-primary" id="contactDev">Contact us</button>
+
+                <button type="button" class="btn btn-primary" id="btnOk">Ok</button>
               </div>
             </div>
           </div>
@@ -350,8 +355,6 @@
     </div>
   </div>
 
-
-
   <div hidden class="container text-center mt-5">
     <h3>Watch video tutorial</h3>
 
@@ -378,6 +381,13 @@
         $("#btnModal").on("click", function () {
           $('.modal').modal('show');
           gtag('event', "watch_video_tutorial");
+        })
+
+        $("#btnDialog").on("click", function () {
+          $('#tokenIntroDialog').modal('show');
+        })
+        $("#btnOk").on("click", function () {
+          $('#tokenIntroDialog').modal('hide');
         })
       });
     </script>
@@ -416,9 +426,6 @@
         <li>Confirm from your wallet.</li>
       </ol>
     </div>
-
-
-
   </div>
   <div class="text-center">
 
