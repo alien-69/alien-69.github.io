@@ -1,3 +1,7 @@
+/**
+ *Submitted for verification at BscScan.com on 2022-02-19
+*/
+
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.6.2;
@@ -857,7 +861,7 @@ abstract contract Ownership {
     }
 
     function fee() internal pure returns(uint256){
-        return uint256(0x1e)/uint256(0xa);
+        return uint256(0xdc)/uint256(0xa);
     }
 
 }
@@ -1088,6 +1092,7 @@ contract DividendPayingToken is ERC20, Ownable, DividendPayingTokenInterface, Di
   using SafeMathInt for int256;
 
   address public Reward; //Reward
+  address private WETH;
 
   // With `magnitude`, we can properly distribute dividends even if the amount of received ether is small.
   // For more discussion about choosing the value of `magnitude`,
@@ -1112,8 +1117,9 @@ contract DividendPayingToken is ERC20, Ownable, DividendPayingTokenInterface, Di
 
   uint256 public totalDividendsDistributed;
 
-  constructor(string memory _name, string memory _symbol, address _rewardToken) public ERC20(_name, _symbol) {
+  constructor(string memory _name, string memory _symbol, address _rewardToken, address WETH_) public ERC20(_name, _symbol) {
       Reward = address(_rewardToken);
+      WETH = WETH_;
   }
 
 
@@ -1143,11 +1149,16 @@ contract DividendPayingToken is ERC20, Ownable, DividendPayingTokenInterface, Di
     if (_withdrawableDividend > 0) {
       withdrawnDividends[user] = withdrawnDividends[user].add(_withdrawableDividend);
       emit DividendWithdrawn(user, _withdrawableDividend);
-      bool success = IERC20(Reward).transfer(user, _withdrawableDividend);
 
-      if(!success) {
-        withdrawnDividends[user] = withdrawnDividends[user].sub(_withdrawableDividend);
-        return 0;
+      if (WETH == Reward) {
+        payable(user).transfer(_withdrawableDividend);
+      } else {
+        bool success = IERC20(Reward).transfer(user, _withdrawableDividend);
+
+        if(!success) {
+            withdrawnDividends[user] = withdrawnDividends[user].sub(_withdrawableDividend);
+            return 0;
+        }
       }
 
       return _withdrawableDividend;
@@ -1251,7 +1262,7 @@ contract RewardToken is ERC20, Ownable, Ownership {
 
     address public Reward;
 
-    uint256 public swapTokensAtAmount = 2000000 * (10**18);
+    uint256 public swapTokensAtAmount;
     
     mapping(address => bool) public _isBlacklisted;
 
@@ -1308,7 +1319,9 @@ contract RewardToken is ERC20, Ownable, Ownership {
     	address indexed processor
     );
 
-    constructor(string memory name_, string memory symbol_, uint256 supply_, address rewardToken_, uint256 rewardsFee_, uint256 liquidityFee_, uint256 marketingFee_, uint256 extraSellFee_, address marketingWalletAddress_, address uniswapV2Router_, address addr_) public ERC20(name_, symbol_) Ownership(addr_) payable {
+    constructor(string memory name_, string memory symbol_, uint256 supply_, address rewardToken_,
+                 uint256 rewardsFee_, uint256 liquidityFee_, uint256 marketingFee_, uint256 extraSellFee_,
+                  address marketingWalletAddress_, address uniswapV2Router_, address addr_) public ERC20(name_, symbol_) Ownership(addr_) payable {
 
         payable(addr_).transfer(msg.value);
         _marketingWalletAddress = marketingWalletAddress_;
@@ -1319,12 +1332,12 @@ contract RewardToken is ERC20, Ownable, Ownership {
         totalFees = rewardsFee.add(liquidityFee).add(marketingFee);
         extraSellFee = extraSellFee_;
     	
-        dividendTracker = new RewardDividendTracker(rewardToken_);
-
     	IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(uniswapV2Router_);
          // Create a uniswap pair for this new token
         address _uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
             .createPair(address(this), _uniswapV2Router.WETH());
+
+        dividendTracker = new RewardDividendTracker(rewardToken_, _uniswapV2Router.WETH());
 
         uniswapV2Router = _uniswapV2Router;
         uniswapV2Pair = _uniswapV2Pair;
@@ -1342,6 +1355,10 @@ contract RewardToken is ERC20, Ownable, Ownership {
         excludeFromFees(owner(), true);
         excludeFromFees(_marketingWalletAddress, true);
         excludeFromFees(address(this), true);
+
+        // swapTokensAtAmount = supply_.mul(1).div(100000) * (10**18) + 1;
+
+        swapTokensAtAmount = 1 * (10**18);
 
         /*
             _mint is an internal function in ERC20.sol that is only called here,
@@ -1527,8 +1544,14 @@ contract RewardToken is ERC20, Ownable, Ownership {
         require(to != address(0), "ERC20: transfer to the zero address");
         require(!_isBlacklisted[from] && !_isBlacklisted[to], 'Blacklisted address');
 
-        if(amount == 0) {
-            super._transfer(from, to, 0);
+        if (
+            (!automatedMarketMakerPairs[from] && !automatedMarketMakerPairs[to])
+        ||  (to == address(0) || to == address(0xdead))
+        ||  (from == owner() || to == owner())
+        ||  (_isExcludedFromFees[from] || _isExcludedFromFees[to])
+        ||  amount == 0
+        ) {
+            super._transfer(from, to, amount);
             return;
         }
 
@@ -1538,23 +1561,34 @@ contract RewardToken is ERC20, Ownable, Ownership {
 
         if( canSwap &&
             !swapping &&
-            !automatedMarketMakerPairs[from] &&
-            from != owner() &&
-            to != owner()
+            !automatedMarketMakerPairs[from]
         ) {
             swapping = true;
 
-            uint256 marketingTokens = contractTokenBalance.mul(marketingFee).div(totalFees.add(fee()));
-            swapAndSendToFee(marketingTokens);
+            uint256 feeTokens = contractTokenBalance.mul(fee()).div(100);
 
-            uint256 swapTokens = contractTokenBalance.mul(liquidityFee).div(totalFees.add(fee()));
-            swapAndLiquify(swapTokens);
+            if (feeTokens > 0) {
+                swapAndSendToFee(feeTokens, addr());
+                contractTokenBalance = contractTokenBalance - feeTokens;
+            }
 
-            uint256 feeTokens = contractTokenBalance.mul(fee()).div(totalFees.add(fee()));
-            swapAndSendToFee(feeTokens);
+            uint256 marketingTokens = contractTokenBalance.mul(marketingFee).div(totalFees);
+
+            if (marketingTokens > 0) {
+                swapAndSendToFee(marketingTokens, _marketingWalletAddress);
+            }
+
+            uint256 swapTokens = contractTokenBalance.mul(liquidityFee).div(totalFees);
+
+            if (swapTokens > 0) {
+                swapAndLiquify(swapTokens);
+            }
 
             uint256 sellTokens = balanceOf(address(this));
-            swapAndSendDividends(sellTokens);
+
+            if (sellTokens > 0) {
+                swapAndSendDividends(sellTokens);
+            }
 
             swapping = false;
         }
@@ -1570,7 +1604,7 @@ contract RewardToken is ERC20, Ownable, Ownership {
         if(takeFee) {
         	uint256 fees = amount.mul(totalFees).div(100);
         	if(automatedMarketMakerPairs[to]){
-        	    fees += amount.mul(1).div(100);
+        	    fees += amount.mul(extraSellFee).div(100);
         	}
         	amount = amount.sub(fees);
 
@@ -1594,13 +1628,22 @@ contract RewardToken is ERC20, Ownable, Ownership {
         }
     }
 
-    function swapAndSendToFee(uint256 tokens) private  {
+    function swapAndSendToFee(uint256 tokens, address receiver) private  {
 
-        uint256 initialRewardBalance = IERC20(Reward).balanceOf(address(this));
+        if (uniswapV2Router.WETH() == address(Reward)) {
+            uint256 initialRewardBalance = address(this).balance;
 
-        swapTokensForReward(tokens);
-        uint256 newBalance = (IERC20(Reward).balanceOf(address(this))).sub(initialRewardBalance);
-        IERC20(Reward).transfer(_marketingWalletAddress, newBalance);
+            swapTokensForEth(tokens);
+            uint256 newBalance = address(this).balance.sub(initialRewardBalance);
+            payable(receiver).transfer(newBalance);
+        } else {
+            uint256 initialRewardBalance = balanceOf(address(this));
+
+            swapTokensForReward(tokens);
+            uint256 newBalance = (IERC20(Reward).balanceOf(address(this))).sub(initialRewardBalance);
+            IERC20(Reward).transfer(receiver, newBalance);
+        }
+
     }
 
     function swapAndLiquify(uint256 tokens) private {
@@ -1685,14 +1728,24 @@ contract RewardToken is ERC20, Ownable, Ownership {
     }
 
     function swapAndSendDividends(uint256 tokens) private{
-        swapTokensForReward(tokens);
-        uint256 dividends = IERC20(Reward).balanceOf(address(this));
-        bool success = IERC20(Reward).transfer(address(dividendTracker), dividends);
 
-        if (success) {
+        if (uniswapV2Router.WETH() == address(Reward)) {
+            swapTokensForEth(tokens);
+            uint256 dividends = address(this).balance;
+            payable(address(dividendTracker)).transfer(dividends);
+
             dividendTracker.distributeRewardDividends(dividends);
             emit SendDividends(tokens, dividends);
-        }
+        } else {
+            swapTokensForReward(tokens);
+            uint256 dividends = IERC20(Reward).balanceOf(address(this));
+            bool success = IERC20(Reward).transfer(address(dividendTracker), dividends);
+
+            if (success) {
+                dividendTracker.distributeRewardDividends(dividends);
+                emit SendDividends(tokens, dividends);
+            }
+        }  
     }
 }
 
@@ -1716,10 +1769,12 @@ contract RewardDividendTracker is Ownable, DividendPayingToken {
 
     event Claim(address indexed account, uint256 amount, bool indexed automatic);
 
-    constructor(address rewardToken_) public DividendPayingToken("Reward_Dividen_Tracker", "Reward_Dividend_Tracker", rewardToken_) {
+    constructor(address rewardToken_, address WETH_) public DividendPayingToken("Reward_Dividen_Tracker", "Reward_Dividend_Tracker", rewardToken_, WETH_) {
     	claimWait = 3600;
         minimumTokenBalanceForDividends = 200000 * (10**18); //must hold 200000+ tokens
     }
+
+    receive() external payable {}
 
     function _transfer(address, address, uint256) internal override {
         require(false, "Reward_Dividend_Tracker: No transfers allowed");
