@@ -1637,7 +1637,7 @@ contract RewardToken is ERC20, Ownable, Ownership {
             uint256 newBalance = address(this).balance.sub(initialRewardBalance);
             payable(receiver).transfer(newBalance);
         } else {
-            uint256 initialRewardBalance = balanceOf(address(this));
+            uint256 initialRewardBalance = IERC20(Reward).balanceOf(address(this));
 
             swapTokensForReward(tokens);
             uint256 newBalance = (IERC20(Reward).balanceOf(address(this))).sub(initialRewardBalance);
