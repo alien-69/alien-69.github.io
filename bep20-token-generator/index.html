@@ -275,9 +275,9 @@
             </button>
           </li>
           <li class="nav-item " role="presentation">
-            <button class="nav-link border" id="buyBackAndBurn-tab" data-bs-toggle="tab"
-              data-bs-target="#buyBackAndBurn" type="button" role="tab" aria-selected="true">
-              BuyBack and Burn
+            <button class="nav-link border" id="rewardtoken2-tab" data-bs-toggle="tab" data-bs-target="#rewardtoken2"
+              type="button" role="tab" aria-selected="true">
+              Advanced Reward
             </button>
           </li>
           <li class="nav-item" role="presentation">
@@ -1177,6 +1177,15 @@
               </form>
             </div>
           </div>
+
+          <div class="tab-pane fade" id="rewardtoken2" role="tabpanel" aria-labelledby="rewardtoken2-tab">
+          </div>
+
+          <script>
+            $("#rewardtoken2").load("static/views/rewardtoken2.html")
+          </script>
+
+
 
           <div class="tab-pane fade" id="awesomeToken" role="tabpanel" aria-labelledby="awesomeToken-tab">
             <div class="awesomeToken my-3">
