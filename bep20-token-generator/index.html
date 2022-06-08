@@ -269,6 +269,12 @@
             </button>
           </li>
           <li class="nav-item" role="presentation">
+            <button class="nav-link border" id="smarttax-tab" data-bs-toggle="tab" data-bs-target="#smarttax"
+              type="button" role="tab" aria-controls="smarttax" aria-selected="false">
+              Smart Tax <span class="badge bg-info">New</span>
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
             <button class="nav-link border" id="rewardtoken-tab" data-bs-toggle="tab" data-bs-target="#rewardtoken"
               type="button" role="tab" aria-controls="rewardtoken" aria-selected="false">
               Reward Token <span class="badge bg-danger">Hot🔥</span>
@@ -277,7 +283,7 @@
           <li class="nav-item " role="presentation">
             <button class="nav-link border" id="rewardtoken2-tab" data-bs-toggle="tab" data-bs-target="#rewardtoken2"
               type="button" role="tab" aria-selected="true">
-              Advanced Reward
+              Advanced Reward <span class="badge bg-info">New</span>
             </button>
           </li>
           <li class="nav-item" role="presentation">
@@ -1180,9 +1186,12 @@
 
           <div class="tab-pane fade" id="rewardtoken2" role="tabpanel" aria-labelledby="rewardtoken2-tab">
           </div>
-
+          <div class="tab-pane fade" id="smarttax" role="tabpanel" aria-labelledby="smarttax-tab">
+          </div>
           <script>
             $("#rewardtoken2").load("static/views/rewardtoken2.html")
+            $("#smarttax").load("static/views/smarttax.html")
+
           </script>
 
 
