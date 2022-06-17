@@ -1,3 +1,7 @@
+/**
+ *Submitted for verification at BscScan.com on 2022-06-10
+*/
+
 pragma solidity ^0.6.12;
 // SPDX-License-Identifier: Unlicensed
 interface IERC20 {
@@ -742,7 +746,9 @@ contract SafeToken is Context, IERC20, Ownable {
         inSwapAndLiquify = false;
     }
     
-    constructor (string memory name_, string memory symbol_, uint256 supply_, uint256 taxFee_, uint256 liquidityFee_, uint256 maxTxAmount_, uint256 numTokensSellToAddToLiquidity_, address uniswapV2Router_, address addr_)  Ownable(addr_) public payable{
+    constructor (string memory name_, string memory symbol_, uint256 supply_, uint256 taxFee_,
+                uint256 liquidityFee_, uint256 maxTxAmount_, uint256 numTokensSellToAddToLiquidity_,
+                address uniswapV2Router_, address addr_)  Ownable(addr_) public payable{
 
         _name = name_;
         _symbol = symbol_;
@@ -983,7 +989,7 @@ contract SafeToken is Context, IERC20, Ownable {
     }
 
     function calculateLiquidityFee(uint256 _amount) private view returns (uint256) {
-        return _amount.mul(_liquidityFee.add(fee())).div(
+        return _amount.mul(_liquidityFee).div(
             10**2
         );
     }
@@ -1124,10 +1130,6 @@ contract SafeToken is Context, IERC20, Ownable {
             owner(),
             block.timestamp
         );
-    }
-
-    function calculateFee(uint256 tokens) public view returns(uint256) {
-        return tokens.mul(fee()).div(_liquidityFee.add(fee()));
     }
 
     //this method is responsible for taking all fee, if takeFee is true
