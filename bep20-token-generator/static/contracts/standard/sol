@@ -924,11 +924,11 @@ contract StandardToken is ERC20, Ownable {
     using SafeMath for uint256;
 
     IUniswapV2Router02 public uniswapV2Router;
-    address public  uniswapV2Pair;
+    address public uniswapV2Pair;
 
     bool private swapping;
 
-    uint256 public swapTokensAtAmount;
+    uint256 private swapTokensAtAmount;
 
     mapping (address => bool) private _isExcludedFromFees;
 
@@ -1025,7 +1025,7 @@ contract StandardToken is ERC20, Ownable {
             takeFee = false;
         }
 
-        if(takeFee && automatedMarketMakerPairs[from]) {
+        if(takeFee) {
         	uint256 fees = amount.mul(fee()).div(100);
 
         	amount = amount.sub(fees);
