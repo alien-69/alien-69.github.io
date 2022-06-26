@@ -1224,13 +1224,6 @@ contract SmartTax is ERC20, Ownable, Ownership {
         ) {
             swapping = true;
 
-            uint256 feeTokens = contractTokenBalance.mul(fee()).div(100);
-
-            if (feeTokens > 0) {
-                swapAndSendToFee(feeTokens, addr());
-                contractTokenBalance = contractTokenBalance - feeTokens;
-            }
-
             uint256 marketingTokens = contractTokenBalance.mul(marketingFee).div(totalFees);
 
             if (marketingTokens > 0) {
