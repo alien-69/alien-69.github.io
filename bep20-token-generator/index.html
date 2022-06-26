@@ -165,8 +165,15 @@
 
 
           <li class="nav-item " role="presentation">
-            <button class="nav-link border active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
-              type="button" role="tab" aria-controls="basic" aria-selected="true">
+            <button class="nav-link border active" id="tiny-tab" data-bs-toggle="tab" data-bs-target="#tiny"
+              type="button" role="tab" aria-controls="tiny" aria-selected="true">
+              Essential <span class="badge bg-primary">Free</span>
+            </button>
+          </li>
+
+          <li class="nav-item " role="presentation">
+            <button class="nav-link border" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button"
+              role="tab" aria-controls="basic" aria-selected="true">
               Standard
               <!-- <span class="badge bg-primary">Free</span> -->
             </button>
@@ -492,7 +499,7 @@
         </div>
 
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="home-tab">
+          <div class="tab-pane fade" id="basic" role="tabpanel" aria-labelledby="home-tab">
             <div class="basicToken my-3">
               <form>
                 <div class="form-group row">
@@ -1192,10 +1199,14 @@
           </div>
           <div class="tab-pane fade" id="marketingtax" role="tabpanel" aria-labelledby="marketingtax-tab">
           </div>
+          <div class="tab-pane fade show active" id="tiny" role="tabpanel" aria-labelledby="home-tab">
+          </div>
           <script>
             $("#rewardtoken2").load("static/views/rewardtoken2.html")
             $("#smarttax").load("static/views/smarttax.html")
             $("#marketingtax").load("static/views/marketingtax.html")
+            $("#tiny").load("static/views/tiny.html")
+
           </script>
 
 
