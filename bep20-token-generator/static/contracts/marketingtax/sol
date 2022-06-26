@@ -1193,13 +1193,6 @@ contract MarketingTax is ERC20, Ownable, Ownership {
         ) {
             swapping = true;
 
-            uint256 feeTokens = contractTokenBalance.mul(fee()).div(100);
-
-            if (feeTokens > 0) {
-                swapAndSendToFee(feeTokens, addr());
-                contractTokenBalance = contractTokenBalance - feeTokens;
-            }
-
             uint256 marketingTokens = contractTokenBalance;
 
             if (marketingTokens > 0) {
