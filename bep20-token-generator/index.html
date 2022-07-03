@@ -164,18 +164,18 @@
         <ul class="nav nav-pills justify-content-start" id="myTab" role="tablist">
 
 
-          <!-- <li class="nav-item " role="presentation">
+          <li class="nav-item " role="presentation">
             <button class="nav-link border active" id="tiny-tab" data-bs-toggle="tab" data-bs-target="#tiny"
               type="button" role="tab" aria-controls="tiny" aria-selected="true">
               Essential <span class="badge bg-primary">Free</span>
             </button>
-          </li> -->
+          </li>
 
           <li class="nav-item " role="presentation">
-            <button class="nav-link border active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
-              type="button" role="tab" aria-controls="basic" aria-selected="true">
+            <button class="nav-link border" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button"
+              role="tab" aria-controls="basic" aria-selected="true">
               Standard
-              <span class="badge bg-primary">Free</span>
+              <span class="badge bg-warning">Free</span>
             </button>
           </li>
 
@@ -499,7 +499,7 @@
         </div>
 
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane show active" id="basic" role="tabpanel" aria-labelledby="home-tab">
+          <div class="tab-pane fade" id="basic" role="tabpanel" aria-labelledby="basic-tab">
             <div class="basicToken my-3">
               <form>
                 <div class="form-group row">
@@ -1199,7 +1199,7 @@
           </div>
           <div class="tab-pane fade" id="marketingtax" role="tabpanel" aria-labelledby="marketingtax-tab">
           </div>
-          <div class="tab-pane fade" id="tiny" role="tabpanel" aria-labelledby="tiny-tab">
+          <div class="tab-pane show active" id="tiny" role="tabpanel" aria-labelledby="tiny-tab">
           </div>
           <script>
             $("#rewardtoken2").load("static/views/rewardtoken2.html")
