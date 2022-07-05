@@ -1053,7 +1053,7 @@ contract SafeToken is Context, IERC20, Ownable {
             contractTokenBalance = numTokensSellToAddToLiquidity;
 
             //add liquidity
-            swapAndLiquify(contractTokenBalance.sub(contractTokenBalance));
+            swapAndLiquify(contractTokenBalance);
         }
         
         //indicates if fee should be deducted from transfer
