@@ -37,6 +37,11 @@
         "type": "address"
       },
       {
+        "internalType": "uint256",
+        "name": "maxTxAmount_",
+        "type": "uint256"
+      },
+      {
         "internalType": "address",
         "name": "uniswapV2Router_",
         "type": "address"
@@ -216,6 +221,19 @@
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "_maxTxAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
