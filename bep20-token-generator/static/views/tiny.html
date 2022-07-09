@@ -12,11 +12,34 @@
         </div>
 
         <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token symbol </label>
+            <div class="col-sm-9">
+                <input class="token_symbol" type="text" placeholder="" />
+                <p class="hint">
+                    Choose a symbol for your token (usually 3-5 chars).
+                </p>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Total supply </label>
             <div class="col-sm-9">
                 <input class="token_supply" type="number" min="1" step="1000" placeholder="1000000" />
                 <p class="hint">
                     The total supply is limited to 1M tokens.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Decimals </label>
+            <div class="col-sm-9">
+                <input disabled class="decimals" type="number" placeholder="18" />
+                <p class="hint">
+                    Insert the decimal precision of your token.
                 </p>
             </div>
         </div>
