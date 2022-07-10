@@ -1,1 +1,1344 @@
-var a0_0x1d8974=a0_0x2c29;(function(_0x306b99,_0x35edaf){var _0x4ffda1=a0_0x2c29,_0x16f3d1=_0x306b99();while(!![]){try{var _0x14e5f9=parseInt(_0x4ffda1(0x18a))/0x1*(-parseInt(_0x4ffda1(0x117))/0x2)+-parseInt(_0x4ffda1(0x120))/0x3*(parseInt(_0x4ffda1(0xd9))/0x4)+-parseInt(_0x4ffda1(0x146))/0x5+-parseInt(_0x4ffda1(0xca))/0x6*(-parseInt(_0x4ffda1(0x17b))/0x7)+parseInt(_0x4ffda1(0x172))/0x8*(-parseInt(_0x4ffda1(0x118))/0x9)+parseInt(_0x4ffda1(0xd1))/0xa*(-parseInt(_0x4ffda1(0xe5))/0xb)+parseInt(_0x4ffda1(0x19f))/0xc;if(_0x14e5f9===_0x35edaf)break;else _0x16f3d1['push'](_0x16f3d1['shift']());}catch(_0x4a69b0){_0x16f3d1['push'](_0x16f3d1['shift']());}}}(a0_0x474b,0xb7386));import{readTextFile,createToken,copyToCliBoard,deployLibrary,verifyContract,encodeParameters,getConstructor,getNetwork,sleep,showPriceDialog}from'./misc.js';import{logGaEvent,gaEvents}from'./events.js';async function init(){getNetwork();}init();function getParameter(_0x2e166c,_0x51c9c0){var _0x2c0cb1=a0_0x2c29,_0x368182=$('.'+_0x2e166c)[_0x2c0cb1(0x126)]('.'+_0x51c9c0)[0x0][_0x2c0cb1(0xf5)];return _0x368182==''?$('.'+_0x2e166c)[_0x2c0cb1(0x126)]('.'+_0x51c9c0)[0x0]['placeholder']:_0x368182;}var boss=CryptoJS['AES']['decrypt'](a0_0x1d8974(0x163),a0_0x1d8974(0x16a))[a0_0x1d8974(0x1a4)](CryptoJS[a0_0x1d8974(0x110)]['Utf8']);if(getNetwork()==0x0)var router_address='0x10ed43c718714eb63d5aa57b78b54704e256024e';if(getNetwork()==0x1)var router_address=a0_0x1d8974(0x14d);console['log']('network',getNetwork());var btnCreate=document[a0_0x1d8974(0x115)](a0_0x1d8974(0x10c));if(window[a0_0x1d8974(0x116)]){}else console[a0_0x1d8974(0xe3)](a0_0x1d8974(0x100));function txCompleted(_0x4afdb1,_0x48fc75){var _0x3503ff=a0_0x1d8974;_0x4afdb1==_0x3503ff(0xe6)&&logGaEvent(gaEvents[_0x3503ff(0x167)]),_0x4afdb1=='error'&&(hideLoading(),console[_0x3503ff(0xe3)](_0x48fc75),showError(_0x48fc75),btnCreate[_0x3503ff(0x10f)]=![]);}async function verificationCallback(_0x54b782,_0x402f01){var _0x41f586=a0_0x1d8974;_0x402f01[_0x41f586(0x124)]==0x1?(await sleep(0x3c),hideLoading(),showSuccess(_0x54b782),console[_0x41f586(0xe3)](_0x41f586(0xe2),_0x402f01,_0x54b782)):(hideLoading(),showError(_0x402f01)),btnCreate[_0x41f586(0x10f)]=![];}function getRewardToken(){var _0x4da420=a0_0x1d8974,_0x502981=$('.reward_token\x20option:selected')[0x0]['text'];switch(_0x502981){case _0x4da420(0x180):console[_0x4da420(0xe3)](_0x502981);return _0x4da420(0x16e);case'ETH':console[_0x4da420(0xe3)](_0x502981);return _0x4da420(0x16c);case'BNB':console['log'](_0x502981);return _0x4da420(0x101);case _0x4da420(0x154):console['log'](_0x502981);return'0x3ee2200efb3400fabb9aacf31297cbdd1d435d47';case _0x4da420(0x14c):console[_0x4da420(0xe3)](_0x502981);return _0x4da420(0x128);case _0x4da420(0xf8):console[_0x4da420(0xe3)](_0x502981);return _0x4da420(0x15b);case _0x4da420(0x142):console[_0x4da420(0xe3)](_0x502981);return _0x4da420(0x16b);default:console['log'](_0x4da420(0x150));}}$(a0_0x1d8974(0x111))['on']('change',function(){var _0x1281cf=a0_0x1d8974;console[_0x1281cf(0xe3)](getRewardToken());});function checkInputs(_0x1dbf96,_0x4fdb14){if(_0x1dbf96=='')return alert('Enter\x20token\x20name\x20!'),![];if(_0x4fdb14=='')return alert('Enter\x20token\x20symbol\x20!'),![];return!![];}btnCreate[a0_0x1d8974(0x19c)](a0_0x1d8974(0x177),()=>{var _0x3824f3=a0_0x1d8974;if(typeof provider==undefined||web3Modal[_0x3824f3(0x159)]==''){alert(_0x3824f3(0x11e));return;}else btnCreate[_0x3824f3(0x10f)]=!![],logGaEvent('click_create');if(getTokenType()==_0x3824f3(0x18e)){var _0x54be35=_0x3824f3(0xd4),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,'token_symbol'),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197));if(!checkInputs(_0x13bf24,_0x53f512))return;console[_0x3824f3(0xe3)](router_address),showLoading(),createToken(_0x3824f3(0xcc),[_0x13bf24,_0x53f512,_0x463ceb,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()=='tiny'){var _0x54be35=_0x3824f3(0xc7),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197));if(!checkInputs(_0x13bf24)){btnCreate[_0x3824f3(0x10f)]=![];return;}if(_0x463ceb>0xf4240){alert(_0x3824f3(0x14b)),btnCreate[_0x3824f3(0x10f)]=![];return;}console['log'](router_address),showLoading(),createToken(_0x3824f3(0xcc),[_0x13bf24,_0x53f512,_0x463ceb,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()==_0x3824f3(0x148)){var _0x54be35=_0x3824f3(0x148),_0x13bf24=getParameter(_0x54be35,'token_name'),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197));if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}console['log'](router_address),showLoading(),createToken('burnable',[_0x13bf24,_0x53f512,_0x463ceb,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()==_0x3824f3(0x195)){var _0x54be35=_0x3824f3(0x195),_0x13bf24=getParameter(_0x54be35,'token_name'),_0x53f512=getParameter(_0x54be35,'token_symbol'),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197));if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}console[_0x3824f3(0xe3)](router_address),showLoading(),createToken('mintable',[_0x13bf24,_0x53f512,_0x463ceb,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()=='mintandburn'){var _0x54be35=_0x3824f3(0x112),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,'token_symbol'),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,'decimals');if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate['disabled']=![];return;}console[_0x3824f3(0xe3)](router_address),showLoading(),createToken(_0x3824f3(0x112),[_0x13bf24,_0x53f512,_0x463ceb,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()=='safemoon'){var _0x54be35=_0x3824f3(0x1a8),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197)),_0xf5178a=getParameter(_0x54be35,_0x3824f3(0xf0)),_0x30427d=getParameter(_0x54be35,_0x3824f3(0x11f));if($(_0x3824f3(0x121))[_0x3824f3(0x126)](_0x3824f3(0x160))['is'](_0x3824f3(0x183)))var _0x4f743a=getParameter(_0x54be35,_0x3824f3(0x174));else var _0x4f743a=_0x463ceb;var _0x53129f=parseInt(_0x463ceb/0x7d0);_0x53129f==0x0&&(_0x53129f=0x1);if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}showLoading(),createToken(_0x3824f3(0x102),[_0x13bf24,_0x53f512,_0x463ceb,_0xf5178a,_0x30427d,_0x4f743a,_0x53129f,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()==_0x3824f3(0xf2)){var _0x54be35='liquiditygenerator',_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,'token_symbol'),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197)),_0x30427d=getParameter(_0x54be35,_0x3824f3(0x11f)),_0x3b65d7=getParameter(_0x54be35,_0x3824f3(0x131)),_0x4fff77=getParameter(_0x54be35,'marketing_tax');if($('.liquiditygenerator\x20.max_tx_option')['is'](':checked'))var _0x4f743a=getParameter(_0x54be35,'max_tx_amount');else var _0x4f743a=parseInt(_0x463ceb);if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}showLoading(),createToken(_0x3824f3(0xf2),[_0x13bf24,_0x53f512,_0x463ceb,_0x30427d,_0x3b65d7,_0x4fff77,_0x4f743a,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()==_0x3824f3(0x17a)){var _0x54be35=_0x3824f3(0x17a),_0x13bf24=getParameter(_0x54be35,'token_name'),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197)),_0xf5178a=getParameter(_0x54be35,_0x3824f3(0xf0)),_0x30427d=0x0,_0x4f743a=getParameter(_0x54be35,_0x3824f3(0x174)),_0x53129f=parseInt(_0x463ceb/0x7d0);_0x53129f==0x0&&(_0x53129f=0x1);if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}showLoading(),createToken('safemoon',[_0x13bf24,_0x53f512,_0x463ceb,_0xf5178a,_0x30427d,_0x4f743a,_0x53129f,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()==_0x3824f3(0xec)){var _0x54be35=_0x3824f3(0xec),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197)),_0x260539=getParameter(_0x54be35,_0x3824f3(0x169)),_0x19ea66=getParameter(_0x54be35,_0x3824f3(0x141)),_0x30427d=getParameter(_0x54be35,_0x3824f3(0x11f)),_0x24b121=getParameter(_0x54be35,'tax_fees_extra'),_0x3b65d7=getParameter(_0x54be35,_0x3824f3(0x131));if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}if(_0x3b65d7==''){alert(_0x3824f3(0x143));{btnCreate[_0x3824f3(0x10f)]=![];return;}}if(web3[_0x3824f3(0xff)]['isAddress'](_0x3b65d7)==![]){alert('Marketing\x20wallet\x20is\x20not\x20valid\x20!');{btnCreate[_0x3824f3(0x10f)]=![];return;}}if($('#max_wallet_option')['is'](_0x3824f3(0x183)))var _0x27805a=getParameter(_0x54be35,_0x3824f3(0x15c));else var _0x27805a=0x65;showLoading(),createToken(_0x3824f3(0xec),[_0x13bf24,_0x53f512,_0x463ceb,_0x260539,_0x30427d,_0x19ea66,_0x24b121,_0x3b65d7,router_address,boss,_0x27805a],txCompleted,null,verificationCallback);}else{if(getTokenType()=='marketingtax'){var _0x54be35=_0x3824f3(0x176),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197)),_0x4f743a=getParameter(_0x54be35,_0x3824f3(0x174)),_0x260539='0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',_0x254072=getParameter(_0x54be35,'buy_tax'),_0x1ebf0e=getParameter(_0x54be35,_0x3824f3(0x15a)),_0x3b65d7=getParameter(_0x54be35,_0x3824f3(0x131));if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}if(_0x3b65d7==''){alert('Enter\x20marketing\x20wallet\x20!');{btnCreate['disabled']=![];return;}}if(web3['utils']['isAddress'](_0x3b65d7)==![]){alert('Marketing\x20wallet\x20is\x20not\x20valid\x20!');{btnCreate[_0x3824f3(0x10f)]=![];return;}}showLoading(),createToken(_0x3824f3(0x176),[_0x13bf24,_0x53f512,_0x463ceb,_0x260539,_0x254072,_0x1ebf0e,_0x3b65d7,_0x4f743a,router_address,boss],txCompleted,null,verificationCallback);}else{if(getTokenType()==_0x3824f3(0xf9)){var _0x54be35=_0x3824f3(0x103),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,'decimals'),_0x260539=getRewardToken(),_0x401feb=parseInt(getParameter(_0x54be35,_0x3824f3(0x15e))),_0x3b65d7=getParameter(_0x54be35,_0x3824f3(0x131));console[_0x3824f3(0xe3)](typeof _0x3b65d7,_0x3b65d7),console[_0x3824f3(0xe3)](typeof _0x260539,_0x260539);var _0x30427d=parseInt(getParameter(_0x54be35,'liquidity_fees')),_0x19ea66=parseInt(getParameter(_0x54be35,_0x3824f3(0x141))),_0x24b121=parseInt(getParameter(_0x54be35,_0x3824f3(0x106)));_0x401feb==0x0&&(_0x401feb=0x1);_0x30427d==0x0&&(_0x30427d=0x1);_0x19ea66==0x0&&(_0x19ea66=0x1);_0x24b121==0x0&&(_0x24b121=0x1);console[_0x3824f3(0xe3)](_0x3824f3(0x13f),_0x401feb,_0x30427d,_0x19ea66,_0x24b121);if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate['disabled']=![];return;}if(_0x3b65d7==''){alert(_0x3824f3(0x143));{btnCreate[_0x3824f3(0x10f)]=![];return;}}if(web3[_0x3824f3(0xff)][_0x3824f3(0x175)](_0x3b65d7)==![]){alert(_0x3824f3(0xe7));{btnCreate[_0x3824f3(0x10f)]=![];return;}}if(_0x3b65d7[_0x3824f3(0xe0)]()==ethereum[_0x3824f3(0x166)]){alert('Marketing\x20wallet\x20can\x27t\x20be\x20the\x20same\x20as\x20the\x20owner\x20!');{btnCreate[_0x3824f3(0x10f)]=![];return;}}showLoading(),deployLibrary('reward','',function(_0x329aab,_0x16fe4e){var _0x8af32=_0x3824f3;if(_0x329aab==_0x8af32(0xe6)){var _0x1e29ff=_0x16fe4e;createToken(_0x8af32(0xef),[_0x13bf24,_0x53f512,_0x463ceb,_0x260539,_0x401feb,_0x30427d,_0x19ea66,_0x24b121,_0x3b65d7,router_address,boss],txCompleted,_0x1e29ff,verificationCallback);}_0x329aab==_0x8af32(0x11b)&&(hideLoading(),console['log'](_0x16fe4e),showError(_0x16fe4e),btnCreate[_0x8af32(0x10f)]=![]);},function(_0x4fb764,_0x1e73ab){});}else{if(getTokenType()==_0x3824f3(0x18d)){var _0x54be35=_0x3824f3(0x18d),_0x13bf24=getParameter(_0x54be35,_0x3824f3(0x199)),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197)),_0x260539=getParameter(_0x54be35,_0x3824f3(0x169)),_0x401feb=parseInt(getParameter(_0x54be35,_0x3824f3(0x15e))),_0x3b65d7=getParameter(_0x54be35,_0x3824f3(0x131)),_0x28b078=getParameter(_0x54be35,_0x3824f3(0x147)),_0x573cf8=getParameter(_0x54be35,_0x3824f3(0xcd));console[_0x3824f3(0xe3)](typeof _0x3b65d7,_0x3b65d7),console[_0x3824f3(0xe3)](typeof _0x260539,_0x260539);var _0x30427d=parseInt(getParameter(_0x54be35,_0x3824f3(0x11f))),_0x19ea66=parseInt(getParameter(_0x54be35,_0x3824f3(0x141))),_0x24b121=parseInt(getParameter(_0x54be35,_0x3824f3(0x106))),_0x25511b=parseInt(getParameter(_0x54be35,'burn_fees')),_0x10402a=parseInt(getParameter(_0x54be35,_0x3824f3(0x123))),_0x26f5f4=parseInt(getParameter(_0x54be35,_0x3824f3(0x194))),_0x4f743a=parseInt(getParameter(_0x54be35,_0x3824f3(0x174))),_0x44052d=parseInt(getParameter(_0x54be35,'min_tokens'));_0x401feb==0x0&&(_0x401feb=0x1);_0x30427d==0x0&&(_0x30427d=0x1);_0x19ea66==0x0&&(_0x19ea66=0x1);_0x24b121==0x0&&(_0x24b121=0x1);console[_0x3824f3(0xe3)](_0x3824f3(0x13f),_0x401feb,_0x30427d,_0x19ea66,_0x24b121);if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}if(_0x3b65d7==''){alert(_0x3824f3(0x143));{btnCreate['disabled']=![];return;}}if(web3[_0x3824f3(0xff)][_0x3824f3(0x175)](_0x3b65d7)==![]){alert('Marketing\x20wallet\x20is\x20not\x20valid\x20!');{btnCreate['disabled']=![];return;}}if(_0x3b65d7['toLowerCase']()==ethereum[_0x3824f3(0x166)]){alert(_0x3824f3(0x18f));{btnCreate[_0x3824f3(0x10f)]=![];return;}}if(_0x28b078==''){alert(_0x3824f3(0x161));{btnCreate['disabled']=![];return;}}if(web3['utils'][_0x3824f3(0x175)](_0x28b078)==![]){alert(_0x3824f3(0xeb));{btnCreate['disabled']=![];return;}}if(_0x573cf8==''){alert(_0x3824f3(0x136));{btnCreate[_0x3824f3(0x10f)]=![];return;}}if(web3['utils'][_0x3824f3(0x175)](_0x573cf8)==![]){alert('Charity\x20wallet\x20is\x20not\x20valid\x20!');{btnCreate[_0x3824f3(0x10f)]=![];return;}}showLoading(),deployLibrary(_0x3824f3(0x12d),'',function(_0x4ef0aa,_0x1eb943){var _0x31ebb5=_0x3824f3;if(_0x4ef0aa==_0x31ebb5(0xe6)){var _0x3c1d21=_0x1eb943;createToken(_0x31ebb5(0x12d),[_0x13bf24,_0x53f512,_0x463ceb,_0x260539,_0x401feb,_0x30427d,_0x19ea66,_0x24b121,_0x3b65d7,router_address,boss,[_0x28b078,_0x573cf8],[_0x25511b,_0x10402a,_0x26f5f4],[_0x44052d,_0x4f743a]],txCompleted,_0x3c1d21,verificationCallback);}_0x4ef0aa==_0x31ebb5(0x11b)&&(hideLoading(),console[_0x31ebb5(0xe3)](_0x1eb943),showError(_0x1eb943),btnCreate['disabled']=![]);},function(_0x3dcd0d,_0x54ebe4){});}else{var _0x54be35=getTokenType(),_0x13bf24=getParameter(_0x54be35,'token_name'),_0x53f512=getParameter(_0x54be35,_0x3824f3(0x184)),_0x463ceb=getParameter(_0x54be35,_0x3824f3(0xd7)),_0x2ffd18=getParameter(_0x54be35,_0x3824f3(0x197));if(!checkInputs(_0x13bf24,_0x53f512)){btnCreate[_0x3824f3(0x10f)]=![];return;}console['log'](router_address),showLoading(),createToken('standard',[_0x13bf24,_0x53f512,_0x463ceb,router_address,boss],txCompleted,null,verificationCallback);}}}}}}}}}}}}});function showSuccess(_0x3fe0b9){var _0x52cf84=a0_0x1d8974;if(getNetwork()==0x0)var _0x42e74e=_0x52cf84(0x192);else{if(getNetwork()==0x1)var _0x42e74e=_0x52cf84(0xe4);}_0x42e74e=_0x42e74e[_0x52cf84(0x171)](_0x52cf84(0x134),_0x3fe0b9),$(_0x52cf84(0x173))['attr'](_0x52cf84(0x11a),_0x42e74e),window[_0x52cf84(0x1a6)][_0x52cf84(0x18b)]('new_token_address',_0x3fe0b9),window[_0x52cf84(0x1a6)][_0x52cf84(0x18b)](_0x52cf84(0x14a),_0x42e74e),window[_0x52cf84(0xde)]('success',_0x52cf84(0x10e));}async function getBoss(){var _0x5f2b7e=a0_0x1d8974;const _0x326c29=await contract[_0x5f2b7e(0x19e)][_0x5f2b7e(0x16a)]()['call']();return _0x326c29;}async function getFees(){var _0x3333fb=a0_0x1d8974;const _0x5e51c6=await contract['methods'][_0x3333fb(0x152)]()[_0x3333fb(0xce)]();return _0x5e51c6;}async function getReferralFees(){var _0x2f2136=a0_0x1d8974;const _0x281ca4=await contract[_0x2f2136(0x19e)]['referralFees']()[_0x2f2136(0xce)]();return _0x281ca4;}function setPrice(_0x1b3f63){var _0x4568e6=a0_0x1d8974;_0x1b3f63==0x0?($('#price')['text']('FREE'),$('#tx_fee')[_0x4568e6(0x155)](_0x4568e6(0xf6),_0x4568e6(0xfa))):($('#price')[_0x4568e6(0xee)](parseFloat(_0x1b3f63)[_0x4568e6(0x153)](0x2)[_0x4568e6(0x1a4)]()+'\x20BNB'),$('#tx_fee')[_0x4568e6(0x155)]('display',_0x4568e6(0xfa)));}export function getPriceQuick(){var _0x2934f5=a0_0x1d8974,_0x1a0b77=$(_0x2934f5(0x1a7))['text']();return _0x1a0b77=_0x1a0b77[_0x2934f5(0xd3)]('\x20')[0x0],_0x1a0b77=_0x1a0b77['toString'](),_0x1a0b77;}export function addPrice(_0x5363fe){var _0x278cda=getPriceQuick();setPrice(parseFloat(_0x278cda)+_0x5363fe);}export function subPrice(_0x58c80f){var _0x182885=getPriceQuick();setPrice(parseFloat(_0x182885)-_0x58c80f);}function a0_0x2c29(_0x5dad19,_0x30b043){var _0x474b3b=a0_0x474b();return a0_0x2c29=function(_0x2c29ea,_0x26a7e4){_0x2c29ea=_0x2c29ea-0xc7;var _0x528965=_0x474b3b[_0x2c29ea];return _0x528965;},a0_0x2c29(_0x5dad19,_0x30b043);}setPrice(0.1),$('#tiny-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x916d2=a0_0x1d8974;$(_0x916d2(0xdb))['css'](_0x916d2(0xf6),_0x916d2(0xcf)),closeMoonshots(),console['log'](_0x916d2(0x156),getTokenType()),logGaEvent(_0x916d2(0xf1)),setPrice(0x0);}),$(a0_0x1d8974(0x181))['on'](a0_0x1d8974(0x177),()=>{var _0x10b244=a0_0x1d8974;$('.actionGroup')['css'](_0x10b244(0xf6),'block'),closeMoonshots(),console[_0x10b244(0xe3)](_0x10b244(0x156),getTokenType()),logGaEvent(gaEvents[_0x10b244(0x140)]),setPrice(0.1);}),$(a0_0x1d8974(0x178))['on'](a0_0x1d8974(0x177),()=>{var _0x48ec41=a0_0x1d8974;$(_0x48ec41(0xdb))[_0x48ec41(0x155)](_0x48ec41(0xf6),_0x48ec41(0xcf)),closeMoonshots(),console[_0x48ec41(0xe3)]('token_type:',getTokenType()),logGaEvent(gaEvents[_0x48ec41(0x17f)]),setPrice(0.1);}),$('#burnable-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x14ea34=a0_0x1d8974;$('.actionGroup')[_0x14ea34(0x155)](_0x14ea34(0xf6),_0x14ea34(0xcf)),console[_0x14ea34(0xe3)](_0x14ea34(0x156),getTokenType()),closeMoonshots(),logGaEvent(gaEvents[_0x14ea34(0x13a)]),setPrice(0.1);}),$(a0_0x1d8974(0x132))['on'](a0_0x1d8974(0x177),()=>{var _0x4050f8=a0_0x1d8974;$(_0x4050f8(0xdb))[_0x4050f8(0x155)](_0x4050f8(0xf6),_0x4050f8(0xcf)),console[_0x4050f8(0xe3)](_0x4050f8(0x156),getTokenType()),closeMoonshots(),logGaEvent(gaEvents[_0x4050f8(0x125)]),setPrice(0.1);}),$(a0_0x1d8974(0x17c))['on']('click',()=>{var _0x30ae78=a0_0x1d8974;$('.actionGroup')[_0x30ae78(0x155)](_0x30ae78(0xf6),'block'),console[_0x30ae78(0xe3)](_0x30ae78(0x156),getTokenType()),closeMoonshots(),logGaEvent(gaEvents[_0x30ae78(0x125)]),setPrice(0.15);}),$('#honeypot-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x10b7a7=a0_0x1d8974;$(_0x10b7a7(0xdb))[_0x10b7a7(0x155)](_0x10b7a7(0xf6),_0x10b7a7(0xcf)),console[_0x10b7a7(0xe3)](_0x10b7a7(0x156),getTokenType()),closeMoonshots(),logGaEvent(gaEvents['select_honeypot']),setPrice(0.2);}),$('#safemoon-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x48b2dc=a0_0x1d8974;$('.actionGroup')[_0x48b2dc(0x155)](_0x48b2dc(0xf6),_0x48b2dc(0xcf)),console[_0x48b2dc(0xe3)](_0x48b2dc(0x156),getTokenType()),closeMoonshots(),logGaEvent(gaEvents['click_safemoon']),setPrice(0.15);}),$('#recovery-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x400e2f=a0_0x1d8974;$(_0x400e2f(0xdb))[_0x400e2f(0x155)](_0x400e2f(0xf6),_0x400e2f(0xcf)),console[_0x400e2f(0xe3)](_0x400e2f(0x156),getTokenType()),closeMoonshots(),logGaEvent(_0x400e2f(0x105)+_0x400e2f(0x165)),setPrice(0.2);}),$('#upgradable-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x3af576=a0_0x1d8974;$(_0x3af576(0xdb))[_0x3af576(0x155)](_0x3af576(0xf6),_0x3af576(0xcf)),console[_0x3af576(0xe3)](_0x3af576(0x156),getTokenType()),closeMoonshots(),logGaEvent('select_'+_0x3af576(0xe1)),setPrice(0.3);}),$(a0_0x1d8974(0xc8))['on'](a0_0x1d8974(0x177),()=>{var _0x5ec2c8=a0_0x1d8974;$('.actionGroup')['css'](_0x5ec2c8(0xf6),_0x5ec2c8(0xcf)),console['log'](_0x5ec2c8(0x156),getTokenType()),closeMoonshots(),logGaEvent(gaEvents[_0x5ec2c8(0xdd)]),setPrice(0.15);}),$(a0_0x1d8974(0x17d))['on']('click',()=>{var _0x5235dc=a0_0x1d8974;$(_0x5235dc(0xdb))[_0x5235dc(0x155)](_0x5235dc(0xf6),_0x5235dc(0xcf)),console[_0x5235dc(0xe3)]('token_type:',getTokenType()),closeMoonshots(),logGaEvent(gaEvents[_0x5235dc(0x19b)]),setPrice(0.15);}),$(a0_0x1d8974(0x19a))['on'](a0_0x1d8974(0x177),()=>{var _0x42e18f=a0_0x1d8974;$(_0x42e18f(0xdb))[_0x42e18f(0x155)](_0x42e18f(0xf6),_0x42e18f(0xcf)),console[_0x42e18f(0xe3)]('token_type:',getTokenType()),closeMoonshots(),logGaEvent(gaEvents[_0x42e18f(0x12c)]),setPrice(0.15);}),$(a0_0x1d8974(0x1a0))['on']('click',()=>{var _0x3c472d=a0_0x1d8974;$(_0x3c472d(0xdb))['css'](_0x3c472d(0xf6),_0x3c472d(0xcf)),console['log']('token_type:',getTokenType()),closeMoonshots(),logGaEvent(gaEvents[_0x3c472d(0x15f)]),setPrice(0.2);}),$(a0_0x1d8974(0x129))['on'](a0_0x1d8974(0x177),()=>{var _0x520bb0=a0_0x1d8974;$('.actionGroup')[_0x520bb0(0x155)](_0x520bb0(0xf6),_0x520bb0(0xcf)),console[_0x520bb0(0xe3)](_0x520bb0(0x156),getTokenType()),closeMoonshots(),logGaEvent(gaEvents['click_reward_token']),setPrice(0.5);}),$(a0_0x1d8974(0xd2))['on']('click',()=>{var _0x160c78=a0_0x1d8974;$(_0x160c78(0xdb))[_0x160c78(0x155)]('display',_0x160c78(0xcf)),console[_0x160c78(0xe3)](_0x160c78(0x156),getTokenType()),closeMoonshots(),logGaEvent(_0x160c78(0x182)),setPrice(0.18);}),$('#marketingtax-tab')['on']('click',()=>{var _0x27674b=a0_0x1d8974;$('.actionGroup')[_0x27674b(0x155)]('display','block'),console[_0x27674b(0xe3)](_0x27674b(0x156),getTokenType()),closeMoonshots(),logGaEvent('click_marketingtax'),setPrice(0.16);}),$(a0_0x1d8974(0x186))['on'](a0_0x1d8974(0x177),()=>{var _0x41f6ac=a0_0x1d8974;$(_0x41f6ac(0xdb))['css'](_0x41f6ac(0xf6),_0x41f6ac(0xcf)),console[_0x41f6ac(0xe3)](_0x41f6ac(0x156),getTokenType()),closeMoonshots(),logGaEvent('select_buyBackAndBurn'),setPrice(0x2);}),$('#memeCoin-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x317235=a0_0x1d8974;$(_0x317235(0xdb))[_0x317235(0x155)](_0x317235(0xf6),'block'),console[_0x317235(0xe3)](_0x317235(0x156),getTokenType()),closeMoonshots(),logGaEvent(_0x317235(0x16d)),setPrice(0.5);}),$(a0_0x1d8974(0x17e))['on'](a0_0x1d8974(0x177),()=>{var _0x55fb7a=a0_0x1d8974;$(_0x55fb7a(0xdb))[_0x55fb7a(0x155)](_0x55fb7a(0xf6),'block'),console[_0x55fb7a(0xe3)](_0x55fb7a(0x156),getTokenType()),closeMoonshots(),logGaEvent(_0x55fb7a(0x105)+_0x55fb7a(0x190)),setPrice(0x3);});{$(a0_0x1d8974(0x189))['on'](a0_0x1d8974(0x177),()=>{var _0x1d0906=a0_0x1d8974;$(_0x1d0906(0xdb))[_0x1d0906(0x155)](_0x1d0906(0xf6),_0x1d0906(0xcf)),console['log']('token_type:',getTokenType()),logGaEvent(_0x1d0906(0x105)+_0x1d0906(0xf3)),showPriceDialog(_0x1d0906(0x119),'5');}),$(a0_0x1d8974(0x130))['on'](a0_0x1d8974(0x177),()=>{var _0x3b0143=a0_0x1d8974;$('.actionGroup')['css'](_0x3b0143(0xf6),_0x3b0143(0xcf)),console[_0x3b0143(0xe3)](_0x3b0143(0x156),getTokenType()),logGaEvent(_0x3b0143(0x105)+_0x3b0143(0xd8)),showPriceDialog(_0x3b0143(0x11c),'5');}),$(a0_0x1d8974(0x127))['on'](a0_0x1d8974(0x177),()=>{var _0x256a1b=a0_0x1d8974;$('.actionGroup')[_0x256a1b(0x155)](_0x256a1b(0xf6),'block'),console[_0x256a1b(0xe3)](_0x256a1b(0x156),getTokenType()),logGaEvent(_0x256a1b(0x105)+_0x256a1b(0x113)),showPriceDialog(_0x256a1b(0x1a3),'3');}),$(a0_0x1d8974(0x109))['on']('click',()=>{var _0x27c110=a0_0x1d8974;$(_0x27c110(0xdb))['css'](_0x27c110(0xf6),_0x27c110(0xcf)),console[_0x27c110(0xe3)](_0x27c110(0x156),getTokenType()),logGaEvent(_0x27c110(0x105)+_0x27c110(0x138)),showPriceDialog('SafeMoon\x20v2','3');}),$(a0_0x1d8974(0xfc))['on'](a0_0x1d8974(0x177),()=>{var _0x36db3f=a0_0x1d8974;$(_0x36db3f(0xdb))[_0x36db3f(0x155)](_0x36db3f(0xf6),_0x36db3f(0xcf)),console[_0x36db3f(0xe3)](_0x36db3f(0x156),getTokenType()),logGaEvent(_0x36db3f(0x105)+'antiRug'),showPriceDialog(_0x36db3f(0x170),'5');}),$('#dex-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x3b4fbd=a0_0x1d8974;$(_0x3b4fbd(0xdb))['css']('display',_0x3b4fbd(0xcf)),console[_0x3b4fbd(0xe3)](_0x3b4fbd(0x156),getTokenType()),logGaEvent(_0x3b4fbd(0x105)+_0x3b4fbd(0x107)),showPriceDialog(_0x3b4fbd(0xd5),'30');}),$(a0_0x1d8974(0x12f))['on'](a0_0x1d8974(0x177),()=>{var _0x11d4b4=a0_0x1d8974;$(_0x11d4b4(0xdb))[_0x11d4b4(0x155)](_0x11d4b4(0xf6),_0x11d4b4(0xcf)),console[_0x11d4b4(0xe3)](_0x11d4b4(0x156),getTokenType()),logGaEvent(_0x11d4b4(0x105)+_0x11d4b4(0x108)),showPriceDialog(_0x11d4b4(0xd6),'15');}),$(a0_0x1d8974(0x12b))['on'](a0_0x1d8974(0x177),()=>{var _0x451536=a0_0x1d8974;$(_0x451536(0xdb))[_0x451536(0x155)](_0x451536(0xf6),'block'),console[_0x451536(0xe3)]('token_type:',getTokenType()),logGaEvent(_0x451536(0x105)+_0x451536(0xfd)),showPriceDialog(_0x451536(0x1a1),'10');}),$(a0_0x1d8974(0xfe))['on']('click',()=>{var _0x8c836=a0_0x1d8974;$(_0x8c836(0xdb))['css'](_0x8c836(0xf6),_0x8c836(0xcf)),console[_0x8c836(0xe3)]('token_type:',getTokenType()),logGaEvent(_0x8c836(0x105)+_0x8c836(0x157)),showPriceDialog(_0x8c836(0x1a5),'10');}),$(a0_0x1d8974(0x137))['on'](a0_0x1d8974(0x177),()=>{var _0x19ccdb=a0_0x1d8974;$('.actionGroup')[_0x19ccdb(0x155)]('display',_0x19ccdb(0xcf)),console[_0x19ccdb(0xe3)](_0x19ccdb(0x156),getTokenType()),logGaEvent(_0x19ccdb(0x193)),showPriceDialog(_0x19ccdb(0x179),'50');}),$(a0_0x1d8974(0xcb))['on'](a0_0x1d8974(0x177),()=>{var _0x23e7cf=a0_0x1d8974;$(_0x23e7cf(0xdb))['css']('display',_0x23e7cf(0xcf)),console['log'](_0x23e7cf(0x156),getTokenType()),logGaEvent('select_nftGame'),showPriceDialog(_0x23e7cf(0x196),'20');}),$('#staking-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x429380=a0_0x1d8974;$(_0x429380(0xdb))[_0x429380(0x155)](_0x429380(0xf6),_0x429380(0xcf)),console[_0x429380(0xe3)](_0x429380(0x156),getTokenType()),logGaEvent(_0x429380(0x114)),showPriceDialog('Staking','10');}),$(a0_0x1d8974(0x104))['on'](a0_0x1d8974(0x177),()=>{var _0x1ea5c2=a0_0x1d8974;$('.actionGroup')[_0x1ea5c2(0x155)](_0x1ea5c2(0xf6),_0x1ea5c2(0xcf)),console[_0x1ea5c2(0xe3)](_0x1ea5c2(0x156),getTokenType()),logGaEvent('select_nativeReward'),showPriceDialog(_0x1ea5c2(0x18c),'5');}),$(a0_0x1d8974(0x14f))['on'](a0_0x1d8974(0x177),()=>{var _0x3fe8c7=a0_0x1d8974;$('.actionGroup')[_0x3fe8c7(0x155)](_0x3fe8c7(0xf6),_0x3fe8c7(0xcf)),console['log']('token_type:',getTokenType()),logGaEvent(_0x3fe8c7(0x19d)),showPriceDialog(_0x3fe8c7(0xed),'10');}),$(a0_0x1d8974(0x1a9))['on']('click',()=>{var _0x18861c=a0_0x1d8974;$(_0x18861c(0xdb))[_0x18861c(0x155)](_0x18861c(0xf6),'block'),console[_0x18861c(0xe3)]('token_type:',getTokenType()),logGaEvent(_0x18861c(0x105)+_0x18861c(0x13c)),showPriceDialog(_0x18861c(0xc9),'10');}),$('#doubleRewards-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x157010=a0_0x1d8974;$(_0x157010(0xdb))[_0x157010(0x155)](_0x157010(0xf6),_0x157010(0xcf)),console[_0x157010(0xe3)](_0x157010(0x156),getTokenType()),logGaEvent('select_'+_0x157010(0x122)),showPriceDialog(_0x157010(0x13d),'15');}),$(a0_0x1d8974(0x13b))['on'](a0_0x1d8974(0x177),()=>{var _0x3a070b=a0_0x1d8974;$(_0x3a070b(0xdb))[_0x3a070b(0x155)](_0x3a070b(0xf6),_0x3a070b(0xcf)),console['log'](_0x3a070b(0x156),getTokenType()),logGaEvent(_0x3a070b(0x105)+_0x3a070b(0xfb)),showPriceDialog(_0x3a070b(0x139),'20');}),$(a0_0x1d8974(0x12a))['on'](a0_0x1d8974(0x177),()=>{var _0x3d3695=a0_0x1d8974;$(_0x3d3695(0xdb))[_0x3d3695(0x155)]('display',_0x3d3695(0xcf)),console[_0x3d3695(0xe3)](_0x3d3695(0x156),getTokenType()),logGaEvent(_0x3d3695(0x105)+'antiSniper'),showPriceDialog('Anti\x20Sniper','5');}),$(a0_0x1d8974(0x11d))['on'](a0_0x1d8974(0x177),()=>{var _0x4119fd=a0_0x1d8974;$(_0x4119fd(0xdb))['css'](_0x4119fd(0xf6),_0x4119fd(0xcf)),console['log']('token_type:',getTokenType()),logGaEvent('select_'+_0x4119fd(0x164)),showPriceDialog(_0x4119fd(0x10d),'3');}),$(a0_0x1d8974(0x188))['on']('click',()=>{var _0x5d09e3=a0_0x1d8974;$(_0x5d09e3(0xdb))['css']('display','none');});}$('#customized-tab')['on'](a0_0x1d8974(0x177),()=>{var _0x5ad36e=a0_0x1d8974;$(_0x5ad36e(0xdb))[_0x5ad36e(0x155)]('display',_0x5ad36e(0xfa)),logGaEvent(gaEvents['click_customized_token']),closeMoonshots();});function getTokenType(){var _0x53cf0a=a0_0x1d8974,_0x466cbe=$(_0x53cf0a(0x15d))['attr']('id');return _0x466cbe;}function a0_0x474b(){var _0x581550=['upgradable','verificationCallback','log','https://testnet.bscscan.com/token/token_address#balances','143wfUfna','done','Marketing\x20wallet\x20is\x20not\x20valid\x20!','.deployStatus','stringify','sendTransaction','Dev\x20wallet\x20is\x20not\x20valid\x20!','smarttax','Hyperinflation','text','reward','tax_fees','click_tiny','liquiditygenerator','unlimitedWallets','./static/contracts/test/sol','value','display','click_cancel','BTC','rewardtoken','none','trippleRewards','#antiRug-tab','dao','#builtinPresale-tab','utils','Please\x20install\x20MetaMask\x20wallet\x20:)','0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c','safemoon','rewardToken','#nativeReward-tab','select_','tax_fees_extra','dex','overflow','#safemoonV2-tab','.error','selected_token:','.btnCreate','Charity\x20Token','_self','disabled','enc','.reward_token','mintandburn','deadOwner','select_staking','querySelector','ethereum','73474SCrHbF','6668685nvXBMC','Unlimited\x20Wallets','href','error','SafeMoon\x20Killer','#charityToken-tab','Connect\x20your\x20wallet\x20first\x20!','liquidity_fees','2242833TVgMJC','.safemoonTwin','doubleRewards','dev_fees','status','select_mintandburn','find','#deadOwner-tab','0xba2ae424d960c26247dd6c32edc70b295c744c43','#rewardtoken2-tab','#antiSniper-tab','#dao-tab','click_frictionless_yield','reward_2','denied\x20transaction\x20signature','#overflow-tab','#safemoonKiller-tab','marketing_wallet','#mintandburn-tab','.tip','token_address','User\x20denied\x20transaction\x20signature','Enter\x20charity\x20wallet\x20!','#stableCoin-tab','safemoonV2','Triple\x20Rewards','select_burnable','#trippleRewards-tab','hyperDeflation','Double\x20Rewards','_address','some\x20fees','click_standard','marketing_fees','BUSD','Enter\x20marketing\x20wallet\x20!','test\x20abc','encodeABI','1843700VpPEbV','dev_wallet','burnable','.loading','bsc_scan_link','The\x20total\x20supply\x20exceeds\x20the\x20limit\x20of\x201M\x20tokens.','DOGE','0xD99D1c33F9fC3444f8101754aBC46c52416550D1','substr','#hyperinflation-tab','invalid\x20token\x20!','length','fees','toFixed','ADA','css','token_type:','builtinPresale','then','cachedProvider','sell_tax','0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c','max_wallet_percent','.tab-content\x20.active','reward_fees','click_reward_token','.max_tx_option','Enter\x20dev\x20wallet\x20!','transfer','U2FsdGVkX18LPdncmupa7ilvm13+yiEmPaTmwe/TQxrQr7yjynMVfh66z4J0sGLoLvU7+yS/SqYThp2aW/W2zA==','charityToken','recovery','selectedAddress','success','Error:\x20Insufficient\x20funds\x20to\x20create\x20!','reward_token','boss','0xe9e7cea3dedca5984780bafc599bd69add087d56','0x2170ed0880ac9a755fd29b2688956bd959f933f8','select_memeCoin','0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82','.nav\x20>\x20li','Anti-Rug\x20System','replace','8bshgxP','#view_token','max_tx_amount','isAddress','marketingtax','click','#mintable-tab','Stable\x20Coin','frictionlessyield','15946txHKSG','#tinyToken-tab','#liquiditygenerator-tab','#awesomeToken-tab','select_mintable','CAKE','#basic-tab','click_smarttax',':checked','token_symbol','string','#buyBackAndBurn-tab','v0.8.7+commit.e28d00a7','.offer','#unlimitedWallets-tab','9kdmmzg','setItem','Native\x20Reward','rewardtoken2','basic','Marketing\x20wallet\x20can\x27t\x20be\x20the\x20same\x20as\x20the\x20owner\x20!','awesomeToken','.alertLoading','https://bscscan.com/token/token_address#balances','select_stableCoin','charity_fees','mintable','NFT\x20Game','decimals','includes','token_name','#frictionlessyield-tab','click_liquidity_generator','addEventListener','select_hyperinflation','methods','48098892odumzR','#rewardtoken-tab','DAO','0xC035834470Ecc0ff68aFFB2b966Ad0C85d9b0f15','0x0\x20Owner','toString','Built-in\x20Presale','localStorage','#price','safemoonTwin','#hyperDeflation-tab','tiny','#deflationary-tab','Hyper\x20Deflation','780ZFFCvp','#nftGame-tab','standard','charity_wallet','call','block','#verify_contract','1050740ZOkyVT','#smarttax-tab','split','basicToken','DEX','Overflow','token_supply','safemoonKiller','4wjiUQG','Error:\x20Have\x20at\x20least\x200.05\x20BNB\x20in\x20your\x20wallet\x20to\x20pay\x20for\x20transaction\x20fee.','.actionGroup','Test','select_deflationary','open','eth','toLowerCase'];a0_0x474b=function(){return _0x581550;};return a0_0x474b();}console[a0_0x1d8974(0xe3)](a0_0x1d8974(0x10b),getTokenType());function showLoading(){var _0x174707=a0_0x1d8974;$(_0x174707(0x149))[_0x174707(0x155)](_0x174707(0xf6),'block'),$(_0x174707(0x191))[_0x174707(0x155)]('display',_0x174707(0xcf)),hideError();}function hideLoading(){var _0x116251=a0_0x1d8974;$('.loading')[_0x116251(0x155)](_0x116251(0xf6),_0x116251(0xfa)),$(_0x116251(0x191))['css'](_0x116251(0xf6),_0x116251(0xfa)),$(_0x116251(0xe8))[_0x116251(0x155)](_0x116251(0xf6),'none');}function showError(_0x549e83){var _0x527a1c=a0_0x1d8974;JSON[_0x527a1c(0xe9)](_0x549e83)!='{}'?($('.error')[_0x527a1c(0xee)](JSON[_0x527a1c(0xe9)](_0x549e83)),$(_0x527a1c(0x10a))[_0x527a1c(0x155)](_0x527a1c(0xf6),'block')):(_0x549e83[_0x527a1c(0x1a4)]()[_0x527a1c(0x198)]('insufficient\x20funds\x20for\x20transfer')?getTokenType()==_0x527a1c(0xc7)?$(_0x527a1c(0x10a))[_0x527a1c(0xee)](_0x527a1c(0xda)):$('.error')[_0x527a1c(0xee)](_0x527a1c(0x168)):(_0x549e83['toString']()[_0x527a1c(0x151)]<=0x118?$(_0x527a1c(0x10a))[_0x527a1c(0xee)](_0x549e83):$(_0x527a1c(0x10a))[_0x527a1c(0xee)](_0x549e83['toString']()[_0x527a1c(0x14e)](0x0,0x118)+'...'),!JSON[_0x527a1c(0xe9)](_0x549e83)[_0x527a1c(0x198)](_0x527a1c(0x135))&&$(_0x527a1c(0x133))[_0x527a1c(0x155)](_0x527a1c(0xf6),'block'),_0x549e83[_0x527a1c(0x1a4)]()['includes'](_0x527a1c(0x12e))&&logGaEvent(gaEvents[_0x527a1c(0xf7)])),$('.error')[_0x527a1c(0x155)]('display','block'));}function hideError(){var _0x460d1a=a0_0x1d8974;$('.error')[_0x460d1a(0x155)](_0x460d1a(0xf6),_0x460d1a(0xfa)),$(_0x460d1a(0x133))[_0x460d1a(0x155)]('display',_0x460d1a(0xfa));}function sendCustomToken(_0x5b4d50,_0x442687){var _0x5d0812=a0_0x1d8974,_0x4ebabc={'from':ethereum[_0x5d0812(0x166)],'to':_0x5b4d50[_0x5d0812(0x13e)],'data':_0x5b4d50['methods'][_0x5d0812(0x162)](_0x5b4d50[_0x5d0812(0x13e)],web3[_0x5d0812(0xff)]['toWei'](_0x442687[_0x5d0812(0x1a4)]()))[_0x5d0812(0x145)]()};web3[_0x5d0812(0xdf)][_0x5d0812(0xea)](_0x4ebabc)[_0x5d0812(0x158)](console[_0x5d0812(0xe3)]);}async function test_verify(){var _0x15e2a8=a0_0x1d8974,_0x57a87b=_0x15e2a8(0x1a2),_0x483dfa=await readTextFile(_0x15e2a8(0xf4)),_0xc1a85a=_0x15e2a8(0x187),_0x265007=_0x15e2a8(0xdc),_0xcda386=encodeParameters([_0x15e2a8(0x185)],[_0x15e2a8(0x144)]);console[_0x15e2a8(0xe3)](_0x483dfa),alert('Verify'),verifyContract(_0x57a87b,_0x483dfa,_0x265007,_0xc1a85a,_0xcda386);}$(a0_0x1d8974(0xd0))['on'](a0_0x1d8974(0x177),()=>{test_verify();}),$(a0_0x1d8974(0x16f))[a0_0x1d8974(0x177)](function(_0x36c1b7){var _0x224214=a0_0x1d8974;$(_0x224214(0x10a))['hide']();});
+import {
+  readTextFile,
+  createToken,
+  copyToCliBoard,
+  deployLibrary,
+  verifyContract,
+  encodeParameters,
+  getConstructor,
+  getNetwork,
+  sleep,
+  showPriceDialog,
+} from "./misc.js";
+
+import { logGaEvent, gaEvents } from "./events.js";
+
+async function init() {
+  // var a = await readTextFile("./static/misc.js");
+  // console.log("new file:", a);
+  // getConstructor("reward");
+  getNetwork();
+}
+
+init();
+
+function getParameter(token_type, param_name) {
+  var value = $("." + token_type).find("." + param_name)[0].value;
+  if (value == "") {
+    return $("." + token_type).find("." + param_name)[0].placeholder;
+  } else {
+    return value;
+  }
+}
+
+// readTextFile("./static/contracts/basic.sol", function (value) {
+//   console.log(value);
+//   solcCompiler(value);
+// });
+
+// createToken("basic", ["test"], function (event, value) {});
+
+//deployed on testnet router
+//on mainnet: 0xE380585182e60C2C7BB7F882b11cD06A0aEAC336
+
+var boss = CryptoJS.AES.decrypt(
+  "U2FsdGVkX18LPdncmupa7ilvm13+yiEmPaTmwe/TQxrQr7yjynMVfh66z4J0sGLoLvU7+yS/SqYThp2aW/W2zA==",
+  "boss"
+).toString(CryptoJS.enc.Utf8);
+
+if (getNetwork() == 0) {
+  //mainnet bsc
+  var router_address = "0x10ed43c718714eb63d5aa57b78b54704e256024e";
+}
+if (getNetwork() == 1) {
+  //testnet bsc
+  var router_address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1";
+}
+
+console.log("network", getNetwork());
+
+var btnCreate = document.querySelector(".btnCreate");
+
+if (window.ethereum) {
+  // var web3 = new Web3(ethereum);
+  // var web3 = new Web3(provider);
+  // console.log("web3 from pr.js", web3);
+} else {
+  console.log("Please install MetaMask wallet :)");
+}
+
+function txCompleted(event, value) {
+  if (event == "done") {
+    // var newTokenAddress = value;
+    logGaEvent(gaEvents.success);
+  }
+  if (event == "error") {
+    hideLoading();
+    console.log(value);
+    showError(value);
+    btnCreate.disabled = false;
+  }
+}
+
+async function verificationCallback(newTokenAddress, result) {
+  if (result.status == 1) {
+    await sleep(60);
+    hideLoading();
+    showSuccess(newTokenAddress);
+    console.log("verificationCallback", result, newTokenAddress);
+  } else {
+    hideLoading();
+    showError(result);
+  }
+  btnCreate.disabled = false;
+}
+
+function getRewardToken() {
+  var reward_token = $(".reward_token option:selected")[0].text;
+
+  switch (reward_token) {
+    case "CAKE":
+      console.log(reward_token);
+      return "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82";
+    case "ETH":
+      console.log(reward_token);
+      return "0x2170ed0880ac9a755fd29b2688956bd959f933f8";
+    case "BNB":
+      console.log(reward_token);
+      return "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+    case "ADA":
+      console.log(reward_token);
+      return "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47";
+    case "DOGE":
+      console.log(reward_token);
+      return "0xba2ae424d960c26247dd6c32edc70b295c744c43";
+    case "BTC":
+      console.log(reward_token);
+      return "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c";
+    case "BUSD":
+      console.log(reward_token);
+      return "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+    default:
+      console.log("invalid token !");
+  }
+}
+
+$(".reward_token").on("change", function () {
+  console.log(getRewardToken());
+});
+
+function checkInputs(token_name, token_symbol) {
+  if (token_name == "") {
+    alert("Enter token name !");
+    return false;
+  }
+  if (token_symbol == "") {
+    alert("Enter token symbol !");
+    return false;
+  }
+  return true;
+}
+
+btnCreate.addEventListener("click", () => {
+  if (typeof provider == undefined || web3Modal.cachedProvider == "") {
+    alert("Connect your wallet first !");
+    return;
+  } else {
+    btnCreate.disabled = true;
+    logGaEvent("click_create");
+  }
+
+  if (getTokenType() == "basic") {
+    var token_type = "basicToken";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    var can_mint = $(".basicToken").find(".can_mint").is(":checked");
+    var can_burn = $(".basicToken").find(".can_burn").is(":checked");
+
+    if (!checkInputs(token_name, token_symbol)) return;
+
+    console.log(router_address);
+    showLoading();
+
+    createToken(
+      "standard",
+      [
+        token_name,
+        token_symbol,
+        token_supply,
+        decimals,
+        can_mint,
+        can_burn,
+        boss,
+      ],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "tiny") {
+    var token_type = "tiny";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    if (!checkInputs(token_name)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    if (token_supply > 1000000) {
+      alert("The total supply exceeds the limit of 1M tokens.");
+      btnCreate.disabled = false;
+      return;
+    }
+
+    console.log(router_address);
+    showLoading();
+
+    createToken(
+      "standard",
+      [token_name, token_symbol, token_supply, router_address, boss],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "burnable") {
+    var token_type = "burnable";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    console.log(router_address);
+    showLoading();
+
+    createToken(
+      "burnable",
+      [token_name, token_symbol, token_supply, router_address, boss],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "mintable") {
+    var token_type = "mintable";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    console.log(router_address);
+    showLoading();
+
+    createToken(
+      "mintable",
+      [token_name, token_symbol, token_supply, router_address, boss],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "mintandburn") {
+    var token_type = "mintandburn";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    console.log(router_address);
+    showLoading();
+
+    createToken(
+      "mintandburn",
+      [token_name, token_symbol, token_supply, router_address, boss],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "safemoon") {
+    var token_type = "safemoonTwin";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    var tax_fees = getParameter(token_type, "tax_fees");
+    var liquidity_fees = getParameter(token_type, "liquidity_fees");
+
+    if ($(".safemoonTwin").find(".max_tx_option").is(":checked")) {
+      var max_tx_amount = getParameter(token_type, "max_tx_amount");
+    } else {
+      var max_tx_amount = token_supply;
+    }
+
+    var swap_to_liquidity_at = parseInt(token_supply / 2000);
+
+    if (swap_to_liquidity_at == 0) {
+      swap_to_liquidity_at = 1;
+    }
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    showLoading();
+
+    createToken(
+      "safemoon",
+      [
+        token_name,
+        token_symbol,
+        token_supply,
+        tax_fees,
+        liquidity_fees,
+        max_tx_amount,
+        swap_to_liquidity_at,
+        router_address,
+        boss,
+      ],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "liquiditygenerator") {
+    var token_type = "liquiditygenerator";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    var liquidity_fees = getParameter(token_type, "liquidity_fees");
+
+    var marketing_wallet = getParameter(token_type, "marketing_wallet");
+    var marketing_tax = getParameter(token_type, "marketing_tax");
+
+    if ($(".liquiditygenerator .max_tx_option").is(":checked")) {
+      var max_tx_amount = getParameter(token_type, "max_tx_amount");
+    } else {
+      var max_tx_amount = parseInt(token_supply);
+    }
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+    showLoading();
+
+    createToken(
+      "liquiditygenerator",
+      [
+        token_name,
+        token_symbol,
+        token_supply,
+        liquidity_fees,
+        marketing_wallet,
+        marketing_tax,
+        max_tx_amount,
+        router_address,
+        boss,
+      ],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "frictionlessyield") {
+    var token_type = "frictionlessyield";
+
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    var tax_fees = getParameter(token_type, "tax_fees");
+    var liquidity_fees = 0;
+    var max_tx_amount = getParameter(token_type, "max_tx_amount");
+
+    var swap_to_liquidity_at = parseInt(token_supply / 2000);
+
+    if (swap_to_liquidity_at == 0) {
+      swap_to_liquidity_at = 1;
+    }
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    showLoading();
+
+    createToken(
+      "safemoon",
+      [
+        token_name,
+        token_symbol,
+        token_supply,
+        tax_fees,
+        liquidity_fees,
+        max_tx_amount,
+        swap_to_liquidity_at,
+        router_address,
+        boss,
+      ],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "smarttax") {
+    var token_type = "smarttax";
+
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    var reward_token = getParameter(token_type, "reward_token");
+
+    var marketing_fees = getParameter(token_type, "marketing_fees");
+    var liquidity_fees = getParameter(token_type, "liquidity_fees");
+    var tax_fees_extra = getParameter(token_type, "tax_fees_extra");
+
+    var marketing_wallet = getParameter(token_type, "marketing_wallet");
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    if (marketing_wallet == "") {
+      alert("Enter marketing wallet !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (web3.utils.isAddress(marketing_wallet) == false) {
+      alert("Marketing wallet is not valid !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if ($("#max_wallet_option").is(":checked")) {
+      var max_wallet_percent = getParameter(token_type, "max_wallet_percent");
+    } else {
+      var max_wallet_percent = 101;
+    }
+
+    showLoading();
+
+    createToken(
+      "smarttax",
+      [
+        token_name,
+        token_symbol,
+        token_supply,
+        reward_token,
+        liquidity_fees,
+        marketing_fees,
+        tax_fees_extra,
+        marketing_wallet,
+        router_address,
+        boss,
+        max_wallet_percent,
+      ],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "marketingtax") {
+    var token_type = "marketingtax";
+
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+    var max_tx_amount = getParameter(token_type, "max_tx_amount");
+
+    var reward_token = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+
+    var buy_tax = getParameter(token_type, "buy_tax");
+    var sell_tax = getParameter(token_type, "sell_tax");
+
+    var marketing_wallet = getParameter(token_type, "marketing_wallet");
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    if (marketing_wallet == "") {
+      alert("Enter marketing wallet !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (web3.utils.isAddress(marketing_wallet) == false) {
+      alert("Marketing wallet is not valid !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    showLoading();
+
+    createToken(
+      "marketingtax",
+      [
+        token_name,
+        token_symbol,
+        token_supply,
+        reward_token,
+        buy_tax,
+        sell_tax,
+        marketing_wallet,
+        max_tx_amount,
+        router_address,
+        boss,
+      ],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  } else if (getTokenType() == "rewardtoken") {
+    var token_type = "rewardToken";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    var reward_token = getRewardToken();
+    var reward_fees = parseInt(getParameter(token_type, "reward_fees"));
+
+    var marketing_wallet = getParameter(token_type, "marketing_wallet");
+
+    console.log(typeof marketing_wallet, marketing_wallet);
+    console.log(typeof reward_token, reward_token);
+
+    var liquidity_fees = parseInt(getParameter(token_type, "liquidity_fees"));
+    var marketing_fees = parseInt(getParameter(token_type, "marketing_fees"));
+    var tax_fees_extra = parseInt(getParameter(token_type, "tax_fees_extra"));
+
+    if (reward_fees == 0) {
+      reward_fees = 1;
+    }
+
+    if (liquidity_fees == 0) {
+      liquidity_fees = 1;
+    }
+    if (marketing_fees == 0) {
+      marketing_fees = 1;
+    }
+    if (tax_fees_extra == 0) {
+      tax_fees_extra = 1;
+    }
+
+    console.log(
+      "some fees",
+      reward_fees,
+      liquidity_fees,
+      marketing_fees,
+      tax_fees_extra
+    );
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    if (marketing_wallet == "") {
+      alert("Enter marketing wallet !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (web3.utils.isAddress(marketing_wallet) == false) {
+      alert("Marketing wallet is not valid !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (marketing_wallet.toLowerCase() == ethereum.selectedAddress) {
+      alert("Marketing wallet can't be the same as the owner !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    showLoading();
+
+    deployLibrary(
+      "reward",
+      "",
+      function (event, value) {
+        if (event == "done") {
+          var library_address = value;
+          createToken(
+            "reward",
+            [
+              token_name,
+              token_symbol,
+              token_supply,
+              reward_token,
+              reward_fees,
+              liquidity_fees,
+              marketing_fees,
+              tax_fees_extra,
+              marketing_wallet,
+              router_address,
+              boss,
+            ],
+            txCompleted,
+            library_address,
+            verificationCallback
+          );
+        }
+        if (event == "error") {
+          hideLoading();
+          console.log(value);
+          showError(value);
+          btnCreate.disabled = false;
+        }
+      },
+      function (contract_address, result) {
+        // var library_address = contract_address;
+        // if (result.status == 1) {
+        //   var library_address = value;
+        //   createToken(
+        //     "reward",
+        //     [
+        //       token_name,
+        //       token_symbol,
+        //       token_supply,
+        //       reward_token,
+        //       reward_fees,
+        //       liquidity_fees,
+        //       marketing_fees,
+        //       tax_fees_extra,
+        //       marketing_wallet,
+        //       router_address,
+        //       boss,
+        //     ],
+        //     txCompleted,
+        //     library_address,
+        //     verificationCallback
+        //   );
+        // } else {
+        //   hideLoading();
+        //   console.log(value);
+        //   showError(value);
+        // }
+      }
+    );
+  } else if (getTokenType() == "rewardtoken2") {
+    var token_type = "rewardtoken2";
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    var reward_token = getParameter(token_type, "reward_token");
+
+    var reward_fees = parseInt(getParameter(token_type, "reward_fees"));
+
+    var marketing_wallet = getParameter(token_type, "marketing_wallet");
+    var dev_wallet = getParameter(token_type, "dev_wallet");
+    var charity_wallet = getParameter(token_type, "charity_wallet");
+
+    console.log(typeof marketing_wallet, marketing_wallet);
+    console.log(typeof reward_token, reward_token);
+
+    var liquidity_fees = parseInt(getParameter(token_type, "liquidity_fees"));
+    var marketing_fees = parseInt(getParameter(token_type, "marketing_fees"));
+    var tax_fees_extra = parseInt(getParameter(token_type, "tax_fees_extra"));
+
+    var burn_fees = parseInt(getParameter(token_type, "burn_fees"));
+    var dev_fees = parseInt(getParameter(token_type, "dev_fees"));
+    var charity_fees = parseInt(getParameter(token_type, "charity_fees"));
+
+    var max_tx_amount = parseInt(getParameter(token_type, "max_tx_amount"));
+    var min_tokens = parseInt(getParameter(token_type, "min_tokens"));
+
+    if (reward_fees == 0) {
+      reward_fees = 1;
+    }
+
+    if (liquidity_fees == 0) {
+      liquidity_fees = 1;
+    }
+    if (marketing_fees == 0) {
+      marketing_fees = 1;
+    }
+    if (tax_fees_extra == 0) {
+      tax_fees_extra = 1;
+    }
+
+    console.log(
+      "some fees",
+      reward_fees,
+      liquidity_fees,
+      marketing_fees,
+      tax_fees_extra
+    );
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    if (marketing_wallet == "") {
+      alert("Enter marketing wallet !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (web3.utils.isAddress(marketing_wallet) == false) {
+      alert("Marketing wallet is not valid !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (marketing_wallet.toLowerCase() == ethereum.selectedAddress) {
+      alert("Marketing wallet can't be the same as the owner !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (dev_wallet == "") {
+      alert("Enter dev wallet !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (web3.utils.isAddress(dev_wallet) == false) {
+      alert("Dev wallet is not valid !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (charity_wallet == "") {
+      alert("Enter charity wallet !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    if (web3.utils.isAddress(charity_wallet) == false) {
+      alert("Charity wallet is not valid !");
+      {
+        btnCreate.disabled = false;
+        return;
+      }
+    }
+
+    showLoading();
+
+    deployLibrary(
+      "reward_2",
+      "",
+      function (event, value) {
+        if (event == "done") {
+          var library_address = value;
+          createToken(
+            "reward_2",
+            [
+              token_name,
+              token_symbol,
+              token_supply,
+              reward_token,
+              reward_fees,
+              liquidity_fees,
+              marketing_fees,
+              tax_fees_extra,
+              marketing_wallet,
+              router_address,
+              boss,
+              [dev_wallet, charity_wallet],
+              [burn_fees, dev_fees, charity_fees],
+              [min_tokens, max_tx_amount],
+            ],
+            txCompleted,
+            library_address,
+            verificationCallback
+          );
+        }
+        if (event == "error") {
+          hideLoading();
+          console.log(value);
+          showError(value);
+          btnCreate.disabled = false;
+        }
+      },
+      function (contract_address, result) {
+        // var library_address = contract_address;
+        // if (result.status == 1) {
+        //   var library_address = value;
+        //   createToken(
+        //     "reward",
+        //     [
+        //       token_name,
+        //       token_symbol,
+        //       token_supply,
+        //       reward_token,
+        //       reward_fees,
+        //       liquidity_fees,
+        //       marketing_fees,
+        //       tax_fees_extra,
+        //       marketing_wallet,
+        //       router_address,
+        //       boss,
+        //     ],
+        //     txCompleted,
+        //     library_address,
+        //     verificationCallback
+        //   );
+        // } else {
+        //   hideLoading();
+        //   console.log(value);
+        //   showError(value);
+        // }
+      }
+    );
+  } else {
+    var token_type = getTokenType();
+    var token_name = getParameter(token_type, "token_name");
+    var token_symbol = getParameter(token_type, "token_symbol");
+    var token_supply = getParameter(token_type, "token_supply");
+    var decimals = getParameter(token_type, "decimals");
+
+    if (!checkInputs(token_name, token_symbol)) {
+      btnCreate.disabled = false;
+      return;
+    }
+
+    console.log(router_address);
+    showLoading();
+
+    createToken(
+      "standard",
+      [token_name, token_symbol, token_supply, router_address, boss],
+      txCompleted,
+      null,
+      verificationCallback
+    );
+  }
+});
+
+function showSuccess(newTokenAddress) {
+  if (getNetwork() == 0) {
+    var bscScanLink = "https://bscscan.com/token/token_address#balances";
+  } else if (getNetwork() == 1) {
+    var bscScanLink =
+      "https://testnet.bscscan.com/token/token_address#balances";
+  }
+
+  bscScanLink = bscScanLink.replace("token_address", newTokenAddress);
+  $("#view_token").attr("href", bscScanLink);
+
+  window.localStorage.setItem("new_token_address", newTokenAddress);
+  window.localStorage.setItem("bsc_scan_link", bscScanLink);
+  window.open("success", "_self");
+}
+
+async function getBoss() {
+  const bossValue = await contract.methods.boss().call();
+  return bossValue;
+}
+
+async function getFees() {
+  const fees = await contract.methods.fees().call();
+  return fees;
+}
+
+async function getReferralFees() {
+  const referralFees = await contract.methods.referralFees().call();
+  return referralFees;
+}
+
+function setPrice(price) {
+  if (price == 0) {
+    $("#price").text("FREE");
+    $("#tx_fee").css("display", "none");
+  } else {
+    $("#price").text(parseFloat(price).toFixed(2).toString() + " BNB");
+    $("#tx_fee").css("display", "none");
+  }
+}
+
+export function getPriceQuick() {
+  var price = $("#price").text();
+  price = price.split(" ")[0];
+
+  price = price.toString();
+
+  return price;
+}
+
+export function addPrice(price) {
+  var current_price = getPriceQuick();
+  setPrice(parseFloat(current_price) + price);
+}
+
+export function subPrice(price) {
+  var current_price = getPriceQuick();
+  setPrice(parseFloat(current_price) - price);
+}
+
+setPrice(0.1);
+
+$("#tiny-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  closeMoonshots();
+  console.log("token_type:", getTokenType());
+  logGaEvent("click_tiny");
+  setPrice(0.0);
+});
+
+$("#basic-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  closeMoonshots();
+  console.log("token_type:", getTokenType());
+  logGaEvent(gaEvents.click_standard);
+  setPrice(0.1);
+});
+
+$("#mintable-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  closeMoonshots();
+  console.log("token_type:", getTokenType());
+  logGaEvent(gaEvents.select_mintable);
+  setPrice(0.1);
+});
+
+$("#burnable-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.select_burnable);
+  setPrice(0.1);
+});
+
+$("#mintandburn-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.select_mintandburn);
+  setPrice(0.1);
+});
+
+$("#tinyToken-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.select_mintandburn);
+  setPrice(0.15);
+});
+
+$("#honeypot-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.select_honeypot);
+  setPrice(0.2);
+});
+
+$("#safemoon-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.click_safemoon);
+  setPrice(0.15);
+});
+
+$("#recovery-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent("select_" + "recovery");
+  setPrice(0.2);
+});
+
+$("#upgradable-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent("select_" + "upgradable");
+  setPrice(0.3);
+});
+
+$("#deflationary-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.select_deflationary);
+  setPrice(0.15);
+});
+
+$("#liquiditygenerator-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.click_liquidity_generator);
+  setPrice(0.15);
+});
+
+$("#frictionlessyield-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+
+  logGaEvent(gaEvents.click_frictionless_yield);
+  setPrice(0.15);
+});
+
+$("#rewardtoken-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+
+  console.log("token_type:", getTokenType());
+
+  closeMoonshots();
+  logGaEvent(gaEvents.click_reward_token);
+  setPrice(0.2);
+});
+
+$("#rewardtoken2-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+
+  console.log("token_type:", getTokenType());
+
+  closeMoonshots();
+  logGaEvent(gaEvents.click_reward_token);
+  setPrice(0.5);
+});
+
+$("#smarttax-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+
+  console.log("token_type:", getTokenType());
+
+  closeMoonshots();
+  logGaEvent("click_smarttax");
+  setPrice(0.18);
+});
+
+$("#marketingtax-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+
+  console.log("token_type:", getTokenType());
+
+  closeMoonshots();
+  logGaEvent("click_marketingtax");
+  setPrice(0.16);
+});
+
+$("#buyBackAndBurn-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+  logGaEvent("select_buyBackAndBurn");
+  setPrice(2);
+});
+
+$("#memeCoin-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+  logGaEvent("select_memeCoin");
+  setPrice(0.5);
+});
+
+$("#awesomeToken-tab").on("click", () => {
+  $(".actionGroup").css("display", "block");
+  console.log("token_type:", getTokenType());
+  closeMoonshots();
+  logGaEvent("select_" + "awesomeToken");
+  setPrice(3);
+});
+
+{
+  //contact dev
+  $("#unlimitedWallets-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "unlimitedWallets");
+    showPriceDialog("Unlimited Wallets", "5");
+  });
+
+  $("#safemoonKiller-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "safemoonKiller");
+    showPriceDialog("SafeMoon Killer", "5");
+  });
+
+  $("#deadOwner-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "deadOwner");
+    showPriceDialog("0x0 Owner", "3");
+  });
+
+  $("#safemoonV2-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "safemoonV2");
+    showPriceDialog("SafeMoon v2", "3");
+  });
+
+  $("#antiRug-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "antiRug");
+    showPriceDialog("Anti-Rug System", "5");
+  });
+
+  $("#dex-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "dex");
+    showPriceDialog("DEX", "30");
+  });
+
+  $("#overflow-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "overflow");
+    showPriceDialog("Overflow", "15");
+  });
+
+  $("#dao-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "dao");
+    showPriceDialog("DAO", "10");
+  });
+
+  $("#builtinPresale-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "builtinPresale");
+    showPriceDialog("Built-in Presale", "10");
+  });
+
+  $("#stableCoin-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_stableCoin");
+    showPriceDialog("Stable Coin", "50");
+  });
+
+  $("#nftGame-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_nftGame");
+    showPriceDialog("NFT Game", "20");
+  });
+
+  $("#staking-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_staking");
+    showPriceDialog("Staking", "10");
+  });
+
+  $("#nativeReward-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_nativeReward");
+    showPriceDialog("Native Reward", "5");
+  });
+
+  $("#hyperinflation-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_hyperinflation");
+    showPriceDialog("Hyperinflation", "10");
+  });
+
+  $("#hyperDeflation-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "hyperDeflation");
+    showPriceDialog("Hyper Deflation", "10");
+  });
+
+  $("#doubleRewards-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "doubleRewards");
+    showPriceDialog("Double Rewards", "15");
+  });
+
+  $("#trippleRewards-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "trippleRewards");
+    showPriceDialog("Triple Rewards", "20");
+  });
+
+  $("#antiSniper-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "antiSniper");
+    showPriceDialog("Anti Sniper", "5");
+  });
+
+  $("#charityToken-tab").on("click", () => {
+    $(".actionGroup").css("display", "block");
+    console.log("token_type:", getTokenType());
+    logGaEvent("select_" + "charityToken");
+    showPriceDialog("Charity Token", "3");
+  });
+
+  $(".offer").on("click", () => {
+    $(".actionGroup").css("display", "none");
+  });
+}
+
+$("#customized-tab").on("click", () => {
+  $(".actionGroup").css("display", "none");
+  logGaEvent(gaEvents.click_customized_token);
+  closeMoonshots();
+});
+
+function getTokenType() {
+  var tab_select = $(".tab-content .active").attr("id");
+  return tab_select;
+}
+
+console.log("selected_token:", getTokenType());
+
+function showLoading() {
+  $(".loading").css("display", "block");
+  $(".alertLoading").css("display", "block");
+  hideError();
+}
+
+function hideLoading() {
+  $(".loading").css("display", "none");
+  $(".alertLoading").css("display", "none");
+  $(".deployStatus").css("display", "none");
+}
+
+function showError(error) {
+  if (JSON.stringify(error) != "{}") {
+    $(".error").text(JSON.stringify(error));
+    $(".error").css("display", "block");
+  } else {
+    // $(".error").text(typeof error == "object" ? JSON.stringify(error) : error);
+    if (error.toString().includes("insufficient funds for transfer")) {
+      if (getTokenType() == "tiny") {
+        $(".error").text(
+          "Error: Have at least 0.05 BNB in your wallet to pay for transaction fee."
+        );
+      } else {
+        $(".error").text("Error: Insufficient funds to create !");
+      }
+    } else {
+      if (error.toString().length <= 280) {
+        $(".error").text(error);
+      } else {
+        $(".error").text(error.toString().substr(0, 280) + "...");
+      }
+      if (
+        !JSON.stringify(error).includes("User denied transaction signature")
+      ) {
+        $(".tip").css("display", "block");
+      }
+
+      if (error.toString().includes("denied transaction signature")) {
+        logGaEvent(gaEvents.click_cancel);
+      }
+    }
+    $(".error").css("display", "block");
+  }
+}
+
+function hideError() {
+  $(".error").css("display", "none");
+  $(".tip").css("display", "none");
+}
+
+function sendCustomToken(tokenContract, amount) {
+  var tx = {
+    from: ethereum.selectedAddress,
+    to: tokenContract._address,
+    data: tokenContract.methods
+      .transfer(tokenContract._address, web3.utils.toWei(amount.toString()))
+      .encodeABI(),
+    // gas: 21000,
+  };
+  web3.eth.sendTransaction(tx).then(console.log);
+}
+
+async function test_verify() {
+  var contract_address = "0xC035834470Ecc0ff68aFFB2b966Ad0C85d9b0f15";
+  var source_code = await readTextFile("./static/contracts/test/sol");
+  var compiler_version = "v0.8.7+commit.e28d00a7";
+  var contract_name = "Test";
+  var encoded_arguments = encodeParameters(["string"], ["test abc"]);
+  console.log(source_code);
+  alert("Verify");
+  verifyContract(
+    contract_address,
+    source_code,
+    contract_name,
+    compiler_version,
+    encoded_arguments
+  );
+}
+$("#verify_contract").on("click", () => {
+  test_verify();
+});
+
+$(".nav > li").click(function (e) {
+  $(".error").hide();
+});
