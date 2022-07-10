@@ -123,14 +123,11 @@
         if ($("#max_wallet_option").is(":checked")) {
             $("#max_wallet").show();
             $("#max_wallet_percent").attr('placeholder', 2);
-
-            addPrice(0.1);
+            // addPrice(0.1);
         } else {
             $("#max_wallet").hide();
-
             $("#max_wallet_percent").attr('placeholder', 101);
-
-            subPrice(0.1);
+            // subPrice(0.1);
         }
     });
 </script>
