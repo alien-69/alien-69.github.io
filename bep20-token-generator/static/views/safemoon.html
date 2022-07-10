@@ -59,8 +59,6 @@
             </div>
         </div>
 
-
-
         <div class="form-check mt-2">
             <input class="form-check-input max_tx_option" type="checkbox" value="" />
             <label class="form-check-label" for="max_tx_option">
@@ -83,11 +81,11 @@
 <script type="module">
     import { addPrice, subPrice } from "./static/parameters.js";
 
-    $(".max_tx_option").on("click", () => {
-        if ($(".max_tx_option").is(":checked")) {
-            $("#max_tx").show();
+    $(".safemoonTwin .max_tx_option").on("click", () => {
+        if ($(".safemoonTwin .max_tx_option").is(":checked")) {
+            $(".safemoonTwin #max_tx").show();
         } else {
-            $("#max_tx").hide();
+            $(".safemoonTwin #max_tx").hide();
         }
     });
 </script>

@@ -1,4 +1,7 @@
 <div class="liquiditygenerator my-3">
+
+    <div class="alert alert-info">We have upgraded it to the latest compiler version and added more power to it with
+        advanced features.</div>
     <form>
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Token name </label>
@@ -49,15 +52,51 @@
             </div>
         </div>
 
+        <strong>Marketing Wallet </strong>
+
+        <div class="row">
+            <input class="marketing_wallet" type="text" placeholder="" />
+            <p class="hint">
+                Marketing tax will be sent to marketing wallet.
+            </p>
+        </div>
+
         <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Marketing Tax % </label>
+            <div class="col-sm-9">
+                <input class="marketing_tax" type="number" min="0" step="1" placeholder="10" />
+                <p class="hint">
+                    Transaction fee in % to generate marketing budget.
+                </p>
+            </div>
+        </div>
+        <div class="form-check mt-2">
+            <input class="form-check-input max_tx_option" type="checkbox" value="" />
+            <label class="form-check-label" for="max_tx_option">
+                <strong>Max Transaction</strong>
+            </label>
+        </div>
+        <br />
+        <div class="form-group row" style="display: none" id="max_tx">
             <label class="col-sm-3 col-form-lable">Max Transaction Amount </label>
             <div class="col-sm-9">
-                <input class="max_tx_amount" type="number" min="0" step="1" placeholder="1000000000000000" />
+                <input class="max_tx_amount" type="number" min="0" step="1" placeholder="100000000000000" />
                 <p class="hint">
                     Maximum amount of tokens allowed for each transaction.
                 </p>
             </div>
         </div>
-
     </form>
 </div>
+
+<script type="module">
+    import { addPrice, subPrice } from "./static/parameters.js";
+
+    $(".liquiditygenerator .max_tx_option").on("click", () => {
+        if ($(".liquiditygenerator .max_tx_option").is(":checked")) {
+            $(".liquiditygenerator #max_tx").show();
+        } else {
+            $(".liquiditygenerator #max_tx").hide();
+        }
+    });
+</script>
