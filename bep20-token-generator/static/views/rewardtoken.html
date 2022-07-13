@@ -1,25 +1,12 @@
 <div class="rewardtoken my-3">
     <form>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-lable">Token reward </label>
-            <div class="col-sm-9">
-                <select class="form-select reward_token" aria-label="Default select example">
-                    <option value="0" selected>CAKE</option>
-                    <option value="1">ETH</option>
-                    <option value="2">BTC</option>
-                    <option value="3">BNB</option>
-                    <option value="4">BUSD</option>
-                    <option value="5">DOGE</option>
-                    <option value="6">ADA</option>
-                </select>
-                <p class="hint">Select reward token to be distributed among holders.</p>
-            </div>
-        </div>
+
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Token name </label>
             <div class="col-sm-9">
-                <input class="token_name" type="text" placeholder="" name="token_name" required />
+                <input class="token_name" type="text" placeholder="" name="token_name" required
+                    title="Enter token name" />
                 <p class="hint">Choose a name for your token.</p>
             </div>
         </div>
@@ -27,7 +14,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Token symbol </label>
             <div class="col-sm-9">
-                <input title="Enter token symbol " class="token_symbol" type="text" placeholder="" name="symbol"
+                <input title="Enter token symbol" class="token_symbol" type="text" placeholder="" name="symbol"
                     required />
                 <p class="hint">
                     Choose a symbol for your token (usually 3-5 chars).
@@ -58,12 +45,52 @@
             </div>
         </div>
 
+        <p><strong>Rewards to Holders </strong> </p>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Reward token </label>
+            <div class="col-sm-9">
+                <select class="form-select reward_token" aria-label="Default select example">
+                    <option value="0" selected>CAKE</option>
+                    <option value="1">ETH</option>
+                    <option value="2">BTC</option>
+                    <option value="3">BNB</option>
+                    <option value="4">BUSD</option>
+                    <option value="5">DOGE</option>
+                    <option value="6">ADA</option>
+                </select>
+                <p class="hint">Select reward token to be distributed among holders.</p>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Reward Fees % </label>
+            <div class="col-sm-9">
+                <input class="reward_fees" type="number" min="1" placeholder="7" name="rewardFees" max="25"
+                    integer="true" />
+                <p class="hint">
+                    Transaction fee in % to pay dividend to holders.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Minimum HOLD</label>
+            <div class="col-sm-9">
+                <input class="min_tokens" type="number" min="0" placeholder="10000" integer="true" name="minTokens" />
+                <p class="hint">
+                    Minimum tokens required for user to receive reward.
+                </p>
+            </div>
+        </div>
 
 
         <div class="form-group row" style="display: none;">
             <label class="col-sm-3 col-form-lable">Max Transfer % </label>
             <div class="col-sm-9">
-                <input value="100" class="max_tx_percent" type="number" min="0" step="1" placeholder="1" />
+                <input value="100" class="max_tx_percent" type="number" min="0" placeholder="1" />
                 <p class="hint">
                     Maximum % of total supply allowed for each transaction.
                 </p>
@@ -82,18 +109,18 @@
             </p>
         </div>
 
-        <p><strong>Tax:</strong> </p>
-
         <div class="form-group row">
-            <label class="col-sm-3 col-form-lable">Reward Fees % </label>
+            <label class="col-sm-3 col-form-lable">Marketing Fees % </label>
             <div class="col-sm-9">
-                <input class="reward_fees" type="number" min="1" placeholder="7" name="rewardFees" max="25"
+                <input class="marketing_fees" type="number" min="0" placeholder="3" name="marketingFees" max="25"
                     integer="true" />
                 <p class="hint">
-                    Transaction fee in % to pay dividend to holders.
+                    Transaction fee in % to generate marketing budget.
                 </p>
             </div>
         </div>
+
+        <p><strong>Other Taxes</strong> </p>
 
 
         <div class="form-group row">
@@ -107,21 +134,9 @@
             </div>
         </div>
 
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-lable">Marketing Fees % </label>
-            <div class="col-sm-9">
-                <input class="marketing_fees" type="number" min="0" placeholder="3" name="marketingFees" max="25"
-                    integer="true" />
-                <p class="hint">
-                    Transaction fee in % to generate marketing budget.
-                </p>
-            </div>
-        </div>
-
-        <p><strong>Extra Sell Tax:</strong> </p>
 
         <div class="form-group row">
-            <label class="col-sm-3 col-form-lable">Tax Fees % </label>
+            <label class="col-sm-3 col-form-lable">Extra Sell Fees % </label>
             <div class="col-sm-9">
                 <input class="tax_fees_extra" type="number" min="0" placeholder="1" name="extraTaxFees" max="25"
                     integer="true" />

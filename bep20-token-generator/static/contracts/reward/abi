@@ -17,6 +17,11 @@
         "type": "uint256"
       },
       {
+        "internalType": "uint8",
+        "name": "decimals_",
+        "type": "uint8"
+      },
+      {
         "internalType": "address",
         "name": "rewardToken_",
         "type": "address"
@@ -28,18 +33,13 @@
       },
       {
         "internalType": "uint256",
-        "name": "liquidityFee_",
+        "name": "minTokens_",
         "type": "uint256"
       },
       {
-        "internalType": "uint256",
-        "name": "marketingFee_",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "extraSellFee_",
-        "type": "uint256"
+        "internalType": "uint256[]",
+        "name": "fees_",
+        "type": "uint256[]"
       },
       {
         "internalType": "address",
@@ -48,7 +48,7 @@
       },
       {
         "internalType": "address",
-        "name": "uniswapV2Router_",
+        "name": "router_",
         "type": "address"
       },
       {
@@ -346,44 +346,12 @@
         "type": "address"
       }
     ],
-    "name": "UpdateUniswapV2Router",
+    "name": "Updaterouter",
     "type": "event"
   },
   {
     "inputs": [],
     "name": "Reward",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "_isBlacklisted",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "_marketingWalletAddress",
     "outputs": [
       {
         "internalType": "address",
@@ -503,19 +471,6 @@
     "name": "claim",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "deadWallet",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -850,6 +805,25 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isBlacklisted",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "account",
         "type": "address"
       }
@@ -893,6 +867,19 @@
   },
   {
     "inputs": [],
+    "name": "marketingWallet",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "name",
     "outputs": [
       {
@@ -907,6 +894,19 @@
   {
     "inputs": [],
     "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pair",
     "outputs": [
       {
         "internalType": "address",
@@ -951,10 +951,23 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "router",
+    "outputs": [
+      {
+        "internalType": "contract IUniswapV2Router02",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
-        "name": "pair",
+        "name": "_pair",
         "type": "address"
       },
       {
@@ -1139,32 +1152,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "uniswapV2Pair",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "uniswapV2Router",
-    "outputs": [
-      {
-        "internalType": "contract IUniswapV2Router02",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -1211,7 +1198,7 @@
         "type": "address"
       }
     ],
-    "name": "updateUniswapV2Router",
+    "name": "updaterouter",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
