@@ -1,5 +1,5 @@
-<div class="starship my-3">
-    <form id="starship">
+<div class="promax my-3">
+    <form id="promax">
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Token name</label>
@@ -394,11 +394,11 @@
 </div>
 
 <script type="module">
-    $("#starship").validate();
+    $("#promax").validate();
 
     import { addPrice, subPrice } from "./static/parameters.js";
 
-    var token_type = "starship"
+    var token_type = "promax"
 
     function optionForm(option) {
         $("." + token_type + " ." + option).parent().next().hide()
@@ -418,23 +418,23 @@
         optionForm(formList[i])
     }
 
-    $(".starship .marketing_wallet").on("click", () => {
-        if ($(".starship .marketing_wallet").is(":checked")) {
-            $(".starship .marketing_wallet_addr").prop("required", "required")
+    $(".promax .marketing_wallet").on("click", () => {
+        if ($(".promax .marketing_wallet").is(":checked")) {
+            $(".promax .marketing_wallet_addr").prop("required", "required")
         } else {
-            $(".starship .marketing_wallet_addr").prop("required", "")
+            $(".promax .marketing_wallet_addr").prop("required", "")
         }
     });
 
-    $(".starship .charity_wallet").on("click", () => {
-        if ($(".starship .charity_wallet").is(":checked")) {
-            $(".starship .charity_wallet_addr").prop("required", "required")
+    $(".promax .charity_wallet").on("click", () => {
+        if ($(".promax .charity_wallet").is(":checked")) {
+            $(".promax .charity_wallet_addr").prop("required", "required")
         } else {
-            $(".starship .charity_wallet_addr").prop("required", "")
+            $(".promax .charity_wallet_addr").prop("required", "")
         }
     });
 
-    // $("#starship").validate({
+    // $("#promax").validate({
     //     // Specify validation rules
     //     rules: {
     //         token_address: {
