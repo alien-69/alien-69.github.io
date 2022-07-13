@@ -17,10 +17,10 @@
   <!-- <script type="module" src="/static/test-module.js"></script> -->
 
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/web3js-cdn@1.3.0/web3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="static/validationRules.js"></script>
 
 
   <link rel="stylesheet" href="../static/styles.css" />
@@ -161,540 +161,96 @@
         </h1>
         <p class="lead">Simple. No coding required.</p>
 
-        <ul class="nav nav-pills justify-content-start" id="myTab" role="tablist">
+        <!-- <label class="col-sm-3 col-form-lable">Token type </label> -->
+        <div class="col-sm">
+          <select class="form-select token_type" aria-label="Select token type">
+            <option value="standard" selected>Standard</option>
+            <option value="safemoon">Safemoon (Deflationary)</option>
+            <option value="liquiditygenerator">Liquidity Generator</option>
+            <option value="frictionlessyield">Frictionless Yield</option>
+            <option value="marketingtax">Marketing Tax</option>
+            <option value="smarttax">Smart Tax</option>
+            <option value="rewardtoken">Reward Token</option>
+            <!-- <option value="rewardtoken2">Reward Pro</option>
+    <option value="starship">Starship</option> -->
+            <option value="customizedToken">Customized Token</option>
+          </select>
+          <span class="hint">Select token type you want to create. </span>
 
+          <div class="col">
 
-          <!-- <li class="nav-item " role="presentation">
-            <button class="nav-link border active" id="tiny-tab" data-bs-toggle="tab" data-bs-target="#tiny"
-              type="button" role="tab" aria-controls="tiny" aria-selected="true">
-              Essential <span class="badge bg-primary">Free</span>
-            </button>
-          </li> -->
+            <span class="badge bg-info" id="tag_popular">Popular</span>
+            <span class="badge bg-danger" id="tag_hot">🔥Hot</span>
+            <span class="badge bg-success" id="tag_new">New</span>
+          </div>
 
-          <li class="nav-item " role="presentation">
-            <button class="nav-link border active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic"
-              type="button" role="tab" aria-controls="basic" aria-selected="true">
-              Standard
-              <span class="badge bg-info">Popular</span>
-            </button>
-          </li>
+        </div>
 
-          <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="safemoon-tab" data-bs-toggle="tab" data-bs-target="#safemoon"
-              type="button" role="tab" aria-controls="safemoon" aria-selected="false">
-              SafeMoon (Deflationary)
-            </button>
-          </li>
+        <div id="token_container"></div>
 
-          <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="liquiditygenerator-tab" data-bs-toggle="tab"
-              data-bs-target="#liquiditygenerator" type="button" role="tab" aria-controls="liquiditygenerator"
-              aria-selected="false">
-              Liquidity Generator <span class="badge bg-success border border-white">Upgraded</span>
+        <script>
+          var default_token_type = "standard"
+          $('.token_type option[value=' + default_token_type + ']').prop('selected', 'selected');
+          $("#token_container").load("static/views/" + default_token_type + ".html")
 
-            </button>
-          </li>
+          $(".token_type").on("change", () => {
 
-          <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="frictionlessyield-tab" data-bs-toggle="tab"
-              data-bs-target="#frictionlessyield" type="button" role="tab" aria-controls="frictionlessyield"
-              aria-selected="false">
-              Frictionless Yield
-            </button>
-          </li>
+            var token_type = $(".token_type").val()
 
-          <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="marketingtax-tab" data-bs-toggle="tab" data-bs-target="#marketingtax"
-              type="button" role="tab" aria-controls="marketingtax" aria-selected="false">
-              Marketing Tax <span class="badge bg-danger">Hot🔥</span>
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="smarttax-tab" data-bs-toggle="tab" data-bs-target="#smarttax"
-              type="button" role="tab" aria-controls="smarttax" aria-selected="false">
-              Smart Tax
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="rewardtoken-tab" data-bs-toggle="tab" data-bs-target="#rewardtoken"
-              type="button" role="tab" aria-controls="rewardtoken" aria-selected="false">
-              Reward Token
-            </button>
-          </li>
-          <li class="nav-item " role="presentation">
-            <button class="nav-link border" id="rewardtoken2-tab" data-bs-toggle="tab" data-bs-target="#rewardtoken2"
-              type="button" role="tab" aria-selected="true">
-              Reward Pro
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="customized-tab" data-bs-toggle="tab" data-bs-target="#customized"
-              type="button" role="tab" aria-controls="customized" aria-selected="false">
-              Customized Token <i class="fab fa-telegram"></i>
-            </button>
-          </li>
+            changeTokenType(token_type)
+          })
 
-          <!-- <li class="nav-item" role="presentation">
-            <button class="nav-link border" id="moonshots" data-bs-toggle="tab" data-bs-target="#customized"
-              type="button" role="tab" aria-controls="customized" aria-selected="false">
-              Moonshots <i class=" fa-solid fa-angles-down toggle" style="color: greenyellow;"></i>
-            </button>
-          </li> -->
-
-          <script>
-            $("#moonshots").on("click", function () {
-              $(".actionGroup").css("display", "none");
-              if ($(".moonshotOffers").css("display") == "none") {
-                $(".toggle").removeClass("fa-angles-down");
-                $(".toggle").addClass("fa-angles-up");
-
-                $(".moonshotOffers").css("display", "block");
-
-              } else {
-                closeMoonshots();
-              }
-            })
-
-            function closeMoonshots() {
-              $(".toggle").addClass("fa-angles-down");
-              $(".toggle").removeClass("fa-angles-up");
-              $(".moonshotOffers").css("display", "none");
+          function changeTokenType(token_type) {
+            $('.token_type option[value=' + token_type + ']').prop('selected', 'selected');
+            $("#token_container").load("static/views/" + token_type + ".html")
+            if (token_type == "customizedToken") {
+              $(".actionGroup").hide()
+            } else {
+              $(".actionGroup").show()
             }
-          </script>
-
-          <!-- <div class="border border-primary moonshotOffers" style="display: none;">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link border offer" id="deadOwner-tab" data-bs-toggle="tab" data-bs-target="#customized"
-                type="button" role="tab" aria-selected="true">
-                0x0 Owner
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="safemoonV2-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                SafeMoon v2
-              </button>
-            </li>
-
-            <li class="nav-item" role="presentation">
-              <button class="nav-link border offer" id="safemoonKiller-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="false">
-                SafeMoon Killer
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="antiSniper-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Sniper's Nightmare
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="antiRug-tab" data-bs-toggle="tab" data-bs-target="#customized"
-                type="button" role="tab" aria-selected="true">
-                Anti-Rug System
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="overflow-tab" data-bs-toggle="tab" data-bs-target="#customized"
-                type="button" role="tab" aria-selected="true">
-                Overflow
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="charityToken-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Charity Token
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="staking-tab" data-bs-toggle="tab" data-bs-target="#customized"
-                type="button" role="tab" aria-selected="true">
-                Staking
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="nativeReward-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Native Reward
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="unlimitedWallets-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Unlimited Wallets
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="hyperinflation-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Hyperinflation
-              </button>
-            </li>
-
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="hyperDeflation-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Hyper deflation
-              </button>
-            </li>
+            $(".error-create").hide();
 
 
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="nftGame-tab" data-bs-toggle="tab" data-bs-target="#customized"
-                type="button" role="tab" aria-selected="true">
-                NFT Game
-              </button>
-            </li>
+            //register validation
+            $("." + token_type)
+              .find("form")
+              .validate()
+          }
 
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="dex-tab" data-bs-toggle="tab" data-bs-target="#customized"
-                type="button" role="tab" aria-selected="true">
-                DEX
-              </button>
-            </li>
+          function sleep(s) {
+            return new Promise((resolve) => {
+              setTimeout(resolve, s * 1000);
+            });
+          }
 
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="builtinPresale-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Built-in Presale
-              </button>
-            </li>
+          var loading = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" style="width: 12px; height: 12px; margin-right: 5px"></span>'
+          $("#tag_popular").on("click", async () => {
+            changeTokenType('standard')
 
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="dao-tab" data-bs-toggle="tab" data-bs-target="#customized"
-                type="button" role="tab" aria-selected="true">
-                DAO
-              </button>
-            </li>
+            $("#tag_popular").prepend(loading)
+            await sleep(1)
+            $("#tag_popular").find("span").remove()
 
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="stableCoin-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-controls="basic" aria-selected="true">
-                Stable Coin
-              </button>
-            </li>
+          })
 
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="doubleRewards-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Double Rewards
-              </button>
-            </li>
+          $("#tag_hot").on("click", async () => {
+            changeTokenType('marketingtax')
 
-            <li class="nav-item " role="presentation">
-              <button class="nav-link border offer" id="trippleRewards-tab" data-bs-toggle="tab"
-                data-bs-target="#customized" type="button" role="tab" aria-selected="true">
-                Triple Rewards
-              </button>
-            </li>
-          </div> -->
+            $("#tag_hot").prepend(loading)
+            await sleep(1)
+            $("#tag_hot").find("span").remove()
+          })
 
+          $("#tag_new").on("click", async () => {
+            changeTokenType('starship')
 
-
-
-
-
-        </ul>
-
-        <button hidden type="button" class="btn btn-primary" data-toggle="modal" data-target="#tokenIntroDialog"
-          id="btnDialog">
-          Launch demo modal
-        </button>
-
-        <div class="modal fade" id="tokenIntroDialog" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Token Name</h5>
-
-              </div>
-              <div class="modal-body">
-                <p hidden class="text-center">Price: <span id="modalBody">5</span>&nbsp;BNB </p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeDialog">Close</button>
-                <a href="https://t.me/TokenGeneratorBSC" class="btn btn-primary my-3" role="button" target="_blank"
-                  onclick="gtag('event','contact_us')">
-                  <button type="button" class="btn btn-primary" id="contactDev">Contact us</button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
-          </div>
-          <div class="tab-pane fade" id="mintable" role="tabpanel" aria-labelledby="mintable-tab">
-          </div>
-          <div class="tab-pane fade" id="burnable" role="tabpanel" aria-labelledby="burnable-tab">
-          </div>
-          <div class="tab-pane fade" id="mintandburn" role="tabpanel" aria-labelledby="mintandburn-tab">
-          </div>
-          <div class="tab-pane fade" id="honeypot" role="tabpanel" aria-labelledby="honeypot-tab">
-          </div>
-          <div class="tab-pane fade" id="safemoon" role="tabpanel" aria-labelledby="safemoon-tab">
-          </div>
-          <div class="tab-pane fade" id="safemoonmod" role="tabpanel" aria-labelledby="safemoonmod-tab">
-          </div>
-          <div class="tab-pane fade" id="safemoonkiller" role="tabpanel" aria-labelledby="safemoonkiller-tab">
-          </div>
-          <div class="tab-pane fade" id="liquiditygenerator" role="tabpanel" aria-labelledby="liquiditygenerator-tab">
-          </div>
-          <div class="tab-pane fade" id="frictionlessyield" role="tabpanel" aria-labelledby="frictionlessyield-tab">
-          </div>
-          <div class="tab-pane fade" id="rewardtoken" role="tabpanel" aria-labelledby="rewardtoken-tab">
-          </div>
-          <div class="tab-pane fade" id="rewardtoken2" role="tabpanel" aria-labelledby="rewardtoken2-tab">
-          </div>
-          <div class="tab-pane fade" id="smarttax" role="tabpanel" aria-labelledby="smarttax-tab">
-          </div>
-          <div class="tab-pane fade" id="marketingtax" role="tabpanel" aria-labelledby="marketingtax-tab">
-          </div>
-          <div class="tab-pane fade" id="tiny" role="tabpanel" aria-labelledby="tiny-tab">
-          </div>
-          <script>
-            $("#safemoonmod").load("static/views/safemoonmod.html")
-            $("#rewardtoken2").load("static/views/rewardtoken2.html")
-            $("#smarttax").load("static/views/smarttax.html")
-            $("#marketingtax").load("static/views/marketingtax.html")
-            $("#tiny").load("static/views/tiny.html")
-            $("#basic").load("static/views/basic.html")
-            $("#mintable").load("static/views/mintable.html")
-            $("#burnable").load("static/views/burnable.html")
-            $("#mintandburn").load("static/views/mintandburn.html")
-            $("#safemoon").load("static/views/safemoon.html")
-            $("#liquiditygenerator").load("static/views/liquiditygenerator.html")
-            $("#frictionlessyield").load("static/views/frictionlessyield.html")
-            $("#rewardtoken").load("static/views/rewardtoken.html")
-
-          </script>
-
-
-          <div class="tab-pane fade" id="awesomeToken" role="tabpanel" aria-labelledby="awesomeToken-tab">
-            <div class="awesomeToken my-3">
-              <form>
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Token name</label>
-                  <div class="col-sm-9">
-                    <input class="token_name" type="text" placeholder="" required />
-                    <p class="hint">Choose a name for your token.</p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Token symbol </label>
-                  <div class="col-sm-9">
-                    <input class="token_symbol" type="text" placeholder="" />
-                    <p class="hint">
-                      Choose a symbol for your token (usually 3-5 chars).
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Total supply </label>
-                  <div class="col-sm-9">
-                    <input class="token_supply" type="number" min="1" step="100000" placeholder="1000000000000" />
-                    <p class="hint">
-                      Insert the initial number of tokens available. Will be
-                      put in your account.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Decimals </label>
-                  <div class="col-sm-9">
-                    <input class="decimals" type="number" placeholder="18" />
-                    <p class="hint">
-                      Insert the decimal precision of your token.
-                    </p>
-                  </div>
-                </div>
-              </form>
-
-              <!-- <div class="row">
-                <p><i class="fa-solid fa-square-check mr-3" style="color: blue;"></i> Can mint</p>
-                <p><i class="fa-solid fa-square-check" style="color: blue;"></i> Can burn</p>
-                <p><i class="fa-solid fa-square-check" style="color: blue;"></i> Can recover</p>
-                <p><i class="fa-solid fa-square-check" style="color: blue;"></i> Can upgrade</p>
-                <p><i class="fa-solid fa-square-check" style="color: blue;"></i> Ownable</p>
-                <p><i class="fa-solid fa-square-check" style="color: blue;"></i> Unlimited supply</p>
-                <p><i class="fa-solid fa-square-check" style="color: blue;"></i> Flexible decimals</p>
-              </div> -->
-
-            </div>
-          </div>
-
-          <div class="tab-pane fade" id="buyBackAndBurn" role="tabpanel">
-            <div class="buyBackAndBurn my-3">
-              <form>
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Token name </label>
-                  <div class="col-sm-9">
-                    <input class="token_name" type="text" placeholder="" />
-                    <p class="hint">Choose a name for your token.</p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Token symbol </label>
-                  <div class="col-sm-9">
-                    <input title="Enter token symbol " class="token_symbol" type="text" placeholder="" />
-                    <p class="hint">
-                      Choose a symbol for your token (usually 3-5 chars).
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Decimals </label>
-                  <div class="col-sm-9">
-                    <input class="decimals" type="number" min="1" step="1" placeholder="18" />
-                    <p class="hint">
-                      Insert the decimal precision of your token. If you don't
-                      know what to insert, use 18.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Total supply </label>
-                  <div class="col-sm-9">
-                    <input class="token_supply" type="number" min="1" step="100000" placeholder="1000000000000000" />
-                    <p class="hint">
-                      Insert the initial number of tokens available. Will be
-                      put in your account.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row" style="display: none;">
-                  <label class="col-sm-3 col-form-lable">Max Transfer % </label>
-                  <div class="col-sm-9">
-                    <input value="100" class="max_tx_percent" type="number" min="0" step="1" placeholder="1" />
-                    <p class="hint">
-                      Maximum % of total supply allowed for each transaction.
-                    </p>
-                  </div>
-                </div>
-
-
-                <p><strong>Marketing Wallet </strong> </p>
-
-
-                <div class="row">
-                  <input class="marketing_wallet" type="text" placeholder="" />
-                  <p class="hint">
-                    Marketing tax will be sent to marketing wallet.
-                  </p>
-                </div>
-
-                <p><strong>Tax:</strong> </p>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Liquidity Fees % </label>
-                  <div class="col-sm-9">
-                    <input class="liquidity_fees" type="number" min="0" step="1" placeholder="2" />
-                    <p class="hint">
-                      Transaction fee in % to generate liquidity.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Marketing Fees % </label>
-                  <div class="col-sm-9">
-                    <input class="marketing_fees" type="number" min="0" step="1" placeholder="3" />
-                    <p class="hint">
-                      Transaction fee in % to generate marketing budget.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">BuyBack Fees % </label>
-                  <div class="col-sm-9">
-                    <input class="buyback_fees" type="number" min="0" step="1" placeholder="3" />
-                    <p class="hint">
-                      Transaction fee in % to buy back tokens.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 col-form-lable">Burn Fees % </label>
-                  <div class="col-sm-9">
-                    <input class="burn_fees" type="number" min="0" step="1" placeholder="3" />
-                    <p class="hint">
-                      Transaction fee in % to burn tokens.
-                    </p>
-                  </div>
-                </div>
-
-              </form>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="customized" role="tabpanel" aria-labelledby="contact-tab">
-            <div class="customizedToken row my-3">
-
-              <ul>
-                <li class="mt-2">Add more features 🏆 ✅</li>
-                <li class="mt-2">Tailored for your project 🥇 ✅</li>
-                <li class="mt-2">Great expertise in crypto/blockchain tech 👨‍💻 ✅</li>
-                <li class="mt-2">Quick development time 🚀 ✅</li>
-                <li class="mt-2">Afforadable 💯 ✅</li>
-                <li class="mt-2">Pay in crypto/paypal ☑️ ✅</li>
-              </ul>
-
-              <p class="hint1">
-                <strong>Note:</strong> If you would like to have other types of token implemented on our website, tell
-                us ! 👉🏻
-                <a href="https://forms.gle/z9KsTohsfymsjmcL7">Submit request.</a>
-
-              </p>
-              <a href="https://t.me/TokenGeneratorBSC" class="btn btn-primary my-3" role="button" target="_blank"
-                onclick="gtag('event','contact_us')">Contact us</a>
-            </div>
-          </div>
-        </div>
+            $("#tag_new").prepend(loading)
+            await sleep(1)
+            $("#tag_new").find("span").remove()
+          })
+        </script>
 
         <div style="display: block;" class="actionGroup">
-          <!-- <div class="card">
-            <div class="card-body">
-              <div class="form-check" style="pointer-events: none; opacity: 1;">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                  Verified contract
-                </label>
-              </div>
-              <div class="form-check" style="pointer-events: none; opacity: 1;">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                  No Copyright
-                </label>
-              </div>
-              <div class="form-check" style="pointer-events: none; opacity: 1;">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                  Unlimited Supply
-                </label>
-              </div>
-            </div>
-          </div> -->
-          <!-- <div class="alert alert-light" role="alert">
-            The contract is verified automatically after deployment.
-
-          </div> -->
           <p class="hint1">
             <strong>Note:</strong> If you want more functions,
             <a href="https://t.me/TokenGeneratorBSC" onclick="gtag('event','contact_us_hint')">contact us.</a>
@@ -726,7 +282,7 @@
           <p class="hint deployStatus" style="display: none;"></p>
           <p class="hint alertLoading" style="color: red; display: none;">Please wait a moment and DON'T refresh
             the page.</p>
-          <p class="hint error" style="color: red; display: none;">Some errors.</p>
+          <p class="hint error-create" style="color: red; display: none;">Some errors.</p>
 
           <dl class="tip" style="display: none;">
             <dt> 💡Tips:</dt>

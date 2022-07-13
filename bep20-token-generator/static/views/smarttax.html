@@ -4,7 +4,7 @@
             <label class="col-sm-3 col-form-lable">Token reward </label>
             <div class="col-sm-9">
                 <input class="col-sm-9 reward_token" type="text"
-                    placeholder="0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c" />
+                    placeholder="0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c" ethAddress="true" />
 
                 <p class="hint">
                     Select reward token to be sent for marketing. Ex: If you want BNB
@@ -14,9 +14,10 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-3 col-form-lable">Token name </label>
+            <label class="col-sm-3 col-form-lable">Token name</label>
             <div class="col-sm-9">
-                <input class="token_name" type="text" placeholder="" />
+                <input class="token_name" type="text" placeholder="" required name="token_name"
+                    title="Enter token name" />
                 <p class="hint">Choose a name for your token.</p>
             </div>
         </div>
@@ -24,26 +25,18 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Token symbol </label>
             <div class="col-sm-9">
-                <input title="Enter token symbol " class="token_symbol" type="text" placeholder="" />
-                <p class="hint">Choose a symbol for your token (usually 3-5 chars).</p>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-lable">Decimals </label>
-            <div class="col-sm-9">
-                <input class="decimals" type="number" min="1" step="1" placeholder="18" />
+                <input class="token_symbol" type="text" placeholder="" required name="token_symbol"
+                    title="Enter token symbol" />
                 <p class="hint">
-                    Insert the decimal precision of your token. If you don't know what to
-                    insert, use 18.
+                    Choose a symbol for your token (usually 3-5 chars).
                 </p>
             </div>
         </div>
-
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Total supply </label>
             <div class="col-sm-9">
-                <input class="token_supply" type="number" min="1" step="100000" placeholder="1000000000000000" />
+                <input class="token_supply" type="number" min="1" placeholder="1000000000000000" integer="true"
+                    name="total_supply" />
                 <p class="hint">
                     Insert the initial number of tokens available. Will be put in your
                     account.
@@ -51,10 +44,22 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Decimals </label>
+            <div class="col-sm-9">
+                <input class="decimals" type="number" min="0" placeholder="18" name="decimals" max="255"
+                    integer="true" />
+                <p class="hint">
+                    Insert the decimal precision of your token.
+                </p>
+            </div>
+        </div>
+
         <div class="form-group row" style="display: none">
             <label class="col-sm-3 col-form-lable">Max Transfer % </label>
             <div class="col-sm-9">
-                <input value="100" class="max_tx_percent" type="number" min="0" step="1" placeholder="1" />
+                <input value="100" class="max_tx_percent" type="number" min="1" placeholder="1" name="maxTxPercent"
+                    max="25" integer="true" required />
                 <p class="hint">
                     Maximum % of total supply allowed for each transaction.
                 </p>
@@ -64,7 +69,8 @@
         <p><strong>Marketing Wallet </strong></p>
 
         <div class="row">
-            <input class="marketing_wallet" type="text" placeholder="" />
+            <input class="marketing_wallet" type="text" placeholder="" name="marketingWallet" ethAddress="true"
+                required />
             <p class="hint">Marketing tax will be sent to marketing wallet.</p>
         </div>
 
@@ -73,7 +79,8 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Marketing Fees % </label>
             <div class="col-sm-9">
-                <input class="marketing_fees" type="number" min="0" step="1" placeholder="3" />
+                <input class="marketing_fees" type="number" min="0" placeholder="3" name="marketingFees" max="25"
+                    integer="true" />
                 <p class="hint">Transaction fee in % to generate marketing budget.</p>
             </div>
         </div>
@@ -81,7 +88,8 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Liquidity Fees % </label>
             <div class="col-sm-9">
-                <input class="liquidity_fees" type="number" min="0" step="1" placeholder="2" />
+                <input class="liquidity_fees" type="number" min="0" placeholder="2" name="liquidityFees" max="25"
+                    integer="true" />
                 <p class="hint">Transaction fee in % to generate liquidity.</p>
             </div>
         </div>
@@ -91,25 +99,44 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Tax Fees % </label>
             <div class="col-sm-9">
-                <input class="tax_fees_extra" type="number" min="0" step="1" placeholder="1" />
+                <input class="tax_fees_extra" type="number" min="0" placeholder="1" name="taxFees" max="25"
+                    integer="true" />
                 <p class="hint">Extra fees will be applied to sell transaction.</p>
             </div>
         </div>
 
         <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="max_wallet_option" />
-            <label class="form-check-label" for="max_wallet_option">
-                <strong>Max Wallet:</strong>
+            <input class="form-check-input" type="checkbox" value="" id="max_wallet_option_smarttax" />
+            <label class="form-check-label" for="max_wallet_option_smarttax">
+                <strong>Max Wallet</strong>
             </label>
         </div>
         <br />
-        <div class="form-group row" id="max_wallet" style="display: none">
+        <div class="form-group row max_wallet" style="display: none">
             <label class="col-sm-3 col-form-lable">Max Wallet % </label>
             <div class="col-sm-9">
-                <input id="max_wallet_percent" class="max_wallet_percent" type="number" min="1" max="100" step="1"
-                    placeholder="2" />
+                <input class="max_wallet_percent" type="number" min="1" max="100" placeholder="2"
+                    name="maxWalletPercent" integer="true" />
                 <p class="hint">
                     The maximum percent of total supply a wallet can have.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="max_tx_option_smarttax" />
+            <label class="form-check-label" for="max_tx_option_smarttax">
+                <strong>Max Transaction</strong>
+            </label>
+        </div>
+        <br />
+        <div class="form-group row max_tx" style="display: none">
+            <label class="col-sm-3 col-form-lable">Max Transaction Amount </label>
+            <div class="col-sm-9">
+                <input class="max_tx_amount" type="number" min="1" placeholder="100000000000000" name="maxTxAmount"
+                    integer="true" />
+                <p class="hint">
+                    Maximum amount of tokens allowed for each transaction.
                 </p>
             </div>
         </div>
@@ -119,15 +146,27 @@
 <script type="module">
     import { addPrice, subPrice } from "./static/parameters.js";
 
-    $("#max_wallet_option").on("click", () => {
-        if ($("#max_wallet_option").is(":checked")) {
-            $("#max_wallet").show();
-            $("#max_wallet_percent").attr('placeholder', 2);
+    $("#max_wallet_option_smarttax").on("click", () => {
+        if ($("#max_wallet_option_smarttax").is(":checked")) {
+            $(".smarttax .max_wallet").show();
+            $(".smarttax .max_wallet_percent").attr('placeholder', 2);
+
             // addPrice(0.1);
         } else {
-            $("#max_wallet").hide();
-            $("#max_wallet_percent").attr('placeholder', 101);
+            $(".smarttax .max_wallet").hide();
+            $(".smarttax .max_wallet_percent").attr('placeholder', 101);
             // subPrice(0.1);
+
+        }
+    });
+
+    $("#max_tx_option_smarttax").on("click", () => {
+        if ($("#max_tx_option_smarttax").is(":checked")) {
+            $(".smarttax .max_tx").show();
+
+        } else {
+            $(".smarttax .max_tx").hide();
+
         }
     });
 </script>
