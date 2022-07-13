@@ -47,7 +47,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Decimals </label>
             <div class="col-sm-9">
-                <input class="decimals" type="number" min="0" placeholder="18" name="decimals" max="50"
+                <input class="decimals" type="number" min="0" placeholder="18" name="decimals" max="255"
                     integer="true" />
                 <p class="hint">
                     Insert the decimal precision of your token.
@@ -106,7 +106,8 @@
         </div>
 
         <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="max_wallet_option_smarttax" />
+            <input class="form-check-input max_wallet_option" type="checkbox" value=""
+                id="max_wallet_option_smarttax" />
             <label class="form-check-label" for="max_wallet_option_smarttax">
                 <strong>Max Wallet</strong>
             </label>
@@ -124,7 +125,8 @@
         </div>
 
         <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="max_tx_option_smarttax" />
+            <input class="form-check-input max_tx_option_smarttax" type="checkbox" value=""
+                id="max_tx_option_smarttax" />
             <label class="form-check-label" for="max_tx_option_smarttax">
                 <strong>Max Transaction</strong>
             </label>

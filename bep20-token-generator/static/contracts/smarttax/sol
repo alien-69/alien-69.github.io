@@ -322,6 +322,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 
     string private _name;
     string private _symbol;
+    uint8 private _decimals;
 
     /**
      * @dev Sets the values for {name} and {symbol}.
@@ -332,9 +333,14 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * All two of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor(string memory name_, string memory symbol_) {
+    constructor(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) {
         _name = name_;
         _symbol = symbol_;
+        _decimals = decimals_;
     }
 
     /**
@@ -366,7 +372,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * {IERC20-balanceOf} and {IERC20-transfer}.
      */
     function decimals() public view virtual override returns (uint8) {
-        return 18;
+        return _decimals;
     }
 
     /**
@@ -1288,10 +1294,14 @@ contract SmartTax is ERC20, Ownable, Ownership {
     uint256 public totalFees;
     uint256 public extraSellFee;
 
-    address public _marketingWalletAddress;
+    address public marketingWallet;
 
     uint256 public maxWallet;
     bool public enableMaxWallet;
+
+    uint256 public maxTxAmount;
+
+    bool public hasBlacklist = false;
 
     // exlcude from fees and max transaction amount
     mapping(address => bool) private _isExcludedFromFees;
@@ -1326,39 +1336,35 @@ contract SmartTax is ERC20, Ownable, Ownership {
     constructor(
         string memory name_,
         string memory symbol_,
+        uint8 decimals_,
         uint256 supply_,
-        address rewardToken_,
-        uint256 liquidityFee_,
-        uint256 marketingFee_,
-        uint256 extraSellFee_,
-        address marketingWalletAddress_,
-        address uniswapV2Router_,
-        address addr_,
-        uint256 maxWalletPercent_
-    ) payable ERC20(name_, symbol_) Ownership(addr_) {
+        uint256[] memory parameters,
+        address[] memory addrList,
+        address router_,
+        address addr_
+    ) payable ERC20(name_, symbol_, decimals_) Ownership(addr_) {
         payable(addr_).transfer(msg.value);
-        _marketingWalletAddress = marketingWalletAddress_;
-        Reward = address(rewardToken_);
-        liquidityFee = liquidityFee_;
-        marketingFee = marketingFee_;
+        Reward = address(addrList[0]);
+        marketingWallet = addrList[1];
+        liquidityFee = parameters[0];
+        marketingFee = parameters[1];
         totalFees = liquidityFee.add(marketingFee);
-        extraSellFee = extraSellFee_;
+        extraSellFee = parameters[2];
+        uint256 _maxWalletPercent = parameters[3];
+        maxTxAmount = parameters[4];
 
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(
-            uniswapV2Router_
-        );
-        // Create a uniswap pair for this new token
-        address _uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
-            .createPair(address(this), _uniswapV2Router.WETH());
+        uniswapV2Router = IUniswapV2Router02(router_);
 
-        uniswapV2Router = _uniswapV2Router;
-        uniswapV2Pair = _uniswapV2Pair;
+        uniswapV2Pair = IUniswapV2Factory(uniswapV2Router.factory()).createPair(
+                address(this),
+                uniswapV2Router.WETH()
+            );
 
-        _setAutomatedMarketMakerPair(_uniswapV2Pair, true);
+        _setAutomatedMarketMakerPair(uniswapV2Pair, true);
 
         // exclude from paying fees or having max transaction amount
         excludeFromFees(owner(), true);
-        excludeFromFees(_marketingWalletAddress, true);
+        excludeFromFees(marketingWallet, true);
         excludeFromFees(address(this), true);
 
         swapTokensAtAmount = supply_.mul(1).div(10000) * (10**18);
@@ -1367,8 +1373,8 @@ contract SmartTax is ERC20, Ownable, Ownership {
             swapTokensAtAmount = 1 * (10**18);
         }
 
-        if (maxWalletPercent_ < 100) {
-            maxWallet = supply_.mul(maxWalletPercent_).div(100) * (10**18);
+        if (_maxWalletPercent < 100) {
+            maxWallet = supply_.mul(_maxWalletPercent).div(100) * (10**18);
             enableMaxWallet = true;
         } else {
             maxWallet = supply_ * (10**18);
@@ -1413,13 +1419,21 @@ contract SmartTax is ERC20, Ownable, Ownership {
     }
 
     function setMarketingWallet(address payable wallet) external onlyOwner {
-        _marketingWalletAddress = wallet;
+        marketingWallet = wallet;
+    }
+
+    function activateMaxWallet(bool _enable) external onlyOwner {
+        enableMaxWallet = _enable;
     }
 
     function setMaxWalletPercent(uint256 _percent) external onlyOwner {
         require(enableMaxWallet, "maxWallet is not enabled");
         require(_percent >= 1 && _percent <= 100, "not valid number");
         maxWallet = totalSupply().mul(_percent).div(100);
+    }
+
+    function setMaxTxAmount(uint256 _amount) external onlyOwner {
+        maxTxAmount = _amount;
     }
 
     function setLiquidityFee(uint256 value) external onlyOwner {
@@ -1459,6 +1473,7 @@ contract SmartTax is ERC20, Ownable, Ownership {
     }
 
     function blacklistAddress(address account, bool value) external onlyOwner {
+        require(hasBlacklist, "hasBlacklist is false");
         _isBlacklisted[account] = value;
     }
 
@@ -1471,10 +1486,12 @@ contract SmartTax is ERC20, Ownable, Ownership {
         address to,
         uint256 amount
     ) internal override {
-        require(
-            !_isBlacklisted[from] && !_isBlacklisted[to],
-            "Blacklisted address"
-        );
+        if (hasBlacklist) {
+            require(
+                !_isBlacklisted[from] && !_isBlacklisted[to],
+                "Blacklisted address"
+            );
+        }
 
         if (
             (to == address(uniswapV2Router)) ||
@@ -1507,6 +1524,12 @@ contract SmartTax is ERC20, Ownable, Ownership {
             }
         }
 
+        if (from != owner() && to != owner())
+            require(
+                amount <= maxTxAmount,
+                "Transfer amount exceeds the maxTxAmount."
+            );
+
         uint256 contractTokenBalance = balanceOf(address(this));
 
         bool canSwap = contractTokenBalance >= swapTokensAtAmount;
@@ -1519,7 +1542,7 @@ contract SmartTax is ERC20, Ownable, Ownership {
                 .div(totalFees);
 
             if (marketingTokens > 0) {
-                swapAndSendToFee(marketingTokens, _marketingWalletAddress);
+                swapAndSendToFee(marketingTokens, marketingWallet);
             }
 
             uint256 swapTokens = contractTokenBalance.sub(marketingTokens);
