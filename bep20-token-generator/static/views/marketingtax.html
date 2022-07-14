@@ -37,23 +37,10 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Decimals </label>
             <div class="col-sm-9">
-                <input class="decimals" type="number" placeholder="18" name="decimals" min="0" max="50"
+                <input class="decimals" type="number" placeholder="18" name="decimals" min="0" max="255"
                     integer="true" />
                 <p class="hint">
                     Insert the decimal precision of your token.
-                </p>
-            </div>
-        </div>
-
-
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-lable">Max Transaction Amount </label>
-            <div class="col-sm-9">
-                <input class="max_tx_amount" type="number" min="1" placeholder="100000000000000" name="max_tx_amount"
-                    integer="true" />
-                <p class="hint">
-                    Maximum amount of tokens allowed for each transaction.
                 </p>
             </div>
         </div>
@@ -63,8 +50,8 @@
 
 
         <div class="row">
-            <input class="marketing_wallet" type="text" placeholder="" name="marketingWallet" ethAddress="true" required
-                title="Enter marketing wallet" />
+            <input class="marketing_wallet" type="text" placeholder="" name="marketingWallet" ethAddress="true"
+                required />
             <p class="hint">
                 Marketing tax will be sent to marketing wallet.
             </p>
@@ -75,7 +62,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Buy Tax % </label>
             <div class="col-sm-9">
-                <input class="buy_tax" type="number" min="0" placeholder="10" name="buyTax" max="25" integer="true" />
+                <input class="buy_tax" type="number" min="0.01" placeholder="10" name="buyTax" max="25" />
                 <p class="hint">
                     Transaction fee in % to generate marketing budget when buy.
                 </p>
@@ -84,9 +71,45 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-lable">Sell Tax % </label>
             <div class="col-sm-9">
-                <input class="sell_tax" type="number" min="0" placeholder="10" name="sellTax" max="25" integer="true" />
+                <input class="sell_tax" type="number" min="0.01" placeholder="10" name="sellTax" max="25" />
                 <p class="hint">
                     Transaction fee in % to generate marketing budget when sell.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input max_tx_option" type="checkbox" value="" id="max_tx_option_marketingtax" />
+            <label class="form-check-label" for="max_tx_option_marketingtax">
+                <strong>Max Transaction</strong>
+            </label>
+        </div>
+
+        <div class="form-group row" style="display: none">
+            <label class="col-sm-3 col-form-lable">Max Transaction % </label>
+            <div class="col-sm-9">
+                <input class="max_tx_percent" type="number" min="0.01" placeholder="1" name="maxTxPercent" max="100" />
+                <p class="hint">
+                    Enter the maximum transaction allowed (0.01-100 % of total supply)
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input max_wallet_option" type="checkbox" value=""
+                id="max_wallet_option_marketingtax" />
+            <label class="form-check-label" for="max_wallet_option_marketingtax">
+                <strong>Max Wallet</strong>
+            </label>
+        </div>
+
+        <div class="form-group row" style="display: none">
+            <label class="col-sm-3 col-form-lable">Max Wallet % </label>
+            <div class="col-sm-9">
+                <input class="max_wallet_percent" type="number" min="0.01" max="100" placeholder="2"
+                    name="maxWalletPercent" />
+                <p class="hint">
+                    Enter the maximum wallet limit (0.01-100 % of total supply)
                 </p>
             </div>
         </div>
@@ -94,3 +117,45 @@
 
     </form>
 </div>
+
+<script>
+    // $("." + "marketingtax")
+    //     .find("form")
+    //     .validate({
+    //         rules: {
+    //             marketingWallet: {
+    //                 required: true,
+    //                 ethAddress: true
+    //             }
+    //         },
+
+    //         messages: {
+    //             marketingWallet: {
+    //                 required: "Enter marketing wallet",
+    //                 ethAddress: "Not valid address"
+    //             }
+    //         }
+    //     })
+
+
+    $(".marketingtax .max_tx_option").on("click", () => {
+        if ($(".marketingtax .max_tx_option").is(":checked")) {
+            $(".marketingtax .max_tx_option").parent().next().show();
+
+        } else {
+            $(".marketingtax .max_tx_option").parent().next().hide();
+
+        }
+    });
+
+    $(".marketingtax .max_wallet_option").on("click", () => {
+        if ($(".marketingtax .max_wallet_option").is(":checked")) {
+            $(".marketingtax .max_wallet_option").parent().next().show();
+
+        } else {
+            $(".marketingtax .max_wallet_option").parent().next().hide();
+
+        }
+    });
+
+</script>

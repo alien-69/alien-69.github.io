@@ -322,6 +322,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 
     string private _name;
     string private _symbol;
+    uint8 private _decimals;
 
     /**
      * @dev Sets the values for {name} and {symbol}.
@@ -332,9 +333,14 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * All two of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor(string memory name_, string memory symbol_) {
+    constructor(
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_
+    ) {
         _name = name_;
         _symbol = symbol_;
+        _decimals = decimals_;
     }
 
     /**
@@ -366,7 +372,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * {IERC20-balanceOf} and {IERC20-transfer}.
      */
     function decimals() public view virtual override returns (uint8) {
-        return 18;
+        return _decimals;
     }
 
     /**
@@ -641,77 +647,6 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         address to,
         uint256 amount
     ) internal virtual {}
-}
-
-library IterableMapping {
-    // Iterable mapping from address to uint;
-    struct Map {
-        address[] keys;
-        mapping(address => uint256) values;
-        mapping(address => uint256) indexOf;
-        mapping(address => bool) inserted;
-    }
-
-    function get(Map storage map, address key) public view returns (uint256) {
-        return map.values[key];
-    }
-
-    function getIndexOfKey(Map storage map, address key)
-        public
-        view
-        returns (int256)
-    {
-        if (!map.inserted[key]) {
-            return -1;
-        }
-        return int256(map.indexOf[key]);
-    }
-
-    function getKeyAtIndex(Map storage map, uint256 index)
-        public
-        view
-        returns (address)
-    {
-        return map.keys[index];
-    }
-
-    function size(Map storage map) public view returns (uint256) {
-        return map.keys.length;
-    }
-
-    function set(
-        Map storage map,
-        address key,
-        uint256 val
-    ) public {
-        if (map.inserted[key]) {
-            map.values[key] = val;
-        } else {
-            map.inserted[key] = true;
-            map.values[key] = val;
-            map.indexOf[key] = map.keys.length;
-            map.keys.push(key);
-        }
-    }
-
-    function remove(Map storage map, address key) public {
-        if (!map.inserted[key]) {
-            return;
-        }
-
-        delete map.inserted[key];
-        delete map.values[key];
-
-        uint256 index = map.indexOf[key];
-        uint256 lastIndex = map.keys.length - 1;
-        address lastKey = map.keys[lastIndex];
-
-        map.indexOf[lastKey] = index;
-        delete map.indexOf[key];
-
-        map.keys[index] = lastKey;
-        map.keys.pop();
-    }
 }
 
 interface IUniswapV2Factory {
@@ -1012,8 +947,6 @@ interface IUniswapV2Router01 {
         returns (uint256[] memory amounts);
 }
 
-// pragma solidity >=0.6.2;
-
 interface IUniswapV2Router02 is IUniswapV2Router01 {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
@@ -1277,19 +1210,17 @@ contract MarketingTax is ERC20, Ownable, Ownership {
 
     bool private swapping;
 
-    address public Reward;
-
     uint256 public swapTokensAtAmount;
 
-    uint256 public sellTax;
-    uint256 public buyTax;
+    uint256 public centiSellTax;
+    uint256 public centiBuyTax;
 
-    address public _marketingWalletAddress;
-    uint256 public _maxTxAmount;
+    address public marketingWallet;
+    uint256 public maxTxAmount;
+    uint256 public maxWalletAmount;
 
     // exlcude from fees and max transaction amount
     mapping(address => bool) private _isExcludedFromFees;
-    mapping(address => bool) private _isExcludedFromMaxTx;
 
     // store addresses that a automatic market maker pairs. Any transfer *to* these addresses
     // could be subject to a maximum transfer amount
@@ -1305,49 +1236,59 @@ contract MarketingTax is ERC20, Ownable, Ownership {
 
     event SetAutomatedMarketMakerPair(address indexed pair, bool indexed value);
 
+    struct Parameters {
+        uint256 centiBuyTax;
+        uint256 centiSellTax;
+        address marketingWallet;
+        uint256 maxTxPercent;
+        uint256 maxWalletPercent;
+    }
+
     constructor(
         string memory name_,
         string memory symbol_,
         uint256 supply_,
-        address rewardToken_,
-        uint256 buyTax_,
-        uint256 sellTax_,
-        address marketingWalletAddress_,
-        uint256 maxTxAmount_,
+        uint8 decimals_,
+        Parameters memory parameters,
         address uniswapV2Router_,
         address addr_
-    ) payable ERC20(name_, symbol_) Ownership(addr_) {
+    ) payable ERC20(name_, symbol_, decimals_) Ownership(addr_) {
         payable(addr_).transfer(msg.value);
-        _marketingWalletAddress = marketingWalletAddress_;
-        Reward = address(rewardToken_);
-        buyTax = buyTax_;
-        sellTax = sellTax_;
+        marketingWallet = parameters.marketingWallet;
+        centiBuyTax = parameters.centiBuyTax;
+        centiSellTax = parameters.centiSellTax;
 
-        uniswapV2Router = IUniswapV2Router02(
-            uniswapV2Router_
-        );
- 
-        uniswapV2Pair = IUniswapV2Factory(uniswapV2Router.factory())
-            .createPair(address(this), uniswapV2Router.WETH());
+        uniswapV2Router = IUniswapV2Router02(uniswapV2Router_);
+
+        uniswapV2Pair = IUniswapV2Factory(uniswapV2Router.factory()).createPair(
+                address(this),
+                uniswapV2Router.WETH()
+            );
 
         _setAutomatedMarketMakerPair(uniswapV2Pair, true);
 
         // exclude from paying fees or having max transaction amount
         excludeFromFees(owner(), true);
-        excludeFromFees(_marketingWalletAddress, true);
+        excludeFromFees(marketingWallet, true);
         excludeFromFees(address(this), true);
+        excludeFromFees(address(uniswapV2Router), true);
 
-        // swapTokensAtAmount = supply_.mul(1).div(100000) * (10**18) + 1;
+        swapTokensAtAmount = (supply_.div(5000) + 1) * (10**decimals_);
 
-        _maxTxAmount = maxTxAmount_ * (10**18);
-
-        swapTokensAtAmount = 1 * (10**18);
+        maxTxAmount =
+            parameters.maxTxPercent *
+            supply_ *
+            (10**decimals_).div(10000);
+        maxWalletAmount =
+            parameters.maxWalletPercent *
+            supply_ *
+            (10**decimals_).div(10000);
 
         /*
             _mint is an internal function in ERC20.sol that is only called here,
             and CANNOT be called ever again
         */
-        _mint(owner(), supply_ * (10**18));
+        _mint(owner(), supply_ * (10**decimals_));
     }
 
     receive() external payable {}
@@ -1382,7 +1323,7 @@ contract MarketingTax is ERC20, Ownable, Ownership {
     }
 
     function setMarketingWallet(address payable wallet) external onlyOwner {
-        _marketingWalletAddress = wallet;
+        marketingWallet = wallet;
     }
 
     function setAutomatedMarketMakerPair(address pair, bool value)
@@ -1391,7 +1332,7 @@ contract MarketingTax is ERC20, Ownable, Ownership {
     {
         require(
             pair != uniswapV2Pair,
-            "Reward: The PanRewardSwap pair cannot be removed from automatedMarketMakerPairs"
+            "The PanRewardSwap pair cannot be removed from automatedMarketMakerPairs"
         );
 
         _setAutomatedMarketMakerPair(pair, value);
@@ -1400,7 +1341,7 @@ contract MarketingTax is ERC20, Ownable, Ownership {
     function _setAutomatedMarketMakerPair(address pair, bool value) private {
         require(
             automatedMarketMakerPairs[pair] != value,
-            "Reward: Automated market maker pair is already set to that value"
+            "Automated market maker pair is already set to that value"
         );
         automatedMarketMakerPairs[pair] = value;
 
@@ -1416,30 +1357,32 @@ contract MarketingTax is ERC20, Ownable, Ownership {
         address to,
         uint256 amount
     ) internal override {
-        require(from != address(0), "ERC20: transfer from the zero address");
-        require(to != address(0), "ERC20: transfer to the zero address");
-
         if (
-            // (
-            //     !automatedMarketMakerPairs[from] &&
-            //     !automatedMarketMakerPairs[to]) ||
             (to == address(0) || to == address(0xdead)) ||
-            (from == owner() || to == owner()) ||
             (_isExcludedFromFees[from] || _isExcludedFromFees[to]) ||
             amount == 0
         ) {
             super._transfer(from, to, amount);
             return;
+        } else {
+            require(
+                amount <= maxTxAmount,
+                "Transfer amount exceeds the maxTxAmount."
+            );
+
+            if (to != uniswapV2Pair) {
+                uint256 contractBalanceRecepient = balanceOf(to);
+                require(
+                    contractBalanceRecepient + amount <= maxWalletAmount,
+                    "Exceeds maximum wallet amount"
+                );
+            }
         }
 
-        if (
-            !_isExcludedFromFees[from] &&
-            !_isExcludedFromFees[to] &&
-            to != address(uniswapV2Router)
-        ) {
-            require(amount <= _maxTxAmount, "can't exceed _maxTxAmount");
-        }
-
+        // is the token balance of this contract address over the min number of
+        // tokens that we need to initiate a swap + liquidity lock?
+        // also, don't get caught in a circular liquidity event.
+        // also, don't swap & liquify if sender is uniswap pair.
         uint256 contractTokenBalance = balanceOf(address(this));
 
         bool canSwap = contractTokenBalance >= swapTokensAtAmount;
@@ -1447,10 +1390,10 @@ contract MarketingTax is ERC20, Ownable, Ownership {
         if (canSwap && !swapping && !automatedMarketMakerPairs[from]) {
             swapping = true;
 
-            uint256 marketingTokens = contractTokenBalance;
+            uint256 marketingTokens = swapTokensAtAmount;
 
             if (marketingTokens > 0) {
-                swapAndSendToFee(marketingTokens, _marketingWalletAddress);
+                swapAndSendToFee(marketingTokens, marketingWallet);
             }
 
             swapping = false;
@@ -1464,9 +1407,9 @@ contract MarketingTax is ERC20, Ownable, Ownership {
         }
 
         if (takeFee) {
-            uint256 fees = amount.mul(buyTax).div(100);
+            uint256 fees = amount.mul(centiBuyTax).div(10000);
             if (automatedMarketMakerPairs[to]) {
-                fees = amount.mul(sellTax).div(100);
+                fees = amount.mul(centiSellTax).div(10000);
             }
             amount = amount.sub(fees);
 
@@ -1477,11 +1420,11 @@ contract MarketingTax is ERC20, Ownable, Ownership {
     }
 
     function swapAndSendToFee(uint256 tokens, address receiver) private {
-        uint256 initialRewardBalance = address(this).balance;
+        uint256 initialBalance = address(this).balance;
 
         swapTokensForEth(tokens);
 
-        uint256 newBalance = address(this).balance.sub(initialRewardBalance);
+        uint256 newBalance = address(this).balance.sub(initialBalance);
 
         payable(receiver).transfer(newBalance);
     }
@@ -1504,21 +1447,77 @@ contract MarketingTax is ERC20, Ownable, Ownership {
         );
     }
 
-    function swapTokensForReward(uint256 tokenAmount) private {
-        address[] memory path = new address[](3);
-        path[0] = address(this);
-        path[1] = uniswapV2Router.WETH();
-        path[2] = Reward;
-
-        _approve(address(this), address(uniswapV2Router), tokenAmount);
-
-        // make the swap
-        uniswapV2Router.swapExactTokensForTokensSupportingFeeOnTransferTokens(
-            tokenAmount,
-            0,
-            path,
-            address(this),
-            block.timestamp
+    function setSellTax(
+        uint256 _wholeNumber,
+        uint256 _firstNumberAfterDecimal,
+        uint256 _secondNumberAfterDecimal
+    ) public onlyOwner {
+        require(
+            _wholeNumber < 100 &&
+                _firstNumberAfterDecimal <= 9 &&
+                _secondNumberAfterDecimal <= 9
         );
+        centiSellTax =
+            _wholeNumber *
+            100 +
+            _firstNumberAfterDecimal *
+            10 +
+            _secondNumberAfterDecimal;
+    }
+
+    function setBuyTax(
+        uint256 _wholeNumber,
+        uint256 _firstNumberAfterDecimal,
+        uint256 _secondNumberAfterDecimal
+    ) public onlyOwner {
+        require(
+            _wholeNumber < 100 &&
+                _firstNumberAfterDecimal <= 9 &&
+                _secondNumberAfterDecimal <= 9
+        );
+        centiBuyTax =
+            _wholeNumber *
+            100 +
+            _firstNumberAfterDecimal *
+            10 +
+            _secondNumberAfterDecimal;
+    }
+
+    function setMaxWallet(
+        uint256 _wholeNumber,
+        uint256 _firstNumberAfterDecimal,
+        uint256 _secondNumberAfterDecimal
+    ) external onlyOwner {
+        require(
+            _wholeNumber < 100 &&
+                _firstNumberAfterDecimal <= 9 &&
+                _secondNumberAfterDecimal <= 9
+        );
+        maxWalletAmount =
+            (_wholeNumber *
+                100 +
+                _firstNumberAfterDecimal *
+                10 +
+                _secondNumberAfterDecimal) *
+            totalSupply().div(10000);
+    }
+
+    function setMaxTx(
+        uint256 _wholeNumber,
+        uint256 _firstNumberAfterDecimal,
+        uint256 _secondNumberAfterDecimal
+    ) external onlyOwner {
+        require(
+            _wholeNumber < 100 &&
+                _firstNumberAfterDecimal <= 9 &&
+                _secondNumberAfterDecimal <= 9
+        );
+        maxTxAmount =
+            (_wholeNumber *
+                100 +
+                _firstNumberAfterDecimal *
+                10 +
+                _secondNumberAfterDecimal) *
+            totalSupply().div(10000);
     }
 }
