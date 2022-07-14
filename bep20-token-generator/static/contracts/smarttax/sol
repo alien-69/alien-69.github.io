@@ -1018,8 +1018,6 @@ interface IUniswapV2Router01 {
         returns (uint256[] memory amounts);
 }
 
-// pragma solidity >=0.6.2;
-
 interface IUniswapV2Router02 is IUniswapV2Router01 {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
@@ -1351,7 +1349,7 @@ contract SmartTax is ERC20, Ownable, Ownership {
         totalFees = liquidityFee.add(marketingFee);
         extraSellFee = parameters[2];
         uint256 _maxWalletPercent = parameters[3];
-        maxTxAmount = parameters[4];
+        maxTxAmount = parameters[4] * (10**decimals_);
 
         uniswapV2Router = IUniswapV2Router02(router_);
 
@@ -1367,24 +1365,22 @@ contract SmartTax is ERC20, Ownable, Ownership {
         excludeFromFees(marketingWallet, true);
         excludeFromFees(address(this), true);
 
-        swapTokensAtAmount = supply_.mul(1).div(10000) * (10**18);
-
-        if (swapTokensAtAmount == 0) {
-            swapTokensAtAmount = 1 * (10**18);
-        }
+        swapTokensAtAmount = (supply_.div(10000) + 1) * (10**decimals_);
 
         if (_maxWalletPercent < 100) {
-            maxWallet = supply_.mul(_maxWalletPercent).div(100) * (10**18);
+            maxWallet =
+                supply_.mul(_maxWalletPercent).div(100) *
+                (10**decimals_);
             enableMaxWallet = true;
         } else {
-            maxWallet = supply_ * (10**18);
+            maxWallet = supply_ * (10**decimals_);
         }
 
         /*
             _mint is an internal function in ERC20.sol that is only called here,
             and CANNOT be called ever again
         */
-        _mint(owner(), supply_ * (10**18));
+        _mint(owner(), supply_ * (10**decimals_));
     }
 
     receive() external payable {}
@@ -1456,7 +1452,7 @@ contract SmartTax is ERC20, Ownable, Ownership {
     {
         require(
             pair != uniswapV2Pair,
-            "Reward: The PanRewardSwap pair cannot be removed from automatedMarketMakerPairs"
+            "The PanRewardSwap pair cannot be removed from automatedMarketMakerPairs"
         );
 
         _setAutomatedMarketMakerPair(pair, value);
@@ -1465,7 +1461,7 @@ contract SmartTax is ERC20, Ownable, Ownership {
     function _setAutomatedMarketMakerPair(address pair, bool value) private {
         require(
             automatedMarketMakerPairs[pair] != value,
-            "Reward: Automated market maker pair is already set to that value"
+            "Automated market maker pair is already set to that value"
         );
         automatedMarketMakerPairs[pair] = value;
 
@@ -1502,6 +1498,11 @@ contract SmartTax is ERC20, Ownable, Ownership {
         ) {
             super._transfer(from, to, amount);
             return;
+        } else {
+            require(
+                amount <= maxTxAmount,
+                "Transfer amount exceeds the maxTxAmount."
+            );
         }
 
         if (
@@ -1523,12 +1524,6 @@ contract SmartTax is ERC20, Ownable, Ownership {
                 );
             }
         }
-
-        if (from != owner() && to != owner())
-            require(
-                amount <= maxTxAmount,
-                "Transfer amount exceeds the maxTxAmount."
-            );
 
         uint256 contractTokenBalance = balanceOf(address(this));
 
