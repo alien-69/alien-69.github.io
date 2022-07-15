@@ -1,0 +1,345 @@
+<div class="rewardtoken2 my-3">
+    <div class="alert alert-warning">If a token reward has a max transaction amount and tax, you need to exclude your
+        new token address from the max transaction amount and tax.</div>
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token reward </label>
+            <div class="col-sm-9">
+                <input class="reward_token w-100" type="text" placeholder="0xba2ae424d960c26247dd6c32edc70b295c744c43"
+                    name="rewardToken" ethAddress="true" required />
+
+                <p class="hint">Enter token address of reward token. Ex: If you want to reward DOGE, please enter
+                    0xba2ae424d960c26247dd6c32edc70b295c744c43.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token name</label>
+            <div class="col-sm-9">
+                <input class="token_name" type="text" placeholder="" required name="token_name"
+                    title="Enter token name" />
+                <p class="hint">Choose a name for your token.</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token symbol </label>
+            <div class="col-sm-9">
+                <input class="token_symbol" type="text" placeholder="" required name="token_symbol"
+                    title="Enter token symbol" />
+                <p class="hint">
+                    Choose a symbol for your token (usually 3-5 chars).
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Total supply </label>
+            <div class="col-sm-9">
+                <input class="token_supply" type="number" min="1" placeholder="1000000000000000" integer="true"
+                    name="total_supply" required />
+                <p class="hint">
+                    Insert the initial number of tokens available. Will be put in your
+                    account.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Decimals </label>
+            <div class="col-sm-9">
+                <input class="decimals" type="number" min="0" placeholder="18" name="decimals" max="255" integer="true"
+                    required />
+                <p class="hint">
+                    Insert the decimal precision of your token.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Minimum HOLD</label>
+            <div class="col-sm-9">
+                <input class="min_tokens" type="number" min="1" placeholder="10000" name="minTokens" integer="true"
+                    required />
+                <p class="hint">
+                    Minimum tokens required for user to receive reward.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Reward Fees % </label>
+            <div class="col-sm-9">
+                <input class="reward_fees" type="number" min="1" placeholder="7" name="rewardFees" max="25"
+                    integer="true" required />
+                <p class="hint">
+                    Transaction fee in % to pay dividend to holders.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="form-group row" style="display: none;">
+            <label class="col-sm-3 col-form-lable">Max Transfer % </label>
+            <div class="col-sm-9">
+                <input value="100" class="max_tx_percent" type="number" min="0" step="1" placeholder="1" />
+                <p class="hint">
+                    Maximum % of total supply allowed for each transaction.
+                </p>
+            </div>
+        </div>
+
+
+        <p><strong>Marketing Wallet </strong> </p>
+
+
+        <div class="row">
+            <input class="marketing_wallet" type="text" placeholder="0x90C134e3F5733a15c104c201384dAf4a0de42F42" />
+            <p class="hint">
+                Marketing tax will be sent to marketing wallet.
+            </p>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Marketing Fees % </label>
+            <div class="col-sm-9">
+                <input class="marketing_fees" type="number" min="0" step="1" placeholder="3" />
+                <p class="hint">
+                    Transaction fee in % to generate marketing budget.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="dev_wallet_option" />
+            <label class="form-check-label" for="dev_wallet_option">
+                <p><strong>Dev Wallet </strong> </p>
+            </label>
+        </div>
+        <div class="row" id="dev_wallet_form" style="display: none;">
+            <input class="dev_wallet" type="text" placeholder="0xF2797b9FE3eEd080358F7c09E1239fd8aF64247a" />
+            <p class="hint">
+                Development tax will be sent to development wallet.
+            </p>
+            <label class="col-sm-3 col-form-lable">Dev Fees % </label>
+            <div class="col-sm-9">
+                <input class="dev_fees" type="number" min="0" step="1" placeholder="1" />
+                <p class="hint">
+                    Transaction fee in % to generate development budget.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="charity_wallet_option" />
+            <label class="form-check-label" for="charity_wallet_option">
+                <p><strong>Charity Wallet </strong> </p>
+            </label>
+        </div>
+
+        <div class="row" id="charity_wallet_form" style="display: none;">
+            <input class="charity_wallet" type="text" placeholder="0x2FD5630c45094514eaA1f1ed38F8a982b7db0137" />
+            <p class="hint">
+                Charity tax will be sent to charity wallet.
+            </p>
+            <label class="col-sm-3 col-form-lable">Charity Fees % </label>
+            <div class="col-sm-9">
+                <input class="charity_fees" type="number" min="0" step="1" placeholder="1" />
+                <p class="hint">
+                    Transaction fee in % to generate charity budget.
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="burn_fee_option" />
+            <label class="form-check-label" for="burn_fee_option">
+                <p><strong>Burn Fees</strong> </p>
+            </label>
+        </div>
+
+        <div class="form-group row" id="burn_fee_form" style="display: none;">
+            <label class="col-sm-3 col-form-lable">Burn Fees % </label>
+            <div class="col-sm-9">
+                <input class="burn_fees" type="number" min="0" step="1" placeholder="1" />
+                <p class="hint">
+                    Transaction fee in % to burn.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="liquidity_fee_option" />
+            <label class="form-check-label" for="liquidity_fee_option">
+                <p><strong>Liquidity Fees</strong> </p>
+            </label>
+        </div>
+
+        <div class="form-group row" id="liquidity_fee_form" style="display: none;">
+            <label class="col-sm-3 col-form-lable">Liquidity Fees % </label>
+            <div class="col-sm-9">
+                <input class="liquidity_fees" type="number" min="0" step="1" placeholder="2" />
+                <p class="hint">
+                    Transaction fee in % to generate liquidity.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="extra_sell_tax_option" />
+            <label class="form-check-label" for="extra_sell_tax_option">
+                <p><strong>Extra Sell Tax</strong> </p>
+            </label>
+        </div>
+
+        <div class="form-group row" id="extra_sell_tax_form" style="display: none;">
+            <label class="col-sm-3 col-form-lable">Extra Sell Tax Fees % </label>
+            <div class="col-sm-9">
+                <input class="tax_fees_extra" type="number" min="0" step="1" placeholder="1" />
+                <p class="hint">
+                    Extra fees will be applied to sell transaction.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="anti_sniper_bot_option" />
+            <label class="form-check-label" for="anti_sniper_bot_option">
+                <p><strong>Anti Sniper Bot</strong> </p>
+            </label>
+        </div>
+
+        <div class="form-group row" id="anti_sniper_bot_form" style="display: none;">
+            <label class="col-sm-3 col-form-lable">Delayed Blocks</label>
+            <div class="col-sm-9">
+                <input class="tax_fees_extra" type="number" min="0" step="1" placeholder="5" />
+                <p class="hint">
+                    Number of delayed blocks after launch.
+                </p>
+            </div>
+            <label class="col-sm-3 col-form-lable">Blacklist Addresses</label>
+            <div class="col-sm-3">
+                <select class="form-select blacklist" aria-label="Default select example">
+                    <option value="0" selected>Enable</option>
+
+                </select>
+                <p class="hint">
+                    Can blacklist addresses.
+                </p>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" value="" id="whale_protection_option" />
+            <label class="form-check-label" for="whale_protection_option">
+                <p><strong>Whale Protection</strong> </p>
+            </label>
+        </div>
+
+        <div class="row" id="whale_protection_form" style="display: none;">
+            <label class="col-sm-3 col-form-lable">Max Transaction Amount</label>
+            <div class="col-sm-9">
+                <input class="max_tx_amount" type="number" min="0" step="1" placeholder="100000000000" />
+                <p class="hint">
+                    Maximum number of tokens user can buy/sell in one transaction.
+                </p>
+            </div>
+            <label class="col-sm-3 col-form-lable">Max Buy</label>
+            <div class="col-sm-9">
+                <input class="max_buy" type="number" min="0" step="1" placeholder="" />
+                <p class="hint">
+                    Maximum number of tokens user can buy per transaction.
+                </p>
+            </div>
+            <label class="col-sm-3 col-form-lable">Max Sell</label>
+            <div class="col-sm-9">
+                <input class="max_sell" type="number" min="0" step="1" placeholder="" />
+                <p class="hint">
+                    Maximum number of tokens user can sell per transaction.
+                </p>
+            </div>
+            <label class="col-sm-3 col-form-lable">Max Wallet</label>
+            <div class="col-sm-9">
+                <input class="max_wallet" type="number" min="0" step="1" placeholder="" />
+                <p class="hint">
+                    Maximum number of tokens user can have in wallet.
+                </p>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+<script type="module">
+    import { addPrice, subPrice } from "./static/parameters.js";
+
+    function optionForm(name, price, addCallback, subCallback) {
+        $("#" + name + "_option").on("click", () => {
+            if ($("#" + name + "_option").is(":checked")) {
+                $("#" + name + "_form").show();
+                addCallback();
+                addPrice(price);
+            } else {
+                $("#" + name + "_form").hide();
+                subCallback();
+                subPrice(price);
+            }
+        });
+
+    }
+
+    optionForm("dev_wallet", 0.1, () => {
+        //add
+    }, () => {
+        //remove
+    })
+
+    optionForm("charity_wallet", 0.1, () => {
+        //add
+    }, () => {
+        //remove
+    })
+
+    optionForm("burn_fee", 0.1, () => {
+        //add
+    }, () => {
+        //remove
+    })
+
+    optionForm("liquidity_fee", 0.1, () => {
+        //add
+    }, () => {
+        //remove
+    })
+
+
+    optionForm("extra_sell_tax", 0.1, () => {
+        //add
+    }, () => {
+        //remove
+    })
+
+
+    optionForm("whale_protection", 0.1, () => {
+        //add
+    }, () => {
+        //remove
+    })
+
+    optionForm("anti_sniper_bot", 0.1, () => {
+        //add
+    }, () => {
+        //remove
+    })
+</script>

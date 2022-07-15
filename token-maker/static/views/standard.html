@@ -1,0 +1,64 @@
+<div class="standard my-3">
+
+
+    <form>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token name</label>
+            <div class="col-sm-9">
+                <input class="token_name" type="text" placeholder="" required name="token_name"
+                    title="Enter token name" />
+                <p class="hint">Choose a name for your token.</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token symbol </label>
+            <div class="col-sm-9">
+                <input class="token_symbol" type="text" placeholder="" required name="token_symbol"
+                    title="Enter token symbol" />
+                <p class="hint">
+                    Choose a symbol for your token (usually 3-5 chars).
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Total supply </label>
+            <div class="col-sm-9">
+                <input class="token_supply" type="number" placeholder="1000000000000" name="token_supply" min="1"
+                    integer="true" />
+                <p class="hint">
+                    Insert the initial number of tokens available. Will be
+                    put in your account.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Decimals </label>
+            <div class="col-sm-9">
+                <input class="decimals" type="number" placeholder="18" name="decimals" min="0" max="255"
+                    integer="true" />
+                <p class="hint">
+                    Insert the decimal precision of your token.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="form-check mt-2">
+            <input class="form-check-input can_mint" type="checkbox" value="" id="can_mint" />
+            <label class="form-check-label" for="can_mint">
+                <strong>Can Mint</strong>
+            </label>
+        </div>
+
+        <div class="form-check mt-2">
+            <input class="form-check-input can_burn" type="checkbox" value="" id="can_burn" />
+            <label class="form-check-label" for="can_burn">
+                <strong>Can Burn</strong>
+            </label>
+        </div>
+    </form>
+</div>

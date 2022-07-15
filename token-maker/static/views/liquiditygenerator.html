@@ -1,0 +1,113 @@
+<div class="liquiditygenerator my-3">
+
+    <div class="alert alert-info">We have upgraded it to the latest compiler version and added more power to it with
+        advanced features.</div>
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token name</label>
+            <div class="col-sm-9">
+                <input class="token_name" type="text" placeholder="" required name="token_name"
+                    title="Enter token name" />
+                <p class="hint">Choose a name for your token.</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Token symbol </label>
+            <div class="col-sm-9">
+                <input class="token_symbol" type="text" placeholder="" required name="token_symbol"
+                    title="Enter token symbol" />
+                <p class="hint">
+                    Choose a symbol for your token (usually 3-5 chars).
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Total supply </label>
+            <div class="col-sm-9">
+                <input class="token_supply" type="number" min="1" placeholder="1000000000000000" integer="true"
+                    name="total_supply" />
+                <p class="hint">
+                    Insert the initial number of tokens available. Will be
+                    put in your account.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Decimals </label>
+            <div class="col-sm-9">
+                <input class="decimals" type="number" min="0" placeholder="18" name="decimals" max="255"
+                    integer="true" />
+                <p class="hint">
+                    Insert the decimal precision of your token.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Liquidity Fees % </label>
+            <div class="col-sm-9">
+                <input class="liquidity_fees" type="number" min="0" placeholder="5" name="liquidityFees" max="25"
+                    integer="true" />
+                <p class="hint">
+                    Transaction fee in % to generate liquidity.
+                </p>
+            </div>
+        </div>
+
+        <strong>Marketing Wallet </strong>
+
+        <div class="row">
+            <input class="marketing_wallet" type="text" placeholder="" name="marketingWallet" ethAddress="true" required
+                title="Enter marketing wallet" />
+            <p class="hint">
+                Marketing tax will be sent to marketing wallet.
+            </p>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-lable">Marketing Tax % </label>
+            <div class="col-sm-9">
+                <input class="marketing_tax" type="number" min="0" placeholder="10" name="marketingTax" max="25"
+                    integer="true" />
+                <p class="hint">
+                    Transaction fee in % to generate marketing budget.
+                </p>
+            </div>
+        </div>
+        <div class="form-check mt-2">
+            <input class="form-check-input max_tx_option" type="checkbox" value=""
+                id="max_tx_option_liquiditygenerator" />
+            <label class="form-check-label" for="max_tx_option_liquiditygenerator">
+                <strong>Max Transaction</strong>
+            </label>
+        </div>
+        <br />
+        <div class="form-group row" style="display: none" id="max_tx">
+            <label class="col-sm-3 col-form-lable">Max Transaction Amount </label>
+            <div class="col-sm-9">
+                <input class="max_tx_amount" type="number" min="1" placeholder="100000000000000" name="maxTxAmount"
+                    integer="true" />
+                <p class="hint">
+                    Maximum amount of tokens allowed for each transaction.
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="module">
+    import { addPrice, subPrice } from "./static/parameters.js";
+
+    $(".liquiditygenerator .max_tx_option").on("click", () => {
+        if ($(".liquiditygenerator .max_tx_option").is(":checked")) {
+            $(".liquiditygenerator #max_tx").show();
+
+        } else {
+            $(".liquiditygenerator #max_tx").hide();
+
+        }
+    });
+</script>

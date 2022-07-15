@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Create Your Own Token | Token Maker
+  </title>
+  <link rel="icon" href="/static/media/icon.png" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- This is our example code -->
+  <!-- <script type="text/javascript" src="./walletConnectExample.js"></script> -->
+  <!-- <script type="module" src="/static/test-module.js"></script> -->
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3js-cdn@1.3.0/web3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="static/validationRules.js"></script>
+
+  <link rel="stylesheet" href="../static/styles.css" />
+  <link rel="stylesheet" href="./static/styles.css" />
+
+  <meta name="description"
+    content="Create token in less than a minute with the new Smart Contract Generator. No login. No setup. No coding required." />
+  <meta property="twitter:title" content="Create token without coding | Token Maker" />
+  <meta property="og:title" content="Create token without coding | Token Maker" />
+  <meta property="twitter:description"
+    content="Create token in less than a minute with the new Smart Contract Generator. No login. No setup. No coding required." />
+  <meta property="og:description"
+    content="Create token in less than a minute with the new Smart Contract Generator. No login. No setup. No coding required." />
+  <meta property="og:url" content="https://moondeploy.com/token-maker/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://moondeploy.com/static/media/moon-deploy.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://moondeploy.com/static/media/moon-deploy.png" />
+  <meta name="google-site-verification" content="ao9hS7yDUw-d4m80i6qtmkMRx7pAaSxWapAfEZ-dpqY" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7KB79ESXBB"></script>
+  <script>
+    if (!window.location.toString().includes("127.0.0.1") && !window.location.toString().includes("localhost") && !window.location.toString().includes("192.168.")) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-7KB79ESXBB');
+    }
+    else {
+      console.log("development mode")
+      function gtag(event, event_name) {
+        console.log(event, event_name)
+      }
+    }
+
+  </script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/static/media/moon-deploy.png" alt="" height="30" class="top-logo-1" />
+        <img src="/static/media/icon.png" alt="" height="30" class="top-logo-2" />
+      </a>
+
+      <div class="d-flex justify-content-end text-center">
+
+        <span class="account_address" style="display: none;"></span>
+
+        <div class="mx-2">
+
+          <button onclick="gtag('event','connect_wallet')" type="button" class="btn-connect btn btn-primary btn-sm"
+            id="btn-connect">
+            Connect Wallet
+          </button>
+
+          <button onclick="gtag('event','disconnect_wallet')" type="button" class="btn btn-sm" id="btn-disconnect"
+            style="background-color:transparent; display: none;">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </nav>
+
+  <div id="connected" style="display: none">
+
+    <div id="network">
+      <p>
+        <strong>Connected blockchain:</strong>
+        <span id="network-name"></span>
+      </p>
+
+      <p>
+        <strong>Selected account:</strong>
+        <span id="selected-account"></span>
+      </p>
+    </div>
+
+    <hr />
+
+    <h3>All account balances</h3>
+
+    <table class="table table-listing">
+      <thead>
+        <th>Address</th>
+        <th>ETH balance</th>
+      </thead>
+
+      <tbody id="accounts"></tbody>
+    </table>
+
+    <p>
+      Please try to switch between different accounts in your wallet if
+      your wallet supports this functonality.
+    </p>
+  </div>
+
+  <div id="templates" style="display: none">
+    <template id="template-balance">
+      <tr>
+        <th class="address"></th>
+        <td class="balance"></td>
+      </tr>
+    </template>
+  </div>
+  <div class="container col-xxl-8 px-4 py-0">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-0">
+
+      <div class="col">
+        <h1 class="display-5 fw-bold lh-1 mb-3 mt-2">
+          Create your token
+        </h1>
+        <p class="lead">Simple. No coding required.</p>
+
+        <!-- <label class="col-sm-3 col-form-lable">Token type </label> -->
+        <div class="col-sm">
+          <select class="form-select token_type" aria-label="Select token type">
+            <option value="standard" selected>Standard</option>
+            <option value="safemoon">Safemoon (Deflationary)</option>
+            <option value="liquiditygenerator">Liquidity Generator</option>
+            <option value="frictionlessyield">Frictionless Yield</option>
+            <option value="marketingtax">Marketing Tax</option>
+            <option value="smarttax">Smart Tax</option>
+            <option value="rewardtoken">Reward Token</option>
+            <!-- <option value="rewardtoken2">Reward Pro</option> -->
+            <option value="promax">Pro Max</option>
+            <option value="customizedToken">Customized Token</option>
+          </select>
+          <span class="hint">Select token type you want to create. </span>
+
+          <div class="col">
+
+            <span class="badge bg-info" id="tag_popular">Popular</span>
+            <span class="badge bg-danger" id="tag_hot">🔥Hot</span>
+            <span class="badge bg-success" id="tag_new">New</span>
+          </div>
+
+        </div>
+
+        <div id="token_container"></div>
+
+        <script>
+          var default_token_type = "standard"
+          $('.token_type option[value=' + default_token_type + ']').prop('selected', 'selected');
+          $("#token_container").load("static/views/" + default_token_type + ".html")
+
+          $(".token_type").on("change", async () => {
+
+            var token_type = $(".token_type").val()
+
+            changeTokenType(token_type)
+          })
+
+          async function changeTokenType(token_type) {
+            $('.token_type option[value=' + token_type + ']').prop('selected', 'selected');
+            $("#token_container").load("static/views/" + token_type + ".html")
+            if (token_type == "customizedToken") {
+              $(".actionGroup").hide()
+            } else {
+              $(".actionGroup").show()
+            }
+            $(".error-create").hide();
+
+
+            //register validation
+            await sleep(0.5) //delay for page loading
+
+            $("." + token_type)
+              .find("form")
+              .validate({
+                messages: {
+                  marketingWallet: {
+                    required: "Enter marketing wallet",
+                    ethAddress: "Not valid address"
+                  }
+                }
+              })
+          }
+
+          function sleep(s) {
+            return new Promise((resolve) => {
+              setTimeout(resolve, s * 1000);
+            });
+          }
+
+          var loading = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" style="width: 12px; height: 12px; margin-right: 5px"></span>'
+          $("#tag_popular").on("click", async () => {
+            changeTokenType('standard')
+
+            $("#tag_popular").prepend(loading)
+            await sleep(1)
+            $("#tag_popular").find("span").remove()
+
+          })
+
+          $("#tag_hot").on("click", async () => {
+            changeTokenType('marketingtax')
+
+            $("#tag_hot").prepend(loading)
+            await sleep(1)
+            $("#tag_hot").find("span").remove()
+          })
+
+          $("#tag_new").on("click", async () => {
+            changeTokenType('promax')
+
+            $("#tag_new").prepend(loading)
+            await sleep(1)
+            $("#tag_new").find("span").remove()
+          })
+        </script>
+
+
+        <div style="display: block;" class="actionGroup">
+          <div class="form-group row mb-3">
+            <label class="col-form-lable col-sm-3">Router</label>
+            <div>
+              <div id="router_container">
+
+              </div>
+
+
+              <p class="hint">Select the router where your token will be listed later.</p>
+            </div>
+          </div>
+
+          <p class="hint1">
+            <strong>Note:</strong> If you want more functions,
+            <a href="https://t.me/TokenGeneratorBSC" onclick="gtag('event','contact_us_hint')">contact us.</a>
+            👈
+          </p>
+          <div class="text-center">
+            <p id="price" style="background-color: greenyellow">FREE</p>
+            <p> GAS fee will be added to final amount</p>
+            <p id="tx_fee" hidden> 3% transaction fees when sell</p>
+          </div>
+          <p>Network </p>
+          <select class="form-select network" aria-label="Default select example">
+            <option disabled style="font-style:italic">&nbsp;&nbsp;&nbsp;Mainnet</option>
+
+            <option value="1">Ethereum</option>
+            <option value="25">Cronos</option>
+            <option value="56">Binance Smart Chain</option>
+            <option value="137">Matic(Polygon)</option>
+            <option value="250">Fantom Opera</option>
+            <option value="43114">Avalanche</option>
+            <option disabled style="font-style:italic">&nbsp;&nbsp;&nbsp;Testnet</option>
+            <option value="97">Binance Smart Chain - Testnet</option>
+
+          </select>
+          <p class="hint">Choose your network</p>
+          <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-warning testnetAlert"
+            style="display: none;">
+            <strong>You selected a TEST Network.</strong>
+            <hr>
+            To deploy on Main Network you must select Binance Smart Chain. <br>
+            <a class="hint" href="https://testnet.binance.org/faucet-smart">Get FREE BNB for Testnet</a>
+          </div>
+        </div>
+        <div class="row">
+          <lottie-player class="loading" src="/static/media/loading.json" background="transparent" speed="2"
+            style="width: 100px; height: 100px; display: none;" loop autoplay>
+          </lottie-player>
+          <p class="hint deployStatus" style="display: none;"></p>
+          <p class="hint alertLoading" style="color: red; display: none;">Please wait a moment and DON'T refresh
+            the page.</p>
+          <p class="hint error-create" style="color: red; display: none;">Some errors.</p>
+
+          <dl class="tip" style="display: none;">
+            <dt> 💡Tips:</dt>
+            <dd>- try increase the gas limit.</dd>
+            <dd>- <a href="https://t.me/TokenGeneratorBSC">contact us</a> for help</dd>
+          </dl>
+        </div>
+        <div style="display: block;" class="actionGroup">
+          <div class="
+          d-grid
+          gap-2
+          d-md-flex
+          justify-content-md-start
+          row
+          d-flex
+          align-items-center
+          act  
+        ">
+            <button type="button" class="btn btn-primary btn-lg btnCreate col-sm-3">
+              Create
+            </button>
+          </div>
+        </div>
+
+        <!-- <div id="connectWalletWall" class="text-center myContainer">
+          <button class="vertical-center btn btn-info btn-md text-white">Connect Wallet</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center mt-5">
+    <h3>Watch video tutorial</h3>
+
+    <!-- Large modal -->
+    <button id="btnModal" type="button" class="btn" style="background-color:transparent" data-toggle="modal"
+      data-target=".bd-example-modal-lg">
+      <i class="fab fa-youtube fa-3x"></i></button>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content p-1">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" width="100%" height="350"
+              src="https://www.youtube.com/embed/K-dh74j5ej0?start=10" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#btnModal").on("click", function () {
+          $('.modal').modal('show');
+          gtag('event', "watch_video_tutorial");
+        })
+      });
+    </script>
+  </div>
+
+
+  <div class="container">
+    <div class="my-3 align-items-start" style="color: rgb(103, 112, 243)">
+
+      <u>
+        <h5>Steps:</h5>
+      </u>
+      <ol>
+        <li>Your wallet needs a minimum balance (creation fee + gas) to start.</li>
+        <li>Name your token, symbol</li>
+        <li>Choose total supply and other required parameters. If you don't enter these values, the default
+          values will be used.</li>
+        <li>Click Create. </li>
+        <li>Confirm transaction. </li>
+        <li>Add your new token to wallet.</li>
+      </ol>
+    </div>
+
+  </div>
+  <div class="text-center">
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted mt-5">
+      <!-- Section: Social media -->
+      <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+          <span>Get connected with us:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a href="https://t.me/TokenGeneratorBSC" class="icon" target="_blank" onclick="gtag('event','telegram')">
+            <i class="fab fa-telegram fa-2x red"></i>
+          </a>
+          <!-- <a href="https://www.youtube.com/channel/UCJr5ccy7p33qt4Yy-rLKEfg" class="icon" target="_blank"
+            onclick="gtag('event','youtube')">
+            <i class="fab fa-youtube fa-2x"></i>
+          </a> -->
+
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="" hidden>
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fas fa-gem me-3"></i>Moon Deploy
+              </h6>
+              <p>
+                Our mission is to make token creation easy and accessible for everyone.
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                Tools
+              </h6>
+              <p>
+                <a href="/bep20-token-generator" target="_blank" class="text-reset">BEP20 token generator</a>
+              </p>
+              <p>
+                <a href="/bep20-wallet-generator" target="_blank" class="text-reset">BEP20 wallet generator</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                Useful links
+              </h6>
+              <p>
+                <a href="https://t.me/TokenGeneratorBSC" target="_blank" class="text-reset"
+                  onclick="gtag('event','telegram')">Telegram</a>
+              </p>
+              <p>
+                <a href="https://www.youtube.com/channel/UCJr5ccy7p33qt4Yy-rLKEfg" target="_blank"
+                  class="text-reset">Youtube</a>
+              </p>
+              <!-- <p>
+                <a href="#!" class="text-reset">Blogs</a>
+              </p> -->
+              <p>
+                <a href="https://forms.gle/mZjhovdVTizCwRSB8" class="text-reset" target="_blank"> Feedback</a>
+              </p>
+              <p>
+                <a href="https://t.me/TokenGeneratorBSC" class="text-reset" target="_blank"
+                  onclick="gtag('event','telegram')">Help</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+
+
+              <h6 class="text-uppercase fw-bold mb-4">
+                Services
+              </h6>
+              <p>
+                <a href="https://t.me/TokenGeneratorBSC" class="text-reset" target="_blank"
+                  onclick="gtag('event','telegram')">Smart contract
+                  development</a>
+              </p>
+              <!-- <p><i class="fas fa-home me-3"></i> Moon Deploy</p> -->
+              <!-- <p>
+                <i class="fas fa-envelope me-3"></i>
+  
+              </p> -->
+
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(17, 0, 255, 0.2)">
+        © 2021-2022 Copyright:
+        <a class="text-white" href="https://moondeploy.com">Moon Deploy</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script>
+      if (navigator.userAgent.indexOf("Safari") != -1) {
+        $(".introMedia").html('<img width="500" height="500" class="d-block mx-lg-auto img-fluid" src="/static/media/intro3.gif">')
+      }
+    </script>
+
+
+    <script type="text/javascript" src="https://unpkg.com/web3@1.7.0/dist/web3.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.5/dist/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
+    <script type="text/javascript"
+      src="https://unpkg.com/@walletconnect/web3-provider@1.7.1/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/fortmatic@2.2.1/dist/fortmatic.js"></script>
+    <script type="module" src="static/events.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script type="text/javascript" src="static/new_wallet.js"></script>
+
+    <script type="module" src="static/misc.js"></script>
+
+    <script type="module" src="static/parameters.js"></script>
+    <script type="module" src="static/connect_wallet.js"></script>
+    <!-- <script src="static/referral.js"></script> -->
+    <!-- <script src="static/countdown.js"></script> -->
+
+    <!-- <script src="/static/buyToken.js"></script> -->
+
+    <!-- Include this in your HTML page -->
+
+    <!-- Start of HubSpot Embed Code -->
+    <!-- <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25571645.js"></script> -->
+    <!-- End of HubSpot Embed Code -->
+</body>
+
+</html>
