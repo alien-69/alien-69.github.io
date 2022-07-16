@@ -210,6 +210,11 @@
             }
             $(".error-create").hide();
 
+            if (token_type == "standard") {
+              $(".select_router").hide()
+            } else {
+              $(".select_router").show()
+            }
 
             //register validation
             $("." + token_type)
@@ -251,7 +256,7 @@
         </script>
 
         <div style="display: block;" class="actionGroup">
-          <div class="form-group row mb-3">
+          <div class="form-group row mb-3 select_router" style="display: none;">
             <label class="col-form-lable col-sm-3">Router</label>
             <div>
               <select class="form-select router" aria-label="Select router">
@@ -365,7 +370,7 @@
         <h5>Steps:</h5>
       </u>
       <ol>
-        <li>Your wallet should have at least 0.22 BNB to start.</li>
+        <li>Your wallet should have at least 0.17 BNB to start.</li>
         <li>Name your token, symbol</li>
         <li>Choose total supply and other required parameters. If you don't enter these values, the default
           values will be used.</li>
