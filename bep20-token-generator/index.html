@@ -363,6 +363,16 @@
           gtag('event', "watch_video_tutorial");
         })
       });
+
+      $(".token_type").on("change", () => {
+        if ($(".token_type").val() == "rewardtoken") {
+          $("#youtubeVideo").attr("src", "https://www.youtube.com/embed/Z5BjXSogbcg?start=0")
+        } else if ($(".token_type").val() == "safemoon") {
+          $("#youtubeVideo").attr("src", "https://www.youtube.com/embed/r1blu0WNRy4?start=0")
+        } else {
+          $("#youtubeVideo").attr("src", "https://www.youtube.com/embed/6Gln136VM_Q?start=0")
+        }
+      })
     </script>
   </div>
 
