@@ -1324,7 +1324,7 @@ contract LiquidityGenerator is ERC20, Ownable, Ownership {
         excludeFromFees(address(this), true);
 
         swapTokensAtAmount =
-            supply_.div(5000) *
+            supply_.div(100000) *
             (10**decimals_) +
             100 *
             (10**decimals_);
@@ -1452,8 +1452,6 @@ contract LiquidityGenerator is ERC20, Ownable, Ownership {
 
         if (canSwap && !swapping && !automatedMarketMakerPairs[from]) {
             swapping = true;
-
-            contractTokenBalance = swapTokensAtAmount;
 
             uint256 marketingTokens = contractTokenBalance
                 .mul(marketingFee)
