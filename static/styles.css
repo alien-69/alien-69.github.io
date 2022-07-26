@@ -591,3 +591,9 @@ section {
 p a:hover {
   background-color: greenyellow;
 }
+
+.small-logo {
+  height: 50px;
+  margin-top: 10px;
+  margin-right: 5px;
+}
