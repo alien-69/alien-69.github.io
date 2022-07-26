@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Create Your Own Token | Token Maker
+  </title>
+  <link rel="icon" href="/static/media/icon.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- This is our example code -->
+  <!-- <script type="text/javascript" src="./walletConnectExample.js"></script> -->
+  <!-- <script type="module" src="/static/test-module.js"></script> -->
+
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="../static/styles.css" />
+  <meta name="description"
+    content="Create token in less than a minute with the new Smart Contract Generator. No login. No setup. No coding required." />
+  <meta property="twitter:title" content="Create token without coding | Token Maker" />
+  <meta property="og:title" content="Create token without coding | Token Maker" />
+  <meta property="twitter:description"
+    content="Create token in less than a minute with the new Smart Contract Generator. No login. No setup. No coding required." />
+  <meta property="og:description"
+    content="Create token in less than a minute with the new Smart Contract Generator. No login. No setup. No coding required." />
+  <meta property="og:url" content="https://moondeploy.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://moondeploy.com/static/media/moon-deploy.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://moondeploy.com/static/media/moon-deploy.png" />
+  <meta name="google-site-verification" content="ao9hS7yDUw-d4m80i6qtmkMRx7pAaSxWapAfEZ-dpqY" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7KB79ESXBB"></script>
+  <script>
+    if (!window.location.toString().includes("127.0.0.1") && !window.location.toString().includes("localhost") && !window.location.toString().includes("192.168.")) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-7KB79ESXBB');
+    }
+    else {
+      console.log("development mode")
+      function gtag(event, event_name) {
+        console.log(event, event_name)
+      }
+    }
+  </script>
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/static/media/moon-deploy.png" alt="Moon Deploy" height="30" />
+      </a>
+    </div>
+  </nav>
+
+  <!-- <div
+      class="
+        alert alert-primary alert-dismissible
+        fade
+        show
+        announcement-top-bar
+      "
+      role="alert"
+    >
+      <p class="d-none d-md-block">
+        🚀 Invest in Moon Deploy tokens.
+        <a href="#buy_token">Click here</a>
+      </p>
+      <p class="d-block d-md-none">
+        🚀 Invest in Moon Deploy tokens.
+        <a href="#buy_token">Click here</a>
+      </p>
+    </div> -->
+
+  <div class="d-flex justify-content-center mt-50">
+    <div class="border border-success p-2 my-5" id="success_creation" style="display: block">
+      <p>✅ SUCCESS! Now you can add your tokens to your wallet!</p>
+
+      <div class="my-5">
+        <mark class="col-sm newTokenAddress" style="font-size: small">new_token_address</mark>
+        <button onclick="gtag('event','copy_token_address')" id="copyTokenAddress"
+          class="btn btn-outline-primary copyTokenAddress" title="Copy to clipboard">
+          Copy
+        </button>
+
+
+      </div>
+
+      <p>
+        <a id="view_token" href="" onclick="gtag('event','view_scan')"> 🔍 View your token</a>.
+      </p>
+      <p class="mb-5">
+        ❓ If your token contract isn't verified automatically yet, <a href="https://t.me/MoonDeploy">contact
+          us.</a>
+      </p>
+
+      <p class="fw-bold">📈 List Token on an Exchange:</p>
+      <ul>
+        💧 <a href="https://docs.pancakeswap.finance/products/pancakeswap-exchange/liquidity-guide" target="_blank">How
+          to Add Liquidity</a>
+      </ul>
+
+      <ul>
+        🥪 <a href="../../watch-token" target="_blank">Add Logo for MetaMask/Trust Wallet</a>
+      </ul>
+
+      <!-- <ul>
+        🚆 <a href="../../watch-token" target="_blank">Add Logo for BscScan</a>
+      </ul> -->
+
+      <p class="fw-bold">🔨 Token Toolkit:</p>
+
+      <ul>
+        ✨ <a href="../../bulk-address-creation" target="_blank">Bulk Address Creation</a>
+      </ul>
+      <ul>
+        🎈 <a href="../../token-airdrop-tool" target="_blank">Token Airdrop Tool</a>
+      </ul>
+      <ul>
+        🔒 <a href="../../liquidity-locker" target="_blank">Liquidity Locker</a>
+      </ul>
+
+
+      <!-- <button id="verify_contract">verifiy contract</button> -->
+      <p hidden>
+        👉 If you need help adding new token to wallet, check out
+        <a href="https://cryptonews.com/guides/how-to-add-tokens-to-metamask.htm">this article</a>.
+      </p>
+      <p hidden>
+        🔥 How to launch your own tokens ?
+        <a href="#launch">Click here.</a>
+      </p>
+      <p hidden>
+        💰 Want to make some passive income ?
+        <a href="#ref_id">Click here.</a>
+      </p>
+
+      <p hidden>
+        💸 Invest in Moon Deploy tokens.
+        <a href="#buy_token">Click here.</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="container" id="launch" hidden>
+    <div class="row">
+      <div class="col">
+        <h3 class="fw-bold mb-0">🚀 How to launch your own token ?</h3>
+        <br />
+        <ul>
+          <li>
+            Add Liquidity to Pancakeswap, so that others can buy and sell it.
+          </li>
+          <li>Share it to your family and friends</li>
+          <li>Tell the world about your own tokens, and go to the moon!</li>
+        </ul>
+        <br />
+        <br />
+      </div>
+      <div class="col d-flex justify-content-center">
+        <lottie-player src="https://assets2.lottiefiles.com/private_files/lf30_zxrt6xaq.json" background="transparent"
+          speed="1" style="width: 300px; height: 300px" loop autoplay></lottie-player>
+      </div>
+    </div>
+    <br /><br /><br />
+    <div class="row" id="ref_id" hidden>
+      <div class="col">
+        <h3 class="fw-bold mb-0">💰 Want to make some passive income?</h3>
+        <div class="d-flex justify-content-center">
+          <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_OdVhgq.json" background="transparent"
+            speed="1" style="width: 300px; height: 300px" loop autoplay>
+          </lottie-player>
+        </div>
+      </div>
+      <div class="col">
+        <br />
+
+        <br />
+        <p class="earnRefferalText">
+          Earn money every time a new token's created using your link below.
+        </p>
+        <br />
+        <div class="row">
+          <mark class="col-sm ref_link">https://moondeploy.com?id=change_to_your_eth_address</mark>
+          <div class="col-sm-1"></div>
+
+          <button class="col-sm-2 btn btn-outline-primary copy_ref_link" id="copy-button" title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <br />
+  </div>
+  <div class="row text-center my-0 countdown" id="buy_token" hidden>
+    <h2 class="my-3">PRESALE <strong>COUNTDOWN</strong></h2>
+    <div id="clockdiv">
+      <div>
+        <span class="days">00</span>
+        <div class="smalltext">Days</div>
+      </div>
+      <div>
+        <span class="hours">00</span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes">00</span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds">00</span>
+        <div class="smalltext">Seconds</div>
+      </div>
+    </div>
+    <p class="my-3">
+      After Presale ends, Moon Deploy will be live on Pancakeswap.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-light text-muted mt-auto">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>Get connected with us:</span>
+
+      </div>
+
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="https://t.me/MoonDeploy" class="icon me-4" target="_blank" onclick="gtag('event','telegram')">
+          <i class="fab fa-telegram fa-2x red"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UCJr5ccy7p33qt4Yy-rLKEfg" class="icon" target="_blank"
+          onclick="gtag('event','youtube')">
+          <i class="fab fa-youtube fa-2x"></i>
+        </a>
+
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Moon Deploy
+            </h6>
+            <p>
+              Our mission is to make token creation easy and accessible for everyone.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Tools
+            </h6>
+            <p>
+              <a href="/token-maker" target="_blank" class="text-reset">Token Maker</a>
+            </p>
+            <p>
+              <a href="/bep20-token-generator" target="_blank" class="text-reset">BEP20 token generator</a>
+            </p>
+            <p>
+              <a href="/bep20-wallet-generator" target="_blank" class="text-reset">BEP20 wallet generator</a>
+            </p>
+
+            <p>
+              <a href="../../bulk-address-creation" target="_blank" class="text-reset">Bulk Address Creation</a>
+            </p>
+            <p>
+              <a href="../../token-airdrop-tool" target="_blank" class="text-reset">Token Airdrop Tool</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="https://t.me/MoonDeploy" target="_blank" class="text-reset">Telegram</a>
+            </p>
+            <p>
+              <a href="https://www.youtube.com/channel/UCJr5ccy7p33qt4Yy-rLKEfg" target="_blank"
+                class="text-reset">Youtube</a>
+            </p>
+            <!-- <p>
+                <a href="#!" class="text-reset">Blogs</a>
+              </p> -->
+            <p>
+              <a href="https://forms.gle/mZjhovdVTizCwRSB8" class="text-reset" target="_blank"> Feedback</a>
+            </p>
+            <p>
+              <a href="https://t.me/MoonDeploy" class="text-reset" target="_blank">Help</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+
+
+            <h6 class="text-uppercase fw-bold mb-4">
+              Services
+            </h6>
+            <p>
+              <a href="https://t.me/MoonDeploy" class="text-reset" target="_blank">Smart contract
+                development</a>
+            </p>
+            <!-- <p><i class="fas fa-home me-3"></i> moondeploy.com</p> -->
+            <!-- <p>
+                <i class="fas fa-envelope me-3"></i>
+  
+              </p> -->
+
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(17, 0, 255, 0.2)">
+      © 2021-2022 Copyright:
+      <a class="text-white" href="https://moondeploy.com">Moon Deploy</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  <script>
+    if (navigator.userAgent.indexOf("Safari") != -1) {
+      $(".introMedia").html('<img width="500" height="500" class="d-block mx-lg-auto img-fluid" src="/static/media/intro3.gif">')
+    }
+  </script>
+
+
+  <script type="module" src="../static/misc.js"></script>
+
+  <script type="module" src="../static/success.js"></script>
+
+  <!-- Include this in your HTML page -->
+  <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25571645.js"></script>
+  <!-- End of HubSpot Embed Code -->
+</body>
+
+</html>
