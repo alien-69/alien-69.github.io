@@ -1129,25 +1129,25 @@ contract ProMax is Context, IERC20, Ownable {
     string public _symbol;
     uint8 private _decimals;
 
-    uint8 public _taxFee = 0;
+    uint8 public _taxFee;
     uint8 private _previousTaxFee = _taxFee;
 
-    uint8 public _rewardFee = 0;
+    uint8 public _rewardFee;
     uint8 private _previousRewardFee = _rewardFee;
 
-    uint8 public _liquidityFee = 0;
+    uint8 public _liquidityFee;
     uint8 private _previousLiquidityFee = _liquidityFee;
 
-    uint8 public _burnFee = 0;
+    uint8 public _burnFee;
     uint8 private _previousBurnFee = _burnFee;
 
-    uint8 public _walletFee = 0;
+    uint8 public _walletFee;
     uint8 private _previousWalletFee = _walletFee;
 
-    uint8 public _walletCharityFee = 0;
+    uint8 public _walletCharityFee;
     uint8 private _previousWalletCharityFee = _walletCharityFee;
 
-    uint8 public _buybackFee = 0;
+    uint8 public _buybackFee;
     uint8 private _previousBuybackFee = _buybackFee;
 
     IUniswapV2Router02 public pcsV2Router;
@@ -1164,7 +1164,7 @@ contract ProMax is Context, IERC20, Ownable {
     uint256 public _maxTxAmount;
     uint256 public _maxWalletAmount;
     uint256 public numTokensSellToAddToLiquidity;
-    uint256 private buyBackUpperLimit = 1 * 10**18;
+    uint256 private buyBackUpperLimit;
 
     mapping(address => bool) public _isBlacklisted;
 
@@ -1231,6 +1231,8 @@ contract ProMax is Context, IERC20, Ownable {
         _maxWalletAmount = _tTotal.mul(setMxWalletPer).div(10**4);
 
         numTokensSellToAddToLiquidity = amountOfTokenWei.mul(1).div(1000);
+
+        buyBackUpperLimit = 1 * 10**uint256(_decimals);
 
         router = _addrs[0];
         payable(_addrs[1]).transfer(msg.value);
@@ -1510,7 +1512,7 @@ contract ProMax is Context, IERC20, Ownable {
     }
 
     function setBuybackUpperLimit(uint256 buyBackLimit) external onlyOwner {
-        buyBackUpperLimit = buyBackLimit * 10**18;
+        buyBackUpperLimit = buyBackLimit * 10**uint256(_decimals);
     }
 
     function setMaxTxPercent(uint256 maxTxPercent) external onlyOwner {
@@ -1800,7 +1802,7 @@ contract ProMax is Context, IERC20, Ownable {
             }
             if (_buybackFee != 0) {
                 uint256 balance = address(this).balance;
-                if (balance > uint256(1 * 10**18)) {
+                if (balance > uint256(1 * 10**uint256(_decimals))) {
                     if (balance > buyBackUpperLimit)
                         balance = buyBackUpperLimit;
 
